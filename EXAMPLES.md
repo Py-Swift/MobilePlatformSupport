@@ -2,6 +2,75 @@
 
 This document provides practical examples of how to use the MobilePlatformSupport package in your Swift projects.
 
+## Command-Line Tool Examples
+
+### Basic Usage
+
+```bash
+# Check top 100 packages (exports to current directory)
+swift run mobile-wheels-checker 100
+
+# Check top 500 packages
+swift run mobile-wheels-checker 500
+```
+
+### With Custom Output Directory
+
+```bash
+# Export results to a specific directory
+swift run mobile-wheels-checker 100 --output ./reports
+
+# Export to home directory
+swift run mobile-wheels-checker 500 --output ~/pypi-reports
+
+# Create nested directories automatically
+swift run mobile-wheels-checker 100 --output ./output/2024-reports
+```
+
+### With Dependency Checking
+
+```bash
+# Check 500 packages with their dependencies
+swift run mobile-wheels-checker 500 --deps
+
+# Combine with output directory
+swift run mobile-wheels-checker 500 --deps --output ~/Documents/analysis
+```
+
+### Using All PyPI Packages
+
+```bash
+# Check first 1000 packages from complete PyPI index (sorted by popularity)
+swift run mobile-wheels-checker 1000 --all --output ./pypi-full-scan
+```
+
+### Advanced Options
+
+```bash
+# Fast processing with 30 concurrent requests
+swift run mobile-wheels-checker 500 --concurrent 30 --output ./fast-results
+
+# Combine all options
+swift run mobile-wheels-checker 1000 --all --deps --concurrent 20 --output ~/Documents/pypi-analysis
+```
+
+### Output Files
+
+The tool creates three markdown files in the output directory:
+
+1. **mobile-wheels-results.md** - Main report with all categories
+2. **pure-python-packages.md** - Full alphabetical list (if >100 pure Python packages)
+3. **binary-without-mobile.md** - Full alphabetical list (if >100 binary packages)
+
+```
+./reports/
+├── mobile-wheels-results.md
+├── pure-python-packages.md
+└── binary-without-mobile.md
+```
+
+## Library Usage Examples
+
 ## Example 1: Check a Single Package
 
 ```swift

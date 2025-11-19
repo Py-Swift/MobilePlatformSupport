@@ -20,11 +20,17 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         abstract: "Check PyPI packages for iOS/Android wheel support",
         discussion: """
         Checks Python packages for mobile platform (iOS/Android) wheel availability.
-        Results are displayed in the terminal and exported to mobile-wheels-results.md.
+        Results are displayed in the terminal and exported to markdown files.
         
         Data sources:
           • Default: Top ~8k packages from hugovk.github.io (pre-ranked)
           • --all:   All ~700k packages from pypi.org/simple (sorted by downloads)
+        
+        Output files:
+          • mobile-wheels-results.md (main report)
+          • pure-python-packages.md (full list if >100 packages)
+          • binary-without-mobile.md (full list if >100 packages)
+          • excluded-packages.md (GPU/CUDA/Windows packages filtered out)
         
         Performance: Uses concurrent requests (default: 10) for speed.
         """,
@@ -43,6 +49,9 @@ struct MobileWheelsChecker: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "Number of concurrent requests (1-50)")
     var concurrent: Int = 10
     
+    @Option(name: .shortAndLong, help: "Output directory for exported files (default: current directory)")
+    var output: String?
+    
     mutating func validate() throws {
         guard limit > 0 else {
             throw ValidationError("Limit must be positive")
@@ -50,19 +59,75 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         guard concurrent >= 1 && concurrent <= 50 else {
             throw ValidationError("Concurrent must be between 1 and 50")
         }
+        
+        // Validate output directory if provided
+        if let outputPath = output {
+            var isDirectory: ObjCBool = false
+            let fileManager = FileManager.default
+            
+            // Check if path exists
+            if fileManager.fileExists(atPath: outputPath, isDirectory: &isDirectory) {
+                guard isDirectory.boolValue else {
+                    throw ValidationError("Output path must be a directory, not a file")
+                }
+            } else {
+                // Try to create the directory if it doesn't exist
+                do {
+                    try fileManager.createDirectory(atPath: outputPath, withIntermediateDirectories: true)
+                } catch {
+                    throw ValidationError("Cannot create output directory: \(error.localizedDescription)")
+                }
+            }
+        }
     }
     
-    static func downloadTopPackages(limit: Int = 100) async throws -> [String] {
+    static func downloadTopPackages(limit: Int = 100) async throws -> ([String], [(String, String)]) {
         let url = URL(string: "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json")!
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(TopPyPIResponse.self, from: data)
         
         let packages = response.rows.prefix(limit).map { $0.project }
-        print("📥 Downloaded top \(packages.count) packages from PyPI\n")
-        return Array(packages)
+        
+        // Categorize excluded packages with reasons
+        var excludedPackages: [(String, String)] = []
+        for package in packages {
+            let reason = getExclusionReason(package)
+            if reason != nil {
+                excludedPackages.append((package, reason!))
+            }
+        }
+        
+        // Filter out GPU/CUDA and non-mobile packages
+        let filteredPackages = MobilePlatformSupport.filterMobileCompatiblePackages(Array(packages))
+        
+        print("📥 Downloaded top \(packages.count) packages from PyPI")
+        print("🔍 Filtered to \(filteredPackages.count) mobile-compatible packages (removed \(packages.count - filteredPackages.count) GPU/CUDA/Windows/non-mobile packages)\n")
+        return (filteredPackages, excludedPackages)
     }
     
-    static func downloadAllPackagesFromSimpleIndex(sortedByDownloads: Bool = false) async throws -> [String] {
+    static func getExclusionReason(_ packageName: String) -> String? {
+        let normalized = MobilePlatformSupport.normalizePackageName(packageName)
+        
+        if MobilePlatformSupport.deprecatedPackages.contains(normalized) {
+            return "Deprecated"
+        }
+        
+        if MobilePlatformSupport.isGPUPackage(normalized) {
+            return "GPU/CUDA"
+        }
+        
+        if MobilePlatformSupport.isWindowsPackage(normalized) {
+            return "Windows-only"
+        }
+        
+        if MobilePlatformSupport.nonMobilePackages.contains(normalized) {
+            return "Non-mobile"
+        }
+        
+        return nil
+    }
+    
+    static func downloadAllPackagesFromSimpleIndex(sortedByDownloads: Bool = false) async throws -> ([String], [(String, String)]) {
         print("📥 Downloading package list from PyPI Simple Index...")
         let url = URL(string: "https://pypi.org/simple/")!
         let (data, _) = try await URLSession.shared.data(from: url)
@@ -90,6 +155,20 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         }
         
         print("📦 Found \(packages.count) packages on PyPI")
+        
+        // Categorize excluded packages with reasons
+        var excludedPackages: [(String, String)] = []
+        for package in packages {
+            let reason = getExclusionReason(package)
+            if reason != nil {
+                excludedPackages.append((package, reason!))
+            }
+        }
+        
+        // Filter out GPU/CUDA and non-mobile packages early
+        let beforeFilterCount = packages.count
+        packages = MobilePlatformSupport.filterMobileCompatiblePackages(packages)
+        print("🔍 Filtered to \(packages.count) mobile-compatible packages (removed \(beforeFilterCount - packages.count) GPU/CUDA/Windows/non-mobile packages)")
         
         // If sorting by downloads is requested, fetch download stats and reorder
         if sortedByDownloads {
@@ -130,7 +209,7 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             print()
         }
         
-        return packages
+        return (packages, excludedPackages)
     }
     
     mutating func run() async throws {
@@ -147,14 +226,19 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             
             // Download packages from PyPI
             let testPackages: [String]
+            var excludedPackages: [(String, String)] = []
+            
             if all {
                 // Get all packages from simple index, sorted by downloads
-                let allPackages = try await Self.downloadAllPackagesFromSimpleIndex(sortedByDownloads: true)
+                let (allPackages, excluded) = try await Self.downloadAllPackagesFromSimpleIndex(sortedByDownloads: true)
+                excludedPackages = excluded
                 // Limit to requested number (or all if limit >= total)
                 testPackages = limit >= allPackages.count ? allPackages : Array(allPackages.prefix(limit))
             } else {
                 // Get top packages from hugovk
-                testPackages = try await Self.downloadTopPackages(limit: limit)
+                let (packages, excluded) = try await Self.downloadTopPackages(limit: limit)
+                testPackages = packages
+                excludedPackages = excluded
             }
             
             print("Checking \(testPackages.count) \(all ? "packages" : "popular packages") for mobile support...")
@@ -358,6 +442,13 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             
             // Export markdown report
             let reportGenerator = MarkdownReportGenerator()
+            
+            // Construct file paths based on output directory
+            let outputDir = output ?? FileManager.default.currentDirectoryPath
+            let mainFilename = (outputDir as NSString).appendingPathComponent("mobile-wheels-results.md")
+            let purePythonFilename = (outputDir as NSString).appendingPathComponent("pure-python-packages.md")
+            let binaryWithoutMobileFilename = (outputDir as NSString).appendingPathComponent("binary-without-mobile.md")
+            
             try reportGenerator.generate(
                 limit: limit,
                 depsEnabled: deps,
@@ -368,8 +459,21 @@ struct MobileWheelsChecker: AsyncParsableCommand {
                 purePythonSorted: purePythonSorted,
                 binaryWithoutMobileSorted: binaryWithoutMobileSorted,
                 allPackagesWithDeps: allPackagesWithDeps,
-                timestamp: Date()
+                timestamp: Date(),
+                mainFilename: mainFilename,
+                purePythonFilename: purePythonFilename,
+                binaryWithoutMobileFilename: binaryWithoutMobileFilename
             )
+            
+            // Export excluded packages report if any were filtered
+            if !excludedPackages.isEmpty {
+                let excludedFilename = (outputDir as NSString).appendingPathComponent("excluded-packages.md")
+                try Self.generateExcludedPackagesReport(
+                    excludedPackages: excludedPackages,
+                    timestamp: Date(),
+                    filename: excludedFilename
+                )
+            }
             
         } catch {
             print("❌ Error: \(error.localizedDescription)")
@@ -389,6 +493,165 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         case .warning:
             return "⚠️  Not available"
         }
+    }
+    
+    static func generateExcludedPackagesReport(
+        excludedPackages: [(String, String)],
+        timestamp: Date,
+        filename: String
+    ) throws {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = dateFormatter.string(from: timestamp)
+        
+        // Group packages by reason
+        var gpuCudaPackages: [String] = []
+        var windowsPackages: [String] = []
+        var deprecatedPackages: [String] = []
+        var otherNonMobilePackages: [String] = []
+        
+        for (package, reason) in excludedPackages {
+            switch reason {
+            case "GPU/CUDA":
+                gpuCudaPackages.append(package)
+            case "Windows-only":
+                windowsPackages.append(package)
+            case "Deprecated":
+                deprecatedPackages.append(package)
+            case "Non-mobile":
+                otherNonMobilePackages.append(package)
+            default:
+                otherNonMobilePackages.append(package)
+            }
+        }
+        
+        // Sort alphabetically
+        gpuCudaPackages.sort { $0.lowercased() < $1.lowercased() }
+        windowsPackages.sort { $0.lowercased() < $1.lowercased() }
+        deprecatedPackages.sort { $0.lowercased() < $1.lowercased() }
+        otherNonMobilePackages.sort { $0.lowercased() < $1.lowercased() }
+        
+        var markdown = """
+        # Excluded Packages - Not Compatible with Mobile Platforms
+        
+        **Generated:** \(dateString)  
+        **Total Excluded:** \(excludedPackages.count)
+        
+        This document lists packages that were automatically filtered out during mobile platform support checking. These packages are **not compatible with mobile platforms** (iOS/Android) and should never be used in mobile applications.
+        
+        ---
+        
+        """
+        
+        // GPU/CUDA Packages
+        if !gpuCudaPackages.isEmpty {
+            markdown += """
+            ## 🎮 GPU/CUDA Packages (\(gpuCudaPackages.count))
+            
+            These packages require GPU hardware and CUDA drivers which are not available on mobile platforms.
+            
+            | Package | Reason |
+            |---------|--------|
+            
+            """
+            
+            for package in gpuCudaPackages {
+                markdown += "| `\(package)` | Requires GPU/CUDA (not available on iOS/Android) |\n"
+            }
+            
+            markdown += "\n"
+        }
+        
+        // Windows-only Packages
+        if !windowsPackages.isEmpty {
+            markdown += """
+            ## 🪟 Windows-Only Packages (\(windowsPackages.count))
+            
+            These packages are specific to Windows operating system and cannot run on mobile platforms.
+            
+            | Package | Reason |
+            |---------|--------|
+            
+            """
+            
+            for package in windowsPackages {
+                markdown += "| `\(package)` | Windows-specific APIs (not available on iOS/Android) |\n"
+            }
+            
+            markdown += "\n"
+        }
+        
+        // Deprecated Packages
+        if !deprecatedPackages.isEmpty {
+            markdown += """
+            ## ⚠️ Deprecated Packages (\(deprecatedPackages.count))
+            
+            These packages are deprecated and should not be used in any new projects.
+            
+            | Package | Reason |
+            |---------|--------|
+            
+            """
+            
+            for package in deprecatedPackages {
+                markdown += "| `\(package)` | Deprecated by Python community |\n"
+            }
+            
+            markdown += "\n"
+        }
+        
+        // Other Non-mobile Packages
+        if !otherNonMobilePackages.isEmpty {
+            markdown += """
+            ## 🚫 Other Non-Mobile Packages (\(otherNonMobilePackages.count))
+            
+            These packages have architecture or system requirements incompatible with mobile platforms.
+            
+            | Package | Reason |
+            |---------|--------|
+            
+            """
+            
+            for package in otherNonMobilePackages {
+                markdown += "| `\(package)` | Architecture/system incompatible with mobile |\n"
+            }
+            
+            markdown += "\n"
+        }
+        
+        markdown += """
+        ---
+        
+        ## Summary
+        
+        | Category | Count | Percentage |
+        |----------|-------|------------|
+        | GPU/CUDA Packages | \(gpuCudaPackages.count) | \(String(format: "%.1f%%", Double(gpuCudaPackages.count) / Double(excludedPackages.count) * 100)) |
+        | Windows-Only Packages | \(windowsPackages.count) | \(String(format: "%.1f%%", Double(windowsPackages.count) / Double(excludedPackages.count) * 100)) |
+        | Deprecated Packages | \(deprecatedPackages.count) | \(String(format: "%.1f%%", Double(deprecatedPackages.count) / Double(excludedPackages.count) * 100)) |
+        | Other Non-Mobile | \(otherNonMobilePackages.count) | \(String(format: "%.1f%%", Double(otherNonMobilePackages.count) / Double(excludedPackages.count) * 100)) |
+        | **Total** | **\(excludedPackages.count)** | **100%** |
+        
+        ---
+        
+        **Why These Packages Are Excluded:**
+        
+        1. **GPU/CUDA Packages**: Require NVIDIA GPU hardware and CUDA runtime which don't exist on mobile devices
+        2. **Windows-Only Packages**: Use Windows-specific APIs (Win32, COM, etc.) not available on iOS/Android
+        3. **Deprecated Packages**: Outdated packages that have been superseded or abandoned
+        4. **Other Non-Mobile**: Packages with Intel-specific optimizations, subprocess requirements, or other incompatibilities
+        
+        **For Mobile Development**: Use pure Python packages or packages with official iOS/Android binary wheels instead.
+        
+        ---
+        
+        **Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/MobilePlatformSupport)
+        
+        """
+        
+        let fileURL = URL(fileURLWithPath: filename)
+        try markdown.write(to: fileURL, atomically: true, encoding: .utf8)
+        print("✅ Excluded packages list exported to: \(filename)")
     }
 }
 

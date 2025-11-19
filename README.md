@@ -102,13 +102,21 @@ The package automatically excludes:
 ### Deprecated Packages
 - BeautifulSoup, bs4, distribute, django-social-auth, nose, pep8, pycrypto, pypular, sklearn, subprocess32
 
+### GPU/CUDA Packages
+- Automatically filtered packages containing: `cuda`, `cupy`, `nvidia-`, `tensorrt`, `-gpu`, `-cuda`, `triton`, etc.
+- Examples: nvidia-cublas-cu12, cupy-cuda12x, jax-cuda12-plugin, tensorflow-gpu, onnxruntime-gpu
+
+### Windows-Only Packages
+- Automatically filtered packages containing: `pywin`, `win32`, `windows-`, `wmi`, `comtypes`, `msvc`, etc.
+- Examples: pywin32, pywinpty, windows-curses, pywinauto, wmi, comtypes, winshell, win32-setctime
+
 ### Non-Mobile Packages
 - **CUDA/Nvidia packages**: Not available on mobile platforms
-- **Intel-specific packages**: Intel processors not used on mobile
-- **Subprocess-based packages**: Subprocesses not well supported on mobile
+- **Intel-specific packages**: Intel processors not used on mobile (mkl, intel-openmp, etc.)
+- **Subprocess-based packages**: Subprocesses not well supported on mobile (multiprocess)
 - **Windows-specific packages**: Not relevant for mobile platforms
 
-See `MobilePlatformSupport.deprecatedPackages` and `MobilePlatformSupport.nonMobilePackages` for complete lists.
+See `MobilePlatformSupport.deprecatedPackages`, `MobilePlatformSupport.nonMobilePackages`, `MobilePlatformSupport.isGPUPackage()`, and `MobilePlatformSupport.isWindowsPackage()` for complete lists.
 
 ## API Reference
 
@@ -206,6 +214,12 @@ swift run mobile-wheels-checker 500 --deps
 # Check packages from PyPI Simple Index (all packages, alphabetically)
 swift run mobile-wheels-checker 1000 --all
 
+# Export to a specific directory
+swift run mobile-wheels-checker 100 --output ./reports
+
+# Combine options
+swift run mobile-wheels-checker 500 --deps --output ~/Documents/pypi-reports
+
 # Show help
 swift run mobile-wheels-checker --help
 ```
@@ -218,6 +232,7 @@ swift run mobile-wheels-checker --help
 | `-d, --deps` | Enable recursive dependency checking |
 | `-a, --all` | Use PyPI Simple Index instead of top packages |
 | `-c, --concurrent N` | Number of concurrent requests (default: 10, max: 50) |
+| `-o, --output PATH` | Output directory for exported files (default: current directory) |
 | `-h, --help` | Show help message |
 
 ### Performance
@@ -246,6 +261,8 @@ swift run mobile-wheels-checker 500 -c 30
 - **Default**: Top packages from [hugovk.github.io/top-pypi-packages](https://hugovk.github.io/top-pypi-packages/) (pre-ranked, ~8k packages)
 - **--all flag**: All packages from [pypi.org/simple](https://pypi.org/simple/) (~700k packages, sorted by download count)
 
+**Automatic Filtering**: The tool automatically filters out GPU/CUDA packages (e.g., nvidia-cublas-cu12, tensorflow-gpu), Windows-only packages (e.g., pywin32, wmi), and other non-mobile compatible packages (deprecated, Intel-specific, etc.) when downloading the package list. This ensures only relevant packages are checked.
+
 The `--all` flag fetches the complete package list from PyPI's Simple Index, then sorts it by download statistics to prioritize the most popular packages. This gives you access to the full PyPI ecosystem while still checking important packages first.
 
 ### Output
@@ -257,7 +274,11 @@ The tool generates:
    - 🐍 Pure Python Packages (first 100)
    - ❌ Binary Packages Without Mobile Support
 
-2. **Markdown report**: `mobile-wheels-results.md` with complete listings and statistics
+2. **Markdown reports** (exported to output directory):
+   - `mobile-wheels-results.md` - Main report with complete listings and statistics
+   - `pure-python-packages.md` - Full alphabetical list (if >100 pure Python packages)
+   - `binary-without-mobile.md` - Full alphabetical list (if >100 binary packages without mobile support)
+   - `excluded-packages.md` - GPU/CUDA and Windows-only packages that were filtered out (shows packages that are 100% incompatible with mobile platforms)
 
 ### PyPI Simple Index Scraping
 

@@ -23,6 +23,10 @@ public struct MarkdownReportGenerator {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateString = dateFormatter.string(from: timestamp)
         
+        // Extract just the filename for relative links (not the full path)
+        let purePythonLinkName = (purePythonFilename as NSString).lastPathComponent
+        let binaryWithoutMobileLinkName = (binaryWithoutMobileFilename as NSString).lastPathComponent
+        
         var markdown = """
         # Mobile Platform Support Report
         
@@ -102,7 +106,7 @@ public struct MarkdownReportGenerator {
         
         if purePython.count > 100 {
             markdown += "_Showing first 100 packages by download popularity. Total: \(purePython.count)_\n\n"
-            markdown += "📄 **[View all \(purePython.count) pure Python packages (A-Z)](\(purePythonFilename))**\n\n"
+            markdown += "📄 **[View all \(purePython.count) pure Python packages (A-Z)](\(purePythonLinkName))**\n\n"
         }
         
         markdown += """
@@ -128,7 +132,7 @@ public struct MarkdownReportGenerator {
         }
         
         if purePython.count > 100 {
-            markdown += "\n_... and \(purePython.count - 100) more packages. [View full list](\(purePythonFilename))_\n"
+            markdown += "\n_... and \(purePython.count - 100) more packages. [View full list](\(purePythonLinkName))_\n"
         }
         
         markdown += """
@@ -142,7 +146,7 @@ public struct MarkdownReportGenerator {
         
         if binaryWithoutMobile.count > 100 {
             markdown += "_Showing first 100 packages by download popularity. Total: \(binaryWithoutMobile.count)_\n\n"
-            markdown += "📄 **[View all \(binaryWithoutMobile.count) packages without mobile support (A-Z)](\(binaryWithoutMobileFilename))**\n\n"
+            markdown += "📄 **[View all \(binaryWithoutMobile.count) packages without mobile support (A-Z)](\(binaryWithoutMobileLinkName))**\n\n"
         }
         
         markdown += """
@@ -170,7 +174,7 @@ public struct MarkdownReportGenerator {
         if binaryWithoutMobile.isEmpty {
             markdown += "\n_No packages found._\n"
         } else if binaryWithoutMobile.count > 100 {
-            markdown += "\n_... and \(binaryWithoutMobile.count - 100) more packages. [View full list](\(binaryWithoutMobileFilename))_\n"
+            markdown += "\n_... and \(binaryWithoutMobile.count - 100) more packages. [View full list](\(binaryWithoutMobileLinkName))_\n"
         }
         
         // Summary statistics

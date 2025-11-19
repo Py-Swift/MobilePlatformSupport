@@ -125,8 +125,94 @@ public class MobilePlatformSupport {
         // Windows-specific bindings
         "pywin32",
         "pywinpty",
-        "windows-curses"
+        "windows-curses",
+        "pywinauto",
+        "winshell",
+        "wmi",
+        "comtypes",
+        "pythonnet",
+        "pywin32-ctypes",
+        "winreg",
+        "win32-setctime"
     ]
+    
+    /// Check if a package name is GPU/CUDA related (should be filtered out for mobile)
+    public static func isGPUPackage(_ packageName: String) -> Bool {
+        let normalized = packageName.lowercased()
+        
+        // Common GPU/CUDA prefixes and keywords
+        let gpuPatterns = [
+            "cuda", "cupy", "nvidia-", "nvcc", "nccl", "cupti", "nvtx",
+            "cublas", "cudnn", "cufft", "curand", "cusolver", "cusparse",
+            "nvrtc", "nvjitlink", "tensorrt", "-gpu", "-cuda",
+            "jax-cuda", "torch-cuda", "tensorflow-gpu", "paddlepaddle-gpu",
+            "onnxruntime-gpu", "mxnet-cu", "triton"
+        ]
+        
+        // Check patterns
+        for pattern in gpuPatterns {
+            if normalized.contains(pattern) {
+                return true
+            }
+        }
+        
+        // Check if it starts with gpu- (like gpu-enabled)
+        if normalized.hasPrefix("gpu-") {
+            return true
+        }
+        
+        return false
+    }
+    
+    /// Check if a package name is Windows-only (should be filtered out for mobile)
+    public static func isWindowsPackage(_ packageName: String) -> Bool {
+        let normalized = packageName.lowercased()
+        
+        // Windows-specific patterns and keywords
+        let windowsPatterns = [
+            "pywin", "win32", "winreg", "wmi", "windows-", "pywinauto",
+            "winshell", "pywinusb", "win-", "-win32", "msvc", "comtypes",
+            "pywinpty", "windows-curses", "winsys", "winappdbg"
+        ]
+        
+        // Check patterns
+        for pattern in windowsPatterns {
+            if normalized.contains(pattern) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    /// Filter out GPU/CUDA and non-mobile packages from a list
+    public static func filterMobileCompatiblePackages(_ packages: [String]) -> [String] {
+        return packages.filter { packageName in
+            let normalized = normalizePackageName(packageName)
+            
+            // Exclude if it's deprecated
+            if deprecatedPackages.contains(normalized) {
+                return false
+            }
+            
+            // Exclude if it's non-mobile
+            if nonMobilePackages.contains(normalized) {
+                return false
+            }
+            
+            // Exclude if it's GPU-related
+            if isGPUPackage(normalized) {
+                return false
+            }
+            
+            // Exclude if it's Windows-only
+            if isWindowsPackage(normalized) {
+                return false
+            }
+            
+            return true
+        }
+    }
     
     private let session: URLSession
     
@@ -167,7 +253,7 @@ public class MobilePlatformSupport {
                let closeTag = line.range(of: "</a>", range: endRange.upperBound..<line.endIndex) {
                 let packageName = String(line[endRange.upperBound..<closeTag.lowerBound])
                 // Normalize package name according to PEP 503
-                let normalized = normalizePackageName(packageName)
+                let normalized = Self.normalizePackageName(packageName)
                 packages.insert(normalized)
             }
         }
@@ -179,7 +265,7 @@ public class MobilePlatformSupport {
     
     /// Normalize package name for comparison (PEP 503)
     /// Converts to lowercase and replaces hyphens, underscores, and dots with hyphens
-    private func normalizePackageName(_ name: String) -> String {
+    public static func normalizePackageName(_ name: String) -> String {
         return name.lowercased()
             .replacingOccurrences(of: "_", with: "-")
             .replacingOccurrences(of: ".", with: "-")
@@ -188,7 +274,7 @@ public class MobilePlatformSupport {
     /// Check if a package is available in PySwift index
     public func isAvailableInPySwift(_ packageName: String) async throws -> Bool {
         let packages = try await fetchPySwiftPackages()
-        let normalized = normalizePackageName(packageName)
+        let normalized = Self.normalizePackageName(packageName)
         return packages.contains(normalized)
     }
     
@@ -235,7 +321,7 @@ public class MobilePlatformSupport {
     
     /// Get PySwift package URL
     private func getPySwiftPackageURL(for packageName: String) -> URL? {
-        let normalized = normalizePackageName(packageName)
+        let normalized = Self.normalizePackageName(packageName)
         return URL(string: "\(Self.pyswiftSimpleURL)/\(normalized)/")
     }
     
