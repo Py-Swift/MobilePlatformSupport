@@ -1,6 +1,6 @@
 # Mobile Platform Support Report
 
-**Generated:** 2025-11-19 21:39:51  
+**Generated:** 2025-11-19 21:51:26  
 **Packages Checked:** 300  
 **Dependency Checking:** Disabled
 
@@ -23,29 +23,17 @@ Custom iOS/Android builds from [pypi.anaconda.org/pyswift/simple](https://pypi.a
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `numpy` | ⚠️ Not available | ✅ Supported |
-| `cryptography` | ⚠️ Not available | ✅ Supported |
 | `cffi` | ⚠️ Not available | ✅ Supported |
-| `aiohttp` | ⚠️ Not available | ✅ Supported |
-| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
-| `greenlet` | ⚠️ Not available | ✅ Supported |
-| `msgpack` | ⚠️ Not available | ✅ Supported |
 | `regex` | ⚠️ Not available | ✅ Supported |
-| `coverage` | 🐍 Pure Python | ✅ Supported |
-| `bcrypt` | ⚠️ Not available | ✅ Supported |
-| `matplotlib` | ⚠️ Not available | ✅ Supported |
-| `kiwisolver` | ⚠️ Not available | ✅ Supported |
-| `contourpy` | ⚠️ Not available | ✅ Supported |
 | `orjson` | ⚠️ Not available | ✅ Supported |
-| `pycryptodome` | ⚠️ Not available | ✅ Supported |
 
 
 ## 🐍 Pure Python Packages
 
 Packages that work on all platforms (no binary dependencies).
-_Showing first 100 packages by download popularity. Total: 254_
+_Showing first 100 packages by download popularity. Total: 252_
 
-📄 **[View all 254 pure Python packages (A-Z)](pure-python/index.md)**
+📄 **[View all 252 pure Python packages (A-Z)](pure-python/index.md)**
 
 | Package | Android | iOS |
 |---------|---------|-----|
@@ -117,7 +105,6 @@ _Showing first 100 packages by download popularity. Total: 254_
 | `tomli` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `mdurl` | 🐍 Pure Python | 🐍 Pure Python |
-| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
 | `aiohappyeyeballs` | 🐍 Pure Python | 🐍 Pure Python |
 | `pathspec` | 🐍 Pure Python | 🐍 Pure Python |
 | `openpyxl` | 🐍 Pure Python | 🐍 Pure Python |
@@ -149,8 +136,9 @@ _Showing first 100 packages by download popularity. Total: 254_
 | `opentelemetry-api` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-proto` | 🐍 Pure Python | 🐍 Pure Python |
 | `google-cloud-storage` | 🐍 Pure Python | 🐍 Pure Python |
+| `websocket-client` | 🐍 Pure Python | 🐍 Pure Python |
 
-_... and 154 more packages. [View full list](pure-python/index.md)_
+_... and 152 more packages. [View full list](pure-python/index.md)_
 
 
 ## ❌ Binary Packages Without Mobile Support
@@ -197,8 +185,8 @@ Packages with binary wheels but no iOS/Android support.
 | Category | Count | Percentage |
 |----------|-------|------------|
 | Official Binary Wheels (PyPI) | 3 | 1.0% |
-| PySwift Binary Wheels | 15 | 5.0% |
-| Pure Python | 254 | 84.7% |
+| PySwift Binary Wheels | 3 | 1.0% |
+| Pure Python | 252 | 84.0% |
 | Binary Without Mobile Support | 30 | 10.0% |
 | **Total** | **300** | **100%** |
 
@@ -206,9 +194,9 @@ Packages with binary wheels but no iOS/Android support.
 
 | Platform | Count | Percentage |
 |----------|-------|------------|
-| Android Support | 2 / 18 | 11.1% |
-| iOS Support | 16 / 18 | 88.9% |
-| Both Platforms | 0 / 18 | 0.0% |
+| Android Support | 2 / 6 | 33.3% |
+| iOS Support | 4 / 6 | 66.7% |
+| Both Platforms | 0 / 6 | 0.0% |
 
 ---
 

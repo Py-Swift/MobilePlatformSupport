@@ -1,7 +1,7 @@
 # Pure Python Packages - C
 
-**Generated:** 2025-11-19 21:39:51  
-**Total Packages Starting with C:** 14
+**Generated:** 2025-11-19 21:51:26  
+**Total Packages Starting with C:** 13
 
 [← Back to Index](index.md)
 
@@ -19,7 +19,6 @@
 | `click` | 🐍 Pure Python | 🐍 Pure Python |
 | `cloudpickle` | 🐍 Pure Python | 🐍 Pure Python |
 | `colorama` | 🐍 Pure Python | 🐍 Pure Python |
-| `coverage` | 🐍 Pure Python | ✅ Supported |
 | `crashtest` | 🐍 Pure Python | 🐍 Pure Python |
 | `cycler` | 🐍 Pure Python | 🐍 Pure Python |
 | `Cython` | 🐍 Pure Python | 🐍 Pure Python |

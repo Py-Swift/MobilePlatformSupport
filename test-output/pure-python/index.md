@@ -1,73 +1,15 @@
-<style>
-.content-wrapper {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-.main-content {
-    flex: 1;
-    min-width: 0;
-}
-.sidebar {
-    width: 250px;
-    position: sticky;
-    top: 20px;
-    align-self: flex-start;
-    background: #f6f8fa;
-    border: 1px solid #d0d7de;
-    border-radius: 6px;
-    padding: 16px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-}
-.sidebar h3 {
-    margin-top: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1f2328;
-}
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.sidebar li {
-    margin: 4px 0;
-    font-size: 14px;
-}
-.sidebar a {
-    color: #0969da;
-    text-decoration: none;
-}
-.sidebar a:hover {
-    text-decoration: underline;
-}
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
-    }
-    .sidebar {
-        position: static;
-        width: 100%;
-    }
-}
-</style>
-
 # Pure Python Packages - Full List
 
-**Generated:** 2025-11-19 21:39:51  
-**Total Packages:** 254
+**Generated:** 2025-11-19 21:51:26  
+**Total Packages:** 252
 
 Packages that work on all platforms (no binary dependencies).
 
 ---
 
-<div class="content-wrapper">
-<div class="main-content">
-
 ## Top 10 Packages by Letter
 
-<h3 id="a">A</h3>
+### [A](A.md) (18 packages)
 1. `aiobotocore`
 2. `aiofiles`
 3. `aiohappyeyeballs`
@@ -79,7 +21,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `asgiref`
 10. `asn1crypto`
 
-<h3 id="b">B</h3>
+### [B](B.md) (8 packages)
 1. `babel`
 2. `backoff`
 3. `beautifulsoup4`
@@ -89,7 +31,7 @@ Packages that work on all platforms (no binary dependencies).
 7. `botocore`
 8. `build`
 
-<h3 id="c">C</h3>
+### [C](C.md) (13 packages)
 1. `CacheControl`
 2. `cachetools`
 3. `certifi`
@@ -101,7 +43,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `cloudpickle`
 10. `colorama`
 
-<h3 id="d">D</h3>
+### [D](D.md) (13 packages)
 1. `datadog`
 2. `debugpy`
 3. `decorator`
@@ -113,7 +55,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `dnspython`
 10. `docker`
 
-<h3 id="e">E</h3>
+### [E](E.md) (7 packages)
 1. `editables`
 2. `email-validator`
 3. `et-xmlfile`
@@ -122,7 +64,7 @@ Packages that work on all platforms (no binary dependencies).
 6. `execnet`
 7. `executing`
 
-<h3 id="f">F</h3>
+### [F](F.md) (8 packages)
 1. `fastapi`
 2. `fastjsonschema`
 3. `filelock`
@@ -132,7 +74,7 @@ Packages that work on all platforms (no binary dependencies).
 7. `fsspec`
 8. `future`
 
-<h3 id="g">G</h3>
+### [G](G.md) (19 packages)
 1. `gitdb`
 2. `GitPython`
 3. `google-api-core`
@@ -144,7 +86,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `google-cloud-bigquery`
 10. `google-cloud-core`
 
-<h3 id="h">H</h3>
+### [H](H.md) (6 packages)
 1. `h11`
 2. `hatchling`
 3. `httpcore`
@@ -152,7 +94,7 @@ Packages that work on all platforms (no binary dependencies).
 5. `httpx`
 6. `huggingface-hub`
 
-<h3 id="i">I</h3>
+### [I](I.md) (10 packages)
 1. `identify`
 2. `idna`
 3. `importlib-metadata`
@@ -164,7 +106,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `isort`
 10. `itsdangerous`
 
-<h3 id="j">J</h3>
+### [J](J.md) (10 packages)
 1. `jedi`
 2. `jeepney`
 3. `Jinja2`
@@ -176,16 +118,16 @@ Packages that work on all platforms (no binary dependencies).
 9. `jsonschema`
 10. `jsonschema-specifications`
 
-<h3 id="k">K</h3>
+### [K](K.md) (2 packages)
 1. `keyring`
 2. `kubernetes`
 
-<h3 id="l">L</h3>
+### [L](L.md) (3 packages)
 1. `langchain`
 2. `langchain-core`
 3. `langsmith`
 
-<h3 id="m">M</h3>
+### [M](M.md) (14 packages)
 1. `Mako`
 2. `Markdown`
 3. `markdown-it-py`
@@ -197,12 +139,12 @@ Packages that work on all platforms (no binary dependencies).
 9. `mpmath`
 10. `msal`
 
-<h3 id="n">N</h3>
+### [N](N.md) (3 packages)
 1. `nest-asyncio`
 2. `networkx`
 3. `nodeenv`
 
-<h3 id="o">O</h3>
+### [O](O.md) (15 packages)
 1. `oauthlib`
 2. `openai`
 3. `openpyxl`
@@ -214,7 +156,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `opentelemetry-exporter-otlp-proto-http`
 10. `opentelemetry-instrumentation`
 
-<h3 id="p">P</h3>
+### [P](P.md) (42 packages)
 1. `packaging`
 2. `paramiko`
 3. `parso`
@@ -226,7 +168,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `pluggy`
 10. `ply`
 
-<h3 id="r">R</h3>
+### [R](R.md) (8 packages)
 1. `redis`
 2. `referencing`
 3. `requests`
@@ -236,7 +178,7 @@ Packages that work on all platforms (no binary dependencies).
 7. `rich`
 8. `rsa`
 
-<h3 id="s">S</h3>
+### [S](S.md) (17 packages)
 1. `s3fs`
 2. `s3transfer`
 3. `SecretStorage`
@@ -248,7 +190,7 @@ Packages that work on all platforms (no binary dependencies).
 9. `smmap`
 10. `sniffio`
 
-<h3 id="t">T</h3>
+### [T](T.md) (20 packages)
 1. `tabulate`
 2. `tenacity`
 3. `termcolor`
@@ -260,15 +202,15 @@ Packages that work on all platforms (no binary dependencies).
 9. `tqdm`
 10. `traitlets`
 
-<h3 id="u">U</h3>
+### [U](U.md) (3 packages)
 1. `uritemplate`
 2. `urllib3`
 3. `uvicorn`
 
-<h3 id="v">V</h3>
+### [V](V.md) (1 packages)
 1. `virtualenv`
 
-<h3 id="w">W</h3>
+### [W](W.md) (8 packages)
 1. `watchdog`
 2. `wcwidth`
 3. `webencodings`
@@ -278,52 +220,17 @@ Packages that work on all platforms (no binary dependencies).
 7. `wheel`
 8. `wrapt`
 
-<h3 id="x">X</h3>
+### [X](X.md) (1 packages)
 1. `xmltodict`
 
-<h3 id="y">Y</h3>
+### [Y](Y.md) (2 packages)
 1. `yandexcloud`
 2. `yarl`
 
-<h3 id="z">Z</h3>
+### [Z](Z.md) (1 packages)
 1. `zipp`
 
 
 ---
 
 **Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/MobilePlatformSupport)
-
-</div>
-
-<div class="sidebar">
-<h3>Browse by Letter</h3>
-<ul>
-<li><a href="#a"><strong>A</strong></a> (18)</li>
-<li><a href="#b"><strong>B</strong></a> (8)</li>
-<li><a href="#c"><strong>C</strong></a> (14)</li>
-<li><a href="#d"><strong>D</strong></a> (13)</li>
-<li><a href="#e"><strong>E</strong></a> (7)</li>
-<li><a href="#f"><strong>F</strong></a> (8)</li>
-<li><a href="#g"><strong>G</strong></a> (19)</li>
-<li><a href="#h"><strong>H</strong></a> (6)</li>
-<li><a href="#i"><strong>I</strong></a> (10)</li>
-<li><a href="#j"><strong>J</strong></a> (10)</li>
-<li><a href="#k"><strong>K</strong></a> (2)</li>
-<li><a href="#l"><strong>L</strong></a> (3)</li>
-<li><a href="#m"><strong>M</strong></a> (14)</li>
-<li><a href="#n"><strong>N</strong></a> (3)</li>
-<li><a href="#o"><strong>O</strong></a> (15)</li>
-<li><a href="#p"><strong>P</strong></a> (42)</li>
-<li><a href="#r"><strong>R</strong></a> (8)</li>
-<li><a href="#s"><strong>S</strong></a> (18)</li>
-<li><a href="#t"><strong>T</strong></a> (20)</li>
-<li><a href="#u"><strong>U</strong></a> (3)</li>
-<li><a href="#v"><strong>V</strong></a> (1)</li>
-<li><a href="#w"><strong>W</strong></a> (8)</li>
-<li><a href="#x"><strong>X</strong></a> (1)</li>
-<li><a href="#y"><strong>Y</strong></a> (2)</li>
-<li><a href="#z"><strong>Z</strong></a> (1)</li>
-</ul>
-</div>
-
-</div>

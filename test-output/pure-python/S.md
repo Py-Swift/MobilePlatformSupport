@@ -1,7 +1,7 @@
 # Pure Python Packages - S
 
-**Generated:** 2025-11-19 21:39:51  
-**Total Packages Starting with S:** 18
+**Generated:** 2025-11-19 21:51:26  
+**Total Packages Starting with S:** 17
 
 [← Back to Index](index.md)
 
@@ -22,7 +22,6 @@
 | `snowflake-sqlalchemy` | 🐍 Pure Python | 🐍 Pure Python |
 | `sortedcontainers` | 🐍 Pure Python | 🐍 Pure Python |
 | `soupsieve` | 🐍 Pure Python | 🐍 Pure Python |
-| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
 | `sqlparse` | 🐍 Pure Python | 🐍 Pure Python |
 | `stack-data` | 🐍 Pure Python | 🐍 Pure Python |
 | `starlette` | 🐍 Pure Python | 🐍 Pure Python |
