@@ -1,7 +1,7 @@
 # Pure Python Packages - K
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with K:** 3
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with K:** 7
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,13 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `kafka-python` | 🐍 Pure Python | 🐍 Pure Python |
+| `keras` | 🐍 Pure Python | 🐍 Pure Python |
 | `keyring` | 🐍 Pure Python | 🐍 Pure Python |
+| `kfp` | 🐍 Pure Python | 🐍 Pure Python |
 | `kombu` | 🐍 Pure Python | 🐍 Pure Python |
 | `kubernetes` | 🐍 Pure Python | 🐍 Pure Python |
+| `kubernetes-asyncio` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

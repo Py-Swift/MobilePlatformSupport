@@ -1,7 +1,7 @@
 # Pure Python Packages - Full List
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages:** 433
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages:** 854
 
 Packages that work on all platforms (no binary dependencies).
 
@@ -9,254 +9,271 @@ Packages that work on all platforms (no binary dependencies).
 
 ## Top 10 Packages by Letter
 
-### [A](A.md) (35 packages)
+### [A](A.md) (93 packages)
 1. `absl-py`
-2. `adal`
-3. `aenum`
-4. `aiobotocore`
-5. `aiofiles`
-6. `aiohappyeyeballs`
-7. `aioitertools`
-8. `aiosignal`
-9. `alembic`
-10. `altair`
+2. `accelerate`
+3. `acme`
+4. `adal`
+5. `aenum`
+6. `agate`
+7. `aioboto3`
+8. `aiobotocore`
+9. `aiofiles`
+10. `aiohappyeyeballs`
 
-### [B](B.md) (12 packages)
+### [B](B.md) (22 packages)
 1. `babel`
-2. `backoff`
-3. `bashlex`
-4. `beautifulsoup4`
-5. `black`
-6. `bleach`
-7. `blinker`
-8. `boto3`
-9. `boto3-stubs`
-10. `botocore`
+2. `backcall`
+3. `backoff`
+4. `bandit`
+5. `bashlex`
+6. `beartype`
+7. `beautifulsoup4`
+8. `bidict`
+9. `billiard`
+10. `black`
 
-### [C](C.md) (22 packages)
+### [C](C.md) (40 packages)
 1. `CacheControl`
-2. `cachetools`
-3. `cattrs`
-4. `certifi`
-5. `cfgv`
-6. `chardet`
-7. `charset-normalizer`
-8. `cleo`
-9. `click`
-10. `click-plugins`
+2. `cached-property`
+3. `cachelib`
+4. `cachetools`
+5. `catalogue`
+6. `cattrs`
+7. `celery`
+8. `certbot-dns-cloudflare`
+9. `certifi`
+10. `cfgv`
 
-### [D](D.md) (25 packages)
-1. `databricks-sdk`
-2. `databricks-sql-connector`
-3. `dataclasses-json`
-4. `datadog`
-5. `datasets`
-6. `db-dtypes`
-7. `dbt-adapters`
-8. `dbt-common`
-9. `dbt-core`
-10. `debugpy`
+### [D](D.md) (43 packages)
+1. `dacite`
+2. `daff`
+3. `dask`
+4. `databricks-cli`
+5. `databricks-connect`
+6. `databricks-labs-blueprint`
+7. `databricks-sdk`
+8. `databricks-sql-connector`
+9. `databricks-sqlalchemy`
+10. `dataclasses-json`
 
-### [E](E.md) (9 packages)
+### [E](E.md) (15 packages)
 1. `ecdsa`
 2. `editables`
-3. `elasticsearch`
-4. `email-validator`
-5. `et-xmlfile`
-6. `Events`
-7. `exceptiongroup`
-8. `execnet`
-9. `executing`
+3. `einops`
+4. `elastic-transport`
+5. `elasticsearch`
+6. `email-validator`
+7. `emoji`
+8. `entrypoints`
+9. `envier`
+10. `et-xmlfile`
 
-### [F](F.md) (13 packages)
-1. `Faker`
-2. `fastapi`
-3. `fastjsonschema`
-4. `filelock`
-5. `findpython`
-6. `flake8`
-7. `Flask`
-8. `flatbuffers`
-9. `fonttools`
-10. `fqdn`
+### [F](F.md) (32 packages)
+1. `factory-boy`
+2. `Faker`
+3. `fakeredis`
+4. `fastapi`
+5. `fastapi-cli`
+6. `fastapi-cloud-cli`
+7. `fasteners`
+8. `fastjsonschema`
+9. `fastmcp`
+10. `filelock`
 
-### [G](G.md) (45 packages)
-1. `gcloud-aio-storage`
-2. `gcsfs`
-3. `gitdb`
-4. `GitPython`
-5. `google-analytics-admin`
-6. `google-api-core`
-7. `google-api-python-client`
-8. `google-auth`
-9. `google-auth-httplib2`
-10. `google-auth-oauthlib`
+### [G](G.md) (83 packages)
+1. `gast`
+2. `gcloud-aio-auth`
+3. `gcloud-aio-bigquery`
+4. `gcloud-aio-storage`
+5. `gcsfs`
+6. `geoip2`
+7. `geopandas`
+8. `ghp-import`
+9. `gitdb`
+10. `GitPython`
 
-### [H](H.md) (11 packages)
+### [H](H.md) (20 packages)
 1. `h11`
 2. `h2`
-3. `hatchling`
-4. `hpack`
-5. `httpcore`
-6. `httplib2`
-7. `httpx`
-8. `httpx-sse`
-9. `huggingface-hub`
-10. `humanfriendly`
+3. `hatch`
+4. `hatchling`
+5. `holidays`
+6. `hpack`
+7. `html2text`
+8. `html5lib`
+9. `httpcore`
+10. `httplib2`
 
-### [I](I.md) (17 packages)
-1. `identify`
-2. `idna`
-3. `ImageIO`
-4. `importlib-metadata`
-5. `importlib-resources`
-6. `inflection`
-7. `iniconfig`
-8. `installer`
-9. `invoke`
-10. `ipykernel`
+### [I](I.md) (26 packages)
+1. `ibmcloudant`
+2. `id`
+3. `identify`
+4. `idna`
+5. `ImageIO`
+6. `imagesize`
+7. `imbalanced-learn`
+8. `immutabledict`
+9. `importlib-metadata`
+10. `importlib-resources`
 
-### [J](J.md) (20 packages)
-1. `jedi`
-2. `jeepney`
-3. `Jinja2`
-4. `jmespath`
-5. `joblib`
-6. `json5`
-7. `jsonpatch`
-8. `jsonpath-ng`
-9. `jsonpointer`
-10. `jsonschema`
+### [J](J.md) (32 packages)
+1. `jax`
+2. `JayDeBeApi`
+3. `jedi`
+4. `jeepney`
+5. `Jinja2`
+6. `jira`
+7. `jmespath`
+8. `joblib`
+9. `json5`
+10. `jsondiff`
 
-### [K](K.md) (3 packages)
-1. `keyring`
-2. `kombu`
-3. `kubernetes`
+### [K](K.md) (7 packages)
+1. `kafka-python`
+2. `keras`
+3. `keyring`
+4. `kfp`
+5. `kombu`
+6. `kubernetes`
+7. `kubernetes-asyncio`
 
-### [L](L.md) (9 packages)
+### [L](L.md) (28 packages)
 1. `langchain`
 2. `langchain-community`
 3. `langchain-core`
-4. `langchain-openai`
-5. `langsmith`
-6. `lark`
-7. `lazy-object-proxy`
-8. `litellm`
-9. `loguru`
+4. `langchain-google-vertexai`
+5. `langchain-openai`
+6. `langchain-text-splitters`
+7. `langcodes`
+8. `langdetect`
+9. `langgraph`
+10. `langgraph-checkpoint`
 
-### [M](M.md) (18 packages)
-1. `Mako`
-2. `Markdown`
-3. `markdown-it-py`
-4. `marshmallow`
-5. `matplotlib-inline`
-6. `mccabe`
-7. `mcp`
-8. `mdurl`
-9. `mistune`
-10. `more-itertools`
+### [M](M.md) (39 packages)
+1. `makefun`
+2. `Mako`
+3. `Markdown`
+4. `markdown-it-py`
+5. `markdownify`
+6. `marshmallow`
+7. `mashumaro`
+8. `matplotlib-inline`
+9. `mccabe`
+10. `mcp`
 
-### [N](N.md) (10 packages)
+### [N](N.md) (11 packages)
 1. `narwhals`
-2. `nbclient`
-3. `nbconvert`
-4. `nbformat`
-5. `nest-asyncio`
-6. `networkx`
-7. `nltk`
-8. `nodeenv`
-9. `notebook`
-10. `notebook-shim`
+2. `natsort`
+3. `nbclient`
+4. `nbconvert`
+5. `nbformat`
+6. `nest-asyncio`
+7. `networkx`
+8. `nltk`
+9. `nodeenv`
+10. `notebook`
 
-### [O](O.md) (20 packages)
+### [O](O.md) (43 packages)
 1. `oauth2client`
 2. `oauthlib`
-3. `omegaconf`
-4. `openai`
-5. `openpyxl`
-6. `opensearch-py`
-7. `opentelemetry-api`
-8. `opentelemetry-exporter-otlp`
-9. `opentelemetry-exporter-otlp-proto-common`
-10. `opentelemetry-exporter-otlp-proto-grpc`
+3. `Office365-REST-Python-Client`
+4. `omegaconf`
+5. `openai`
+6. `openapi-pydantic`
+7. `openapi-schema-validator`
+8. `openapi-spec-validator`
+9. `opencensus`
+10. `opencensus-context`
 
-### [P](P.md) (63 packages)
+### [P](P.md) (132 packages)
 1. `packaging`
 2. `pandas-gbq`
 3. `pandas-stubs`
 4. `pandocfilters`
-5. `paramiko`
-6. `parso`
-7. `pathspec`
-8. `pbs-installer`
-9. `pendulum`
-10. `pexpect`
+5. `parameterized`
+6. `paramiko`
+7. `parse`
+8. `parsedatetime`
+9. `parso`
+10. `partd`
 
-### [R](R.md) (14 packages)
-1. `redis`
-2. `redshift-connector`
-3. `referencing`
-4. `requests`
-5. `requests-aws4auth`
-6. `requests-file`
-7. `requests-oauthlib`
-8. `requests-toolbelt`
-9. `responses`
-10. `rfc3339-validator`
+### [R](R.md) (25 packages)
+1. `readme-renderer`
+2. `redis`
+3. `redshift-connector`
+4. `referencing`
+5. `reportlab`
+6. `requests`
+7. `requests-aws4auth`
+8. `requests-file`
+9. `requests-mock`
+10. `requests-oauthlib`
 
-### [S](S.md) (32 packages)
+### [S](S.md) (61 packages)
 1. `s3fs`
 2. `s3transfer`
-3. `scramp`
-4. `seaborn`
-5. `SecretStorage`
-6. `selenium`
-7. `semver`
-8. `Send2Trash`
-9. `sentry-sdk`
-10. `setuptools`
+3. `sagemaker`
+4. `schema`
+5. `scp`
+6. `scramp`
+7. `seaborn`
+8. `SecretStorage`
+9. `selenium`
+10. `semantic-version`
 
-### [T](T.md) (31 packages)
-1. `tabulate`
-2. `tenacity`
-3. `tensorboard`
-4. `termcolor`
-5. `terminado`
-6. `text-unidecode`
-7. `threadpoolctl`
-8. `tinycss2`
-9. `toml`
-10. `tomli`
+### [T](T.md) (60 packages)
+1. `tableauserverclient`
+2. `tabulate`
+3. `tb-nightly`
+4. `tblib`
+5. `tenacity`
+6. `tensorboard`
+7. `tensorboard-data-server`
+8. `tensorflow-estimator`
+9. `termcolor`
+10. `terminado`
 
-### [U](U.md) (4 packages)
-1. `uri-template`
-2. `uritemplate`
-3. `urllib3`
-4. `uvicorn`
+### [U](U.md) (11 packages)
+1. `ua-parser`
+2. `uc-micro-py`
+3. `Unidecode`
+4. `universal-pathlib`
+5. `unstructured-client`
+6. `uri-template`
+7. `uritemplate`
+8. `urllib3`
+9. `userpath`
+10. `uuid6`
 
-### [V](V.md) (1 packages)
-1. `virtualenv`
+### [V](V.md) (3 packages)
+1. `validators`
+2. `vine`
+3. `virtualenv`
 
-### [W](W.md) (12 packages)
-1. `watchdog`
-2. `wcwidth`
-3. `weasyprint`
-4. `webcolors`
-5. `webencodings`
-6. `websocket-client`
-7. `websockets`
-8. `Werkzeug`
-9. `wheel`
-10. `widgetsnbextension`
+### [W](W.md) (18 packages)
+1. `wasabi`
+2. `watchdog`
+3. `watchtower`
+4. `wcmatch`
+5. `wcwidth`
+6. `weasyprint`
+7. `weaviate-client`
+8. `webcolors`
+9. `webdriver-manager`
+10. `webencodings`
 
-### [X](X.md) (3 packages)
-1. `xlrd`
-2. `xlsxwriter`
-3. `xmltodict`
+### [X](X.md) (4 packages)
+1. `xarray`
+2. `xlrd`
+3. `xlsxwriter`
+4. `xmltodict`
 
-### [Y](Y.md) (2 packages)
-1. `yandexcloud`
-2. `yarl`
+### [Y](Y.md) (4 packages)
+1. `yamllint`
+2. `yandexcloud`
+3. `yapf`
+4. `yarl`
 
 ### [Z](Z.md) (2 packages)
 1. `zeep`

@@ -1,7 +1,7 @@
 # Pure Python Packages - D
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with D:** 25
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with D:** 43
 
 [← Back to Index](index.md)
 
@@ -9,15 +9,27 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `dacite` | 🐍 Pure Python | 🐍 Pure Python |
+| `daff` | 🐍 Pure Python | 🐍 Pure Python |
+| `dask` | 🐍 Pure Python | 🐍 Pure Python |
+| `databricks-cli` | 🐍 Pure Python | 🐍 Pure Python |
+| `databricks-connect` | 🐍 Pure Python | 🐍 Pure Python |
+| `databricks-labs-blueprint` | 🐍 Pure Python | 🐍 Pure Python |
 | `databricks-sdk` | 🐍 Pure Python | 🐍 Pure Python |
 | `databricks-sql-connector` | 🐍 Pure Python | 🐍 Pure Python |
+| `databricks-sqlalchemy` | 🐍 Pure Python | 🐍 Pure Python |
 | `dataclasses-json` | 🐍 Pure Python | 🐍 Pure Python |
 | `datadog` | 🐍 Pure Python | 🐍 Pure Python |
+| `datadog-api-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `datasets` | 🐍 Pure Python | 🐍 Pure Python |
+| `dateparser` | 🐍 Pure Python | 🐍 Pure Python |
+| `DateTime` | 🐍 Pure Python | 🐍 Pure Python |
 | `db-dtypes` | 🐍 Pure Python | 🐍 Pure Python |
 | `dbt-adapters` | 🐍 Pure Python | 🐍 Pure Python |
 | `dbt-common` | 🐍 Pure Python | 🐍 Pure Python |
 | `dbt-core` | 🐍 Pure Python | 🐍 Pure Python |
+| `dbt-protos` | 🐍 Pure Python | 🐍 Pure Python |
+| `dbt-semantic-interfaces` | 🐍 Pure Python | 🐍 Pure Python |
 | `debugpy` | 🐍 Pure Python | 🐍 Pure Python |
 | `decorator` | 🐍 Pure Python | 🐍 Pure Python |
 | `deepdiff` | 🐍 Pure Python | 🐍 Pure Python |
@@ -25,11 +37,17 @@
 | `delta-spark` | 🐍 Pure Python | 🐍 Pure Python |
 | `Deprecated` | 🐍 Pure Python | 🐍 Pure Python |
 | `deprecation` | 🐍 Pure Python | 🐍 Pure Python |
+| `diff-cover` | 🐍 Pure Python | 🐍 Pure Python |
 | `dill` | 🐍 Pure Python | 🐍 Pure Python |
+| `diskcache` | 🐍 Pure Python | 🐍 Pure Python |
 | `distlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `distro` | 🐍 Pure Python | 🐍 Pure Python |
+| `Django` | 🐍 Pure Python | 🐍 Pure Python |
+| `django-cors-headers` | 🐍 Pure Python | 🐍 Pure Python |
+| `djangorestframework` | 🐍 Pure Python | 🐍 Pure Python |
 | `dnspython` | 🐍 Pure Python | 🐍 Pure Python |
 | `docker` | 🐍 Pure Python | 🐍 Pure Python |
+| `docker-pycreds` | 🐍 Pure Python | 🐍 Pure Python |
 | `docstring-parser` | 🐍 Pure Python | 🐍 Pure Python |
 | `docutils` | 🐍 Pure Python | 🐍 Pure Python |
 | `dulwich` | ✅ Supported | 🐍 Pure Python |

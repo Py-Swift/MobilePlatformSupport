@@ -1,7 +1,7 @@
 # Pure Python Packages - O
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with O:** 20
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with O:** 43
 
 [← Back to Index](index.md)
 
@@ -11,22 +11,45 @@
 |---------|---------|-----|
 | `oauth2client` | 🐍 Pure Python | 🐍 Pure Python |
 | `oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
+| `Office365-REST-Python-Client` | 🐍 Pure Python | 🐍 Pure Python |
 | `omegaconf` | 🐍 Pure Python | 🐍 Pure Python |
 | `openai` | 🐍 Pure Python | 🐍 Pure Python |
+| `openapi-pydantic` | 🐍 Pure Python | 🐍 Pure Python |
+| `openapi-schema-validator` | 🐍 Pure Python | 🐍 Pure Python |
+| `openapi-spec-validator` | 🐍 Pure Python | 🐍 Pure Python |
+| `opencensus` | 🐍 Pure Python | 🐍 Pure Python |
+| `opencensus-context` | 🐍 Pure Python | 🐍 Pure Python |
 | `openpyxl` | 🐍 Pure Python | 🐍 Pure Python |
 | `opensearch-py` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-api` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-distro` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-exporter-otlp` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-exporter-otlp-proto-common` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-exporter-otlp-proto-grpc` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-exporter-otlp-proto-http` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-exporter-prometheus` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-instrumentation` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-asgi` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-dbapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-django` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-fastapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-flask` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-httpx` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-logging` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-psycopg2` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-instrumentation-requests` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-threading` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-urllib` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-urllib3` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-instrumentation-wsgi` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-proto` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-sdk` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-semantic-conventions` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-util-http` | 🐍 Pure Python | 🐍 Pure Python |
+| `opt-einsum` | 🐍 Pure Python | 🐍 Pure Python |
+| `ordered-set` | 🐍 Pure Python | 🐍 Pure Python |
+| `orderly-set` | 🐍 Pure Python | 🐍 Pure Python |
+| `oscrypto` | 🐍 Pure Python | 🐍 Pure Python |
 | `outcome` | 🐍 Pure Python | 🐍 Pure Python |
 | `overrides` | 🐍 Pure Python | 🐍 Pure Python |
 

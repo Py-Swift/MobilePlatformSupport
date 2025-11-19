@@ -1,7 +1,7 @@
 # Pure Python Packages - C
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with C:** 22
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with C:** 40
 
 [← Back to Index](index.md)
 
@@ -10,26 +10,44 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `CacheControl` | 🐍 Pure Python | 🐍 Pure Python |
+| `cached-property` | 🐍 Pure Python | 🐍 Pure Python |
+| `cachelib` | 🐍 Pure Python | 🐍 Pure Python |
 | `cachetools` | 🐍 Pure Python | 🐍 Pure Python |
+| `catalogue` | 🐍 Pure Python | 🐍 Pure Python |
 | `cattrs` | 🐍 Pure Python | 🐍 Pure Python |
+| `celery` | 🐍 Pure Python | 🐍 Pure Python |
+| `certbot-dns-cloudflare` | 🐍 Pure Python | 🐍 Pure Python |
 | `certifi` | 🐍 Pure Python | 🐍 Pure Python |
 | `cfgv` | 🐍 Pure Python | 🐍 Pure Python |
+| `cfn-lint` | 🐍 Pure Python | 🐍 Pure Python |
 | `chardet` | 🐍 Pure Python | 🐍 Pure Python |
 | `charset-normalizer` | 🐍 Pure Python | 🐍 Pure Python |
+| `checkov` | 🐍 Pure Python | 🐍 Pure Python |
 | `cleo` | 🐍 Pure Python | 🐍 Pure Python |
 | `click` | 🐍 Pure Python | 🐍 Pure Python |
+| `click-didyoumean` | 🐍 Pure Python | 🐍 Pure Python |
+| `click-option-group` | 🐍 Pure Python | 🐍 Pure Python |
 | `click-plugins` | 🐍 Pure Python | 🐍 Pure Python |
+| `click-repl` | 🐍 Pure Python | 🐍 Pure Python |
 | `cloudflare` | 🐍 Pure Python | 🐍 Pure Python |
+| `cloudpathlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `cloudpickle` | 🐍 Pure Python | 🐍 Pure Python |
 | `colorama` | 🐍 Pure Python | 🐍 Pure Python |
 | `coloredlogs` | 🐍 Pure Python | 🐍 Pure Python |
 | `colorlog` | 🐍 Pure Python | 🐍 Pure Python |
 | `comm` | 🐍 Pure Python | 🐍 Pure Python |
+| `confection` | 🐍 Pure Python | 🐍 Pure Python |
+| `ConfigArgParse` | 🐍 Pure Python | 🐍 Pure Python |
+| `configparser` | 🐍 Pure Python | 🐍 Pure Python |
+| `connexion` | 🐍 Pure Python | 🐍 Pure Python |
 | `coverage` | 🐍 Pure Python | ✅ Supported |
 | `crashtest` | 🐍 Pure Python | 🐍 Pure Python |
+| `cron-descriptor` | 🐍 Pure Python | 🐍 Pure Python |
 | `croniter` | 🐍 Pure Python | 🐍 Pure Python |
+| `cssselect` | 🐍 Pure Python | 🐍 Pure Python |
 | `cssselect2` | 🐍 Pure Python | 🐍 Pure Python |
 | `cycler` | 🐍 Pure Python | 🐍 Pure Python |
+| `cyclopts` | 🐍 Pure Python | 🐍 Pure Python |
 | `Cython` | 🐍 Pure Python | 🐍 Pure Python |
 
 

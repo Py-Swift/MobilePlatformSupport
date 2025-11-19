@@ -1,7 +1,7 @@
-# Pure Python Packages - V
+# Binary Packages Without Mobile Support - J
 
 **Generated:** 2025-11-19 23:24:48  
-**Total Packages Starting with V:** 3
+**Total Packages Starting with J:** 3
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,9 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `validators` | 🐍 Pure Python | 🐍 Pure Python |
-| `vine` | 🐍 Pure Python | 🐍 Pure Python |
-| `virtualenv` | 🐍 Pure Python | 🐍 Pure Python |
+| `jaxlib` | ⚠️ Not available | ⚠️ Not available |
+| `jiter` | ⚠️ Not available | ⚠️ Not available |
+| `jpype1` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

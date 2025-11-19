@@ -1,7 +1,7 @@
 # Pure Python Packages - J
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with J:** 20
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with J:** 32
 
 [← Back to Index](index.md)
 
@@ -9,26 +9,38 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `jax` | 🐍 Pure Python | 🐍 Pure Python |
+| `JayDeBeApi` | 🐍 Pure Python | 🐍 Pure Python |
 | `jedi` | 🐍 Pure Python | 🐍 Pure Python |
 | `jeepney` | 🐍 Pure Python | 🐍 Pure Python |
 | `Jinja2` | 🐍 Pure Python | 🐍 Pure Python |
+| `jira` | 🐍 Pure Python | 🐍 Pure Python |
 | `jmespath` | 🐍 Pure Python | 🐍 Pure Python |
 | `joblib` | 🐍 Pure Python | 🐍 Pure Python |
 | `json5` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsondiff` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpatch` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpath-ng` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonpickle` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpointer` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonref` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonschema` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonschema-path` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonschema-specifications` | 🐍 Pure Python | 🐍 Pure Python |
+| `junitparser` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-client` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-console` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-events` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-lsp` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-server` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-server-terminals` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab-pygments` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab-server` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab-widgets` | 🐍 Pure Python | 🐍 Pure Python |
+| `jwcrypto` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

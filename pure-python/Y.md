@@ -1,7 +1,7 @@
 # Pure Python Packages - Y
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with Y:** 2
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with Y:** 4
 
 [← Back to Index](index.md)
 
@@ -9,7 +9,9 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `yamllint` | 🐍 Pure Python | 🐍 Pure Python |
 | `yandexcloud` | 🐍 Pure Python | 🐍 Pure Python |
+| `yapf` | 🐍 Pure Python | 🐍 Pure Python |
 | `yarl` | 🐍 Pure Python | 🐍 Pure Python |
 
 

@@ -1,7 +1,7 @@
 # Pure Python Packages - H
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with H:** 11
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with H:** 20
 
 [← Back to Index](index.md)
 
@@ -11,15 +11,24 @@
 |---------|---------|-----|
 | `h11` | 🐍 Pure Python | 🐍 Pure Python |
 | `h2` | 🐍 Pure Python | 🐍 Pure Python |
+| `hatch` | 🐍 Pure Python | 🐍 Pure Python |
 | `hatchling` | 🐍 Pure Python | 🐍 Pure Python |
+| `holidays` | 🐍 Pure Python | 🐍 Pure Python |
 | `hpack` | 🐍 Pure Python | 🐍 Pure Python |
+| `html2text` | 🐍 Pure Python | 🐍 Pure Python |
+| `html5lib` | 🐍 Pure Python | 🐍 Pure Python |
 | `httpcore` | 🐍 Pure Python | 🐍 Pure Python |
 | `httplib2` | 🐍 Pure Python | 🐍 Pure Python |
 | `httpx` | 🐍 Pure Python | 🐍 Pure Python |
 | `httpx-sse` | 🐍 Pure Python | 🐍 Pure Python |
 | `huggingface-hub` | 🐍 Pure Python | 🐍 Pure Python |
 | `humanfriendly` | 🐍 Pure Python | 🐍 Pure Python |
+| `humanize` | 🐍 Pure Python | 🐍 Pure Python |
+| `hvac` | 🐍 Pure Python | 🐍 Pure Python |
+| `hydra-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `hyperframe` | 🐍 Pure Python | 🐍 Pure Python |
+| `hyperlink` | 🐍 Pure Python | 🐍 Pure Python |
+| `hypothesis` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

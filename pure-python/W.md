@@ -1,7 +1,7 @@
 # Pure Python Packages - W
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with W:** 12
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with W:** 18
 
 [← Back to Index](index.md)
 
@@ -9,10 +9,15 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `wasabi` | 🐍 Pure Python | 🐍 Pure Python |
 | `watchdog` | 🐍 Pure Python | 🐍 Pure Python |
+| `watchtower` | 🐍 Pure Python | 🐍 Pure Python |
+| `wcmatch` | 🐍 Pure Python | 🐍 Pure Python |
 | `wcwidth` | 🐍 Pure Python | 🐍 Pure Python |
 | `weasyprint` | 🐍 Pure Python | 🐍 Pure Python |
+| `weaviate-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `webcolors` | 🐍 Pure Python | 🐍 Pure Python |
+| `webdriver-manager` | 🐍 Pure Python | 🐍 Pure Python |
 | `webencodings` | 🐍 Pure Python | 🐍 Pure Python |
 | `websocket-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `websockets` | 🐍 Pure Python | 🐍 Pure Python |
@@ -21,6 +26,7 @@
 | `widgetsnbextension` | 🐍 Pure Python | 🐍 Pure Python |
 | `wrapt` | 🐍 Pure Python | 🐍 Pure Python |
 | `wsproto` | 🐍 Pure Python | 🐍 Pure Python |
+| `WTForms` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

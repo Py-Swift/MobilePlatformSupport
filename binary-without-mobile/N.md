@@ -1,7 +1,7 @@
-# Pure Python Packages - V
+# Binary Packages Without Mobile Support - N
 
 **Generated:** 2025-11-19 23:24:48  
-**Total Packages Starting with V:** 3
+**Total Packages Starting with N:** 3
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,9 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `validators` | 🐍 Pure Python | 🐍 Pure Python |
-| `vine` | 🐍 Pure Python | 🐍 Pure Python |
-| `virtualenv` | 🐍 Pure Python | 🐍 Pure Python |
+| `nh3` | ⚠️ Not available | ⚠️ Not available |
+| `ninja` | ⚠️ Not available | ⚠️ Not available |
+| `numba` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

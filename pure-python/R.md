@@ -1,7 +1,7 @@
 # Pure Python Packages - R
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with R:** 14
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with R:** 25
 
 [← Back to Index](index.md)
 
@@ -9,19 +9,30 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `readme-renderer` | 🐍 Pure Python | 🐍 Pure Python |
 | `redis` | 🐍 Pure Python | 🐍 Pure Python |
 | `redshift-connector` | 🐍 Pure Python | 🐍 Pure Python |
 | `referencing` | 🐍 Pure Python | 🐍 Pure Python |
+| `reportlab` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-aws4auth` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-file` | 🐍 Pure Python | 🐍 Pure Python |
+| `requests-mock` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-toolbelt` | 🐍 Pure Python | 🐍 Pure Python |
+| `resolvelib` | 🐍 Pure Python | 🐍 Pure Python |
 | `responses` | 🐍 Pure Python | 🐍 Pure Python |
+| `retry` | 🐍 Pure Python | 🐍 Pure Python |
+| `retrying` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3339-validator` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3986` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3986-validator` | 🐍 Pure Python | 🐍 Pure Python |
+| `rfc3987-syntax` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich` | 🐍 Pure Python | 🐍 Pure Python |
+| `rich-argparse` | 🐍 Pure Python | 🐍 Pure Python |
+| `rich-click` | 🐍 Pure Python | 🐍 Pure Python |
+| `rich-rst` | 🐍 Pure Python | 🐍 Pure Python |
+| `rich-toolkit` | 🐍 Pure Python | 🐍 Pure Python |
 | `rsa` | 🐍 Pure Python | 🐍 Pure Python |
 
 

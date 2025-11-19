@@ -403,6 +403,32 @@ public class MobilePlatformSupport {
         return (packageVersion, pythonVersion)
     }
     
+    /// Compare two semantic versions (e.g., "3.10.7" vs "3.8.2")
+    /// Returns true if version1 is greater than version2
+    private func isVersionGreater(_ version1: String, _ version2: String) -> Bool {
+        let v1Parts = version1.split(separator: ".").compactMap { Int($0) }
+        let v2Parts = version2.split(separator: ".").compactMap { Int($0) }
+        
+        let maxLength = max(v1Parts.count, v2Parts.count)
+        
+        for i in 0..<maxLength {
+            let v1 = i < v1Parts.count ? v1Parts[i] : 0
+            let v2 = i < v2Parts.count ? v2Parts[i] : 0
+            
+            if v1 > v2 {
+                return true
+            } else if v1 < v2 {
+                return false
+            }
+        }
+        
+        return false  // Equal versions
+    }
+    
+    
+    /// Compare two semantic versions (e.g., "3.10.7" vs "3.8.2")
+    
+    
     
     /// Annotate a package with platform support information
     /// Extract version from wheel filename
@@ -445,7 +471,7 @@ public class MobilePlatformSupport {
                 if let version = versionInfo.version, let pyVer = versionInfo.pythonVersion {
                     // Keep the version with highest Python version (prefer cp313, cp314, etc.)
                     if let existing = pypiVersions[platformTag] {
-                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && version > existing.version) {
+                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && isVersionGreater(version, existing.version)) {
                             pypiVersions[platformTag] = (version, pyVer)
                         }
                     } else {
@@ -473,7 +499,7 @@ public class MobilePlatformSupport {
                 if let version = versionInfo.version, let pyVer = versionInfo.pythonVersion {
                     // Keep the version with highest Python version (prefer cp313, cp314, etc.)
                     if let existing = pyswiftVersions[platformTag] {
-                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && version > existing.version) {
+                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && isVersionGreater(version, existing.version)) {
                             pyswiftVersions[platformTag] = (version, pyVer)
                         }
                     } else {

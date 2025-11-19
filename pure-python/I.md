@@ -1,7 +1,7 @@
 # Pure Python Packages - I
 
-**Generated:** 2025-11-19 23:01:27  
-**Total Packages Starting with I:** 17
+**Generated:** 2025-11-19 23:24:48  
+**Total Packages Starting with I:** 26
 
 [← Back to Index](index.md)
 
@@ -9,15 +9,24 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ibmcloudant` | 🐍 Pure Python | 🐍 Pure Python |
+| `id` | 🐍 Pure Python | 🐍 Pure Python |
 | `identify` | 🐍 Pure Python | 🐍 Pure Python |
 | `idna` | 🐍 Pure Python | 🐍 Pure Python |
 | `ImageIO` | 🐍 Pure Python | 🐍 Pure Python |
+| `imagesize` | 🐍 Pure Python | 🐍 Pure Python |
+| `imbalanced-learn` | 🐍 Pure Python | 🐍 Pure Python |
+| `immutabledict` | 🐍 Pure Python | 🐍 Pure Python |
 | `importlib-metadata` | 🐍 Pure Python | 🐍 Pure Python |
 | `importlib-resources` | 🐍 Pure Python | 🐍 Pure Python |
+| `impyla` | 🐍 Pure Python | 🐍 Pure Python |
+| `incremental` | 🐍 Pure Python | 🐍 Pure Python |
+| `inflect` | 🐍 Pure Python | 🐍 Pure Python |
 | `inflection` | 🐍 Pure Python | 🐍 Pure Python |
 | `iniconfig` | 🐍 Pure Python | 🐍 Pure Python |
 | `installer` | 🐍 Pure Python | 🐍 Pure Python |
 | `invoke` | 🐍 Pure Python | 🐍 Pure Python |
+| `ipdb` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipykernel` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipython` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipython-pygments-lexers` | 🐍 Pure Python | 🐍 Pure Python |
