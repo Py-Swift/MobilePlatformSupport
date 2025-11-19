@@ -24,7 +24,6 @@ public struct MarkdownReportGenerator {
         let dateString = dateFormatter.string(from: timestamp)
         
         // Extract just the filename for relative links (not the full path)
-        let purePythonLinkName = (purePythonFilename as NSString).lastPathComponent
         let binaryWithoutMobileLinkName = (binaryWithoutMobileFilename as NSString).lastPathComponent
         
         var markdown = """
@@ -106,7 +105,7 @@ public struct MarkdownReportGenerator {
         
         if purePython.count > 100 {
             markdown += "_Showing first 100 packages by download popularity. Total: \(purePython.count)_\n\n"
-            markdown += "📄 **[View all \(purePython.count) pure Python packages (A-Z)](\(purePythonLinkName))**\n\n"
+            markdown += "📄 **[View all \(purePython.count) pure Python packages (A-Z)](pure-python/index.md)**\n\n"
         }
         
         markdown += """
@@ -132,7 +131,7 @@ public struct MarkdownReportGenerator {
         }
         
         if purePython.count > 100 {
-            markdown += "\n_... and \(purePython.count - 100) more packages. [View full list](\(purePythonLinkName))_\n"
+            markdown += "\n_... and \(purePython.count - 100) more packages. [View full list](pure-python/index.md)_\n"
         }
         
         markdown += """
@@ -243,14 +242,14 @@ public struct MarkdownReportGenerator {
         
         // Generate full pure Python packages file if needed
         if purePython.count > 100 {
-            try generatePurePythonReport(
+            try generatePurePythonReportFolder(
                 packages: purePythonSorted,
                 depsEnabled: depsEnabled,
                 allPackagesWithDeps: allPackagesWithDeps,
                 timestamp: timestamp,
-                filename: purePythonFilename
+                basePath: (purePythonFilename as NSString).deletingLastPathComponent
             )
-            print("✅ Full pure Python list exported to: \(purePythonFilename)")
+            print("✅ Full pure Python list exported to: pure-python/ folder")
         }
         
         // Generate full binary without mobile file if needed
@@ -266,18 +265,31 @@ public struct MarkdownReportGenerator {
         }
     }
     
-    private func generatePurePythonReport(
+    private func generatePurePythonReportFolder(
         packages: [PackageInfo],
         depsEnabled: Bool,
         allPackagesWithDeps: [(PackageInfo, [PackageInfo], Bool)],
         timestamp: Date,
-        filename: String
+        basePath: String
     ) throws {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateString = dateFormatter.string(from: timestamp)
         
-        var markdown = """
+        // Create pure-python directory
+        let purePythonDir = (basePath as NSString).appendingPathComponent("pure-python")
+        try FileManager.default.createDirectory(atPath: purePythonDir, withIntermediateDirectories: true)
+        
+        // Group packages by first letter
+        var packagesByLetter: [String: [PackageInfo]] = [:]
+        for package in packages {
+            let firstChar = package.name.prefix(1).uppercased()
+            let letter = String(firstChar)
+            packagesByLetter[letter, default: []].append(package)
+        }
+        
+        // Generate index file
+        var indexMarkdown = """
         # Pure Python Packages - Full List
         
         **Generated:** \(dateString)  
@@ -285,41 +297,44 @@ public struct MarkdownReportGenerator {
         
         Packages that work on all platforms (no binary dependencies).
         
+        ---
+        
+        ## Browse by Letter
+        
         """
         
-        var currentLetter = ""
-        for package in packages {
-            let firstLetter = String(package.name.prefix(1).uppercased())
+        let sortedLetters = packagesByLetter.keys.sorted()
+        
+        // Create navigation links
+        for letter in sortedLetters {
+            let count = packagesByLetter[letter]!.count
+            indexMarkdown += "- **[\(letter)](\(letter).md)** (\(count) packages)\n"
+        }
+        
+        indexMarkdown += """
+        
+        
+        ---
+        
+        ## Top 10 Packages by Letter
+        
+        """
+        
+        // Show top 10 for each letter (assuming original order is by download count)
+        for letter in sortedLetters {
+            let letterPackages = packagesByLetter[letter]!
+            indexMarkdown += """
             
-            if firstLetter != currentLetter {
-                currentLetter = firstLetter
-                markdown += """
-                
-                ---
-                
-                ## \(currentLetter)
-                
-                | Package | Android | iOS |\(depsEnabled ? " Dependencies |" : "")
-                |---------|---------|-----|\(depsEnabled ? "-------------|" : "")
-                
-                """
-            }
+            ### \(letter)
             
-            let androidStatus = formatStatusMarkdown(package.android)
-            let iosStatus = formatStatusMarkdown(package.ios)
+            """
             
-            if depsEnabled {
-                if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
-                    let depsOK = depInfo.2 ? "✅ All supported" : "⚠️ Some unsupported"
-                    let depCount = depInfo.1.count
-                    markdown += "| `\(package.name)` | \(androidStatus) | \(iosStatus) | \(depsOK) (\(depCount)) |\n"
-                }
-            } else {
-                markdown += "| `\(package.name)` | \(androidStatus) | \(iosStatus) |\n"
+            for (index, package) in letterPackages.prefix(10).enumerated() {
+                indexMarkdown += "\(index + 1). `\(package.name)`\n"
             }
         }
         
-        markdown += """
+        indexMarkdown += """
         
         
         ---
@@ -328,8 +343,57 @@ public struct MarkdownReportGenerator {
         
         """
         
-        let fileURL = URL(fileURLWithPath: filename)
-        try markdown.write(to: fileURL, atomically: true, encoding: .utf8)
+        // Write index file
+        let indexPath = (purePythonDir as NSString).appendingPathComponent("index.md")
+        try indexMarkdown.write(toFile: indexPath, atomically: true, encoding: .utf8)
+        
+        // Generate individual letter files
+        for letter in sortedLetters {
+            let letterPackages = packagesByLetter[letter]!
+            var letterMarkdown = """
+            # Pure Python Packages - \(letter)
+            
+            **Generated:** \(dateString)  
+            **Total Packages Starting with \(letter):** \(letterPackages.count)
+            
+            [← Back to Index](index.md)
+            
+            ---
+            
+            | Package | Android | iOS |\(depsEnabled ? " Dependencies |" : "")
+            |---------|---------|-----|\(depsEnabled ? "-------------|" : "")
+            
+            """
+            
+            for package in letterPackages {
+                let androidStatus = formatStatusMarkdown(package.android)
+                let iosStatus = formatStatusMarkdown(package.ios)
+                
+                if depsEnabled {
+                    if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
+                        let depsOK = depInfo.2 ? "✅ All supported" : "⚠️ Some unsupported"
+                        let depCount = depInfo.1.count
+                        letterMarkdown += "| `\(package.name)` | \(androidStatus) | \(iosStatus) | \(depsOK) (\(depCount)) |\n"
+                    }
+                } else {
+                    letterMarkdown += "| `\(package.name)` | \(androidStatus) | \(iosStatus) |\n"
+                }
+            }
+            
+            letterMarkdown += """
+            
+            
+            ---
+            
+            [← Back to Index](index.md)
+            
+            **Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/MobilePlatformSupport)
+            
+            """
+            
+            let letterPath = (purePythonDir as NSString).appendingPathComponent("\(letter).md")
+            try letterMarkdown.write(toFile: letterPath, atomically: true, encoding: .utf8)
+        }
     }
     
     private func generateBinaryWithoutMobileReport(

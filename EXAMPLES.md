@@ -56,17 +56,25 @@ swift run mobile-wheels-checker 1000 --all --deps --concurrent 20 --output ~/Doc
 
 ### Output Files
 
-The tool creates three markdown files in the output directory:
+The tool creates markdown files in the output directory:
 
 1. **mobile-wheels-results.md** - Main report with all categories
-2. **pure-python-packages.md** - Full alphabetical list (if >100 pure Python packages)
+2. **pure-python/** - Folder with organized pure Python packages (if >100 packages)
+   - `index.md` - Letter navigation and top 10 per letter
+   - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists
 3. **binary-without-mobile.md** - Full alphabetical list (if >100 binary packages)
+4. **excluded-packages.md** - GPU/CUDA and Windows-only packages filtered out
 
 ```
 ./reports/
 ├── mobile-wheels-results.md
-├── pure-python-packages.md
-└── binary-without-mobile.md
+├── pure-python/
+│   ├── index.md
+│   ├── A.md
+│   ├── B.md
+│   └── ...
+├── binary-without-mobile.md
+└── excluded-packages.md
 ```
 
 ## Library Usage Examples

@@ -1,7 +1,7 @@
 # Pure Python Packages - Full List
 
-**Generated:** 2025-11-19 18:53:12  
-**Total Packages:** 839
+**Generated:** 2025-11-19 19:54:23  
+**Total Packages:** 838
 
 Packages that work on all platforms (no binary dependencies).
 
@@ -44,12 +44,11 @@ Packages that work on all platforms (no binary dependencies).
 | `apache-airflow-providers-http` | 🐍 Pure Python | 🐍 Pure Python |
 | `apache-airflow-providers-mysql` | 🐍 Pure Python | 🐍 Pure Python |
 | `apache-airflow-providers-snowflake` | 🐍 Pure Python | 🐍 Pure Python |
-| `apache-airflow-providers-sqlite` | 🐍 Pure Python | 🐍 Pure Python |
 | `apache-airflow-providers-ssh` | 🐍 Pure Python | 🐍 Pure Python |
 | `apispec` | 🐍 Pure Python | 🐍 Pure Python |
 | `appdirs` | 🐍 Pure Python | 🐍 Pure Python |
 | `appnope` | 🐍 Pure Python | 🐍 Pure Python |
-| `APScheduler` | 🐍 Pure Python | 🐍 Pure Python |
+| `apscheduler` | 🐍 Pure Python | 🐍 Pure Python |
 | `argcomplete` | 🐍 Pure Python | 🐍 Pure Python |
 | `argon2-cffi` | 🐍 Pure Python | 🐍 Pure Python |
 | `argparse` | 🐍 Pure Python | 🐍 Pure Python |
@@ -66,7 +65,7 @@ Packages that work on all platforms (no binary dependencies).
 | `asynctest` | 🐍 Pure Python | 🐍 Pure Python |
 | `atlassian-python-api` | 🐍 Pure Python | 🐍 Pure Python |
 | `attrs` | 🐍 Pure Python | 🐍 Pure Python |
-| `Authlib` | 🐍 Pure Python | 🐍 Pure Python |
+| `authlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `avro` | 🐍 Pure Python | 🐍 Pure Python |
 | `aws-lambda-powertools` | 🐍 Pure Python | 🐍 Pure Python |
 | `aws-requests-auth` | 🐍 Pure Python | 🐍 Pure Python |
@@ -90,8 +89,6 @@ Packages that work on all platforms (no binary dependencies).
 | `azure-mgmt-containerservice` | 🐍 Pure Python | 🐍 Pure Python |
 | `azure-mgmt-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `azure-mgmt-cosmosdb` | 🐍 Pure Python | 🐍 Pure Python |
-| `azure-mgmt-datalake-store` | 🐍 Pure Python | 🐍 Pure Python |
-| `azure-mgmt-msi` | 🐍 Pure Python | 🐍 Pure Python |
 | `azure-mgmt-resource` | 🐍 Pure Python | 🐍 Pure Python |
 | `azure-mgmt-storage` | 🐍 Pure Python | 🐍 Pure Python |
 | `azure-monitor-opentelemetry-exporter` | 🐍 Pure Python | 🐍 Pure Python |
@@ -112,6 +109,7 @@ Packages that work on all platforms (no binary dependencies).
 | `babel` | 🐍 Pure Python | 🐍 Pure Python |
 | `backcall` | 🐍 Pure Python | 🐍 Pure Python |
 | `backoff` | 🐍 Pure Python | 🐍 Pure Python |
+| `backports-tarfile` | 🐍 Pure Python | 🐍 Pure Python |
 | `bandit` | 🐍 Pure Python | 🐍 Pure Python |
 | `bashlex` | 🐍 Pure Python | 🐍 Pure Python |
 | `beartype` | 🐍 Pure Python | 🐍 Pure Python |
@@ -138,7 +136,7 @@ Packages that work on all platforms (no binary dependencies).
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `CacheControl` | 🐍 Pure Python | 🐍 Pure Python |
+| `cachecontrol` | 🐍 Pure Python | 🐍 Pure Python |
 | `cached-property` | 🐍 Pure Python | 🐍 Pure Python |
 | `cachelib` | 🐍 Pure Python | 🐍 Pure Python |
 | `cachetools` | 🐍 Pure Python | 🐍 Pure Python |
@@ -166,7 +164,7 @@ Packages that work on all platforms (no binary dependencies).
 | `colorlog` | 🐍 Pure Python | 🐍 Pure Python |
 | `comm` | 🐍 Pure Python | 🐍 Pure Python |
 | `confection` | 🐍 Pure Python | 🐍 Pure Python |
-| `ConfigArgParse` | 🐍 Pure Python | 🐍 Pure Python |
+| `configargparse` | 🐍 Pure Python | 🐍 Pure Python |
 | `configparser` | 🐍 Pure Python | 🐍 Pure Python |
 | `connexion` | 🐍 Pure Python | 🐍 Pure Python |
 | `coverage` | 🐍 Pure Python | ✅ Supported |
@@ -177,7 +175,7 @@ Packages that work on all platforms (no binary dependencies).
 | `cssselect2` | 🐍 Pure Python | 🐍 Pure Python |
 | `cycler` | 🐍 Pure Python | 🐍 Pure Python |
 | `cyclopts` | 🐍 Pure Python | 🐍 Pure Python |
-| `Cython` | 🐍 Pure Python | 🐍 Pure Python |
+| `cython` | 🐍 Pure Python | 🐍 Pure Python |
 
 ---
 
@@ -198,7 +196,7 @@ Packages that work on all platforms (no binary dependencies).
 | `datadog-api-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `datasets` | 🐍 Pure Python | 🐍 Pure Python |
 | `dateparser` | 🐍 Pure Python | 🐍 Pure Python |
-| `DateTime` | 🐍 Pure Python | 🐍 Pure Python |
+| `datetime` | 🐍 Pure Python | 🐍 Pure Python |
 | `db-dtypes` | 🐍 Pure Python | 🐍 Pure Python |
 | `dbt-adapters` | 🐍 Pure Python | 🐍 Pure Python |
 | `dbt-common` | 🐍 Pure Python | 🐍 Pure Python |
@@ -210,14 +208,14 @@ Packages that work on all platforms (no binary dependencies).
 | `deepdiff` | 🐍 Pure Python | 🐍 Pure Python |
 | `defusedxml` | 🐍 Pure Python | 🐍 Pure Python |
 | `delta-spark` | 🐍 Pure Python | 🐍 Pure Python |
-| `Deprecated` | 🐍 Pure Python | 🐍 Pure Python |
+| `deprecated` | 🐍 Pure Python | 🐍 Pure Python |
 | `deprecation` | 🐍 Pure Python | 🐍 Pure Python |
 | `diff-cover` | 🐍 Pure Python | 🐍 Pure Python |
 | `dill` | 🐍 Pure Python | 🐍 Pure Python |
 | `diskcache` | 🐍 Pure Python | 🐍 Pure Python |
 | `distlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `distro` | 🐍 Pure Python | 🐍 Pure Python |
-| `Django` | 🐍 Pure Python | 🐍 Pure Python |
+| `django` | 🐍 Pure Python | 🐍 Pure Python |
 | `django-cors-headers` | 🐍 Pure Python | 🐍 Pure Python |
 | `djangorestframework` | 🐍 Pure Python | 🐍 Pure Python |
 | `dnspython` | 🐍 Pure Python | 🐍 Pure Python |
@@ -245,7 +243,7 @@ Packages that work on all platforms (no binary dependencies).
 | `envier` | 🐍 Pure Python | 🐍 Pure Python |
 | `et-xmlfile` | 🐍 Pure Python | 🐍 Pure Python |
 | `eval-type-backport` | 🐍 Pure Python | 🐍 Pure Python |
-| `Events` | 🐍 Pure Python | 🐍 Pure Python |
+| `events` | 🐍 Pure Python | 🐍 Pure Python |
 | `exceptiongroup` | 🐍 Pure Python | 🐍 Pure Python |
 | `execnet` | 🐍 Pure Python | 🐍 Pure Python |
 | `executing` | 🐍 Pure Python | 🐍 Pure Python |
@@ -257,7 +255,7 @@ Packages that work on all platforms (no binary dependencies).
 | Package | Android | iOS |
 |---------|---------|-----|
 | `factory-boy` | 🐍 Pure Python | 🐍 Pure Python |
-| `Faker` | 🐍 Pure Python | 🐍 Pure Python |
+| `faker` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastapi` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastapi-cli` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastapi-cloud-cli` | 🐍 Pure Python | 🐍 Pure Python |
@@ -269,13 +267,13 @@ Packages that work on all platforms (no binary dependencies).
 | `findpython` | 🐍 Pure Python | 🐍 Pure Python |
 | `fire` | 🐍 Pure Python | 🐍 Pure Python |
 | `flake8` | 🐍 Pure Python | 🐍 Pure Python |
-| `Flask` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask` | 🐍 Pure Python | 🐍 Pure Python |
 | `flask-appbuilder` | 🐍 Pure Python | 🐍 Pure Python |
 | `flask-cors` | 🐍 Pure Python | 🐍 Pure Python |
-| `Flask-Limiter` | 🐍 Pure Python | 🐍 Pure Python |
-| `Flask-Login` | 🐍 Pure Python | 🐍 Pure Python |
-| `Flask-SQLAlchemy` | 🐍 Pure Python | 🐍 Pure Python |
-| `Flask-WTF` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask-limiter` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask-login` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask-sqlalchemy` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask-wtf` | 🐍 Pure Python | 🐍 Pure Python |
 | `flatbuffers` | 🐍 Pure Python | 🐍 Pure Python |
 | `flit-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `fonttools` | 🐍 Pure Python | 🐍 Pure Python |
@@ -301,9 +299,8 @@ Packages that work on all platforms (no binary dependencies).
 | `gcsfs` | 🐍 Pure Python | 🐍 Pure Python |
 | `geoip2` | 🐍 Pure Python | 🐍 Pure Python |
 | `geopandas` | 🐍 Pure Python | 🐍 Pure Python |
-| `ghp-import` | 🐍 Pure Python | 🐍 Pure Python |
 | `gitdb` | 🐍 Pure Python | 🐍 Pure Python |
-| `GitPython` | 🐍 Pure Python | 🐍 Pure Python |
+| `gitpython` | 🐍 Pure Python | 🐍 Pure Python |
 | `google-ads` | 🐍 Pure Python | 🐍 Pure Python |
 | `google-ai-generativelanguage` | 🐍 Pure Python | 🐍 Pure Python |
 | `google-analytics-admin` | 🐍 Pure Python | 🐍 Pure Python |
@@ -415,7 +412,7 @@ Packages that work on all platforms (no binary dependencies).
 | `id` | 🐍 Pure Python | 🐍 Pure Python |
 | `identify` | 🐍 Pure Python | 🐍 Pure Python |
 | `idna` | 🐍 Pure Python | 🐍 Pure Python |
-| `ImageIO` | 🐍 Pure Python | 🐍 Pure Python |
+| `imageio` | 🐍 Pure Python | 🐍 Pure Python |
 | `imagesize` | 🐍 Pure Python | 🐍 Pure Python |
 | `imbalanced-learn` | 🐍 Pure Python | 🐍 Pure Python |
 | `immutabledict` | 🐍 Pure Python | 🐍 Pure Python |
@@ -444,11 +441,14 @@ Packages that work on all platforms (no binary dependencies).
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `jaraco-classes` | 🐍 Pure Python | 🐍 Pure Python |
+| `jaraco-context` | 🐍 Pure Python | 🐍 Pure Python |
+| `jaraco-functools` | 🐍 Pure Python | 🐍 Pure Python |
 | `jax` | 🐍 Pure Python | 🐍 Pure Python |
-| `JayDeBeApi` | 🐍 Pure Python | 🐍 Pure Python |
+| `jaydebeapi` | 🐍 Pure Python | 🐍 Pure Python |
 | `jedi` | 🐍 Pure Python | 🐍 Pure Python |
 | `jeepney` | 🐍 Pure Python | 🐍 Pure Python |
-| `Jinja2` | 🐍 Pure Python | 🐍 Pure Python |
+| `jinja2` | 🐍 Pure Python | 🐍 Pure Python |
 | `jira` | 🐍 Pure Python | 🐍 Pure Python |
 | `jmespath` | 🐍 Pure Python | 🐍 Pure Python |
 | `joblib` | 🐍 Pure Python | 🐍 Pure Python |
@@ -486,6 +486,7 @@ Packages that work on all platforms (no binary dependencies).
 | `kafka-python` | 🐍 Pure Python | 🐍 Pure Python |
 | `keras` | 🐍 Pure Python | 🐍 Pure Python |
 | `keyring` | 🐍 Pure Python | 🐍 Pure Python |
+| `keyrings-google-artifactregistry-auth` | 🐍 Pure Python | 🐍 Pure Python |
 | `kombu` | 🐍 Pure Python | 🐍 Pure Python |
 | `kubernetes` | 🐍 Pure Python | 🐍 Pure Python |
 | `kubernetes-asyncio` | 🐍 Pure Python | 🐍 Pure Python |
@@ -530,8 +531,8 @@ Packages that work on all platforms (no binary dependencies).
 | Package | Android | iOS |
 |---------|---------|-----|
 | `makefun` | 🐍 Pure Python | 🐍 Pure Python |
-| `Mako` | 🐍 Pure Python | 🐍 Pure Python |
-| `Markdown` | 🐍 Pure Python | 🐍 Pure Python |
+| `mako` | 🐍 Pure Python | 🐍 Pure Python |
+| `markdown` | 🐍 Pure Python | 🐍 Pure Python |
 | `markdown-it-py` | 🐍 Pure Python | 🐍 Pure Python |
 | `markdownify` | 🐍 Pure Python | 🐍 Pure Python |
 | `marshmallow` | 🐍 Pure Python | 🐍 Pure Python |
@@ -543,11 +544,9 @@ Packages that work on all platforms (no binary dependencies).
 | `mdurl` | 🐍 Pure Python | 🐍 Pure Python |
 | `mergedeep` | 🐍 Pure Python | 🐍 Pure Python |
 | `meson` | 🐍 Pure Python | 🐍 Pure Python |
-| `meson-python` | 🐍 Pure Python | 🐍 Pure Python |
 | `mistune` | 🐍 Pure Python | 🐍 Pure Python |
 | `mkdocs` | 🐍 Pure Python | 🐍 Pure Python |
 | `mkdocs-material` | 🐍 Pure Python | 🐍 Pure Python |
-| `mkdocstrings-python` | 🐍 Pure Python | 🐍 Pure Python |
 | `mlflow` | 🐍 Pure Python | 🐍 Pure Python |
 | `mlflow-skinny` | 🐍 Pure Python | 🐍 Pure Python |
 | `mock` | 🐍 Pure Python | 🐍 Pure Python |
@@ -595,7 +594,7 @@ Packages that work on all platforms (no binary dependencies).
 |---------|---------|-----|
 | `oauth2client` | 🐍 Pure Python | 🐍 Pure Python |
 | `oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
-| `Office365-REST-Python-Client` | 🐍 Pure Python | 🐍 Pure Python |
+| `office365-rest-python-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `omegaconf` | 🐍 Pure Python | 🐍 Pure Python |
 | `openai` | 🐍 Pure Python | 🐍 Pure Python |
 | `openapi-pydantic` | 🐍 Pure Python | 🐍 Pure Python |
@@ -654,12 +653,12 @@ Packages that work on all platforms (no binary dependencies).
 | `partd` | 🐍 Pure Python | 🐍 Pure Python |
 | `passlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `pathable` | 🐍 Pure Python | 🐍 Pure Python |
-| `pathlib-abc` | 🐍 Pure Python | 🐍 Pure Python |
 | `pathos` | 🐍 Pure Python | 🐍 Pure Python |
 | `pathspec` | 🐍 Pure Python | 🐍 Pure Python |
 | `patsy` | 🐍 Pure Python | 🐍 Pure Python |
 | `pbr` | 🐍 Pure Python | 🐍 Pure Python |
 | `pbs-installer` | 🐍 Pure Python | 🐍 Pure Python |
+| `pdfminer-six` | 🐍 Pure Python | 🐍 Pure Python |
 | `pendulum` | 🐍 Pure Python | ✅ Supported |
 | `pexpect` | 🐍 Pure Python | 🐍 Pure Python |
 | `pg8000` | 🐍 Pure Python | 🐍 Pure Python |
@@ -671,6 +670,7 @@ Packages that work on all platforms (no binary dependencies).
 | `pipenv` | 🐍 Pure Python | 🐍 Pure Python |
 | `pipx` | 🐍 Pure Python | 🐍 Pure Python |
 | `pkginfo` | 🐍 Pure Python | 🐍 Pure Python |
+| `pkgutil-resolve-name` | 🐍 Pure Python | 🐍 Pure Python |
 | `platformdirs` | 🐍 Pure Python | 🐍 Pure Python |
 | `plotly` | 🐍 Pure Python | 🐍 Pure Python |
 | `pluggy` | 🐍 Pure Python | 🐍 Pure Python |
@@ -692,16 +692,15 @@ Packages that work on all platforms (no binary dependencies).
 | `proto-plus` | 🐍 Pure Python | 🐍 Pure Python |
 | `protobuf` | 🐍 Pure Python | 🐍 Pure Python |
 | `psycopg` | 🐍 Pure Python | 🐍 Pure Python |
-| `psycopg-pool` | 🐍 Pure Python | 🐍 Pure Python |
 | `ptyprocess` | 🐍 Pure Python | 🐍 Pure Python |
 | `pure-eval` | 🐍 Pure Python | 🐍 Pure Python |
-| `PureCloudPlatformClientV2` | 🐍 Pure Python | 🐍 Pure Python |
+| `purecloudplatformclientv2` | 🐍 Pure Python | 🐍 Pure Python |
 | `py` | 🐍 Pure Python | 🐍 Pure Python |
 | `py-cpuinfo` | 🐍 Pure Python | 🐍 Pure Python |
 | `py4j` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyasn1` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyasn1-modules` | 🐍 Pure Python | 🐍 Pure Python |
-| `PyAthena` | 🐍 Pure Python | 🐍 Pure Python |
+| `pyathena` | 🐍 Pure Python | 🐍 Pure Python |
 | `pybind11` | 🐍 Pure Python | 🐍 Pure Python |
 | `pycodestyle` | 🐍 Pure Python | 🐍 Pure Python |
 | `pycountry` | 🐍 Pure Python | 🐍 Pure Python |
@@ -717,24 +716,24 @@ Packages that work on all platforms (no binary dependencies).
 | `pydyf` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyee` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyflakes` | 🐍 Pure Python | 🐍 Pure Python |
-| `PyGithub` | 🐍 Pure Python | 🐍 Pure Python |
-| `Pygments` | 🐍 Pure Python | 🐍 Pure Python |
-| `PyJWT` | 🐍 Pure Python | 🐍 Pure Python |
+| `pygithub` | 🐍 Pure Python | 🐍 Pure Python |
+| `pygments` | 🐍 Pure Python | 🐍 Pure Python |
+| `pyjwt` | 🐍 Pure Python | 🐍 Pure Python |
 | `pylint` | 🐍 Pure Python | 🐍 Pure Python |
 | `pymdown-extensions` | 🐍 Pure Python | 🐍 Pure Python |
-| `PyMySQL` | 🐍 Pure Python | 🐍 Pure Python |
-| `pyOpenSSL` | 🐍 Pure Python | 🐍 Pure Python |
+| `pymysql` | 🐍 Pure Python | 🐍 Pure Python |
+| `pyopenssl` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyotp` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyparsing` | 🐍 Pure Python | 🐍 Pure Python |
 | `pypdf` | 🐍 Pure Python | 🐍 Pure Python |
-| `PyPDF2` | 🐍 Pure Python | 🐍 Pure Python |
+| `pypdf2` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyperclip` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyphen` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyproject-api` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyproject-hooks` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyright` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyrsistent` | 🐍 Pure Python | 🐍 Pure Python |
-| `PySocks` | 🐍 Pure Python | 🐍 Pure Python |
+| `pysocks` | 🐍 Pure Python | 🐍 Pure Python |
 | `pyspnego` | 🐍 Pure Python | 🐍 Pure Python |
 | `pytest` | 🐍 Pure Python | 🐍 Pure Python |
 | `pytest-asyncio` | 🐍 Pure Python | 🐍 Pure Python |
@@ -768,8 +767,6 @@ Packages that work on all platforms (no binary dependencies).
 | `pytokens` | 🐍 Pure Python | 🐍 Pure Python |
 | `pytz` | 🐍 Pure Python | 🐍 Pure Python |
 | `pytzdata` | 🐍 Pure Python | 🐍 Pure Python |
-| `pywin32-ctypes` | 🐍 Pure Python | 🐍 Pure Python |
-| `pyyaml-env-tag` | 🐍 Pure Python | 🐍 Pure Python |
 
 ---
 
@@ -802,6 +799,7 @@ Packages that work on all platforms (no binary dependencies).
 | `rich-rst` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich-toolkit` | 🐍 Pure Python | 🐍 Pure Python |
 | `rsa` | 🐍 Pure Python | 🐍 Pure Python |
+| `ruamel-yaml` | 🐍 Pure Python | 🐍 Pure Python |
 
 ---
 
@@ -816,11 +814,11 @@ Packages that work on all platforms (no binary dependencies).
 | `scp` | 🐍 Pure Python | 🐍 Pure Python |
 | `scramp` | 🐍 Pure Python | 🐍 Pure Python |
 | `seaborn` | 🐍 Pure Python | 🐍 Pure Python |
-| `SecretStorage` | 🐍 Pure Python | 🐍 Pure Python |
+| `secretstorage` | 🐍 Pure Python | 🐍 Pure Python |
 | `selenium` | 🐍 Pure Python | 🐍 Pure Python |
 | `semantic-version` | 🐍 Pure Python | 🐍 Pure Python |
 | `semver` | 🐍 Pure Python | 🐍 Pure Python |
-| `Send2Trash` | 🐍 Pure Python | 🐍 Pure Python |
+| `send2trash` | 🐍 Pure Python | 🐍 Pure Python |
 | `sendgrid` | 🐍 Pure Python | 🐍 Pure Python |
 | `sentence-transformers` | 🐍 Pure Python | 🐍 Pure Python |
 | `sentry-sdk` | 🐍 Pure Python | 🐍 Pure Python |
@@ -844,7 +842,7 @@ Packages that work on all platforms (no binary dependencies).
 | `soupsieve` | 🐍 Pure Python | 🐍 Pure Python |
 | `spacy-legacy` | 🐍 Pure Python | 🐍 Pure Python |
 | `spacy-loggers` | 🐍 Pure Python | 🐍 Pure Python |
-| `Sphinx` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinx` | 🐍 Pure Python | 🐍 Pure Python |
 | `sphinx-rtd-theme` | 🐍 Pure Python | 🐍 Pure Python |
 | `sphinxcontrib-applehelp` | 🐍 Pure Python | 🐍 Pure Python |
 | `sphinxcontrib-devhelp` | 🐍 Pure Python | 🐍 Pure Python |
@@ -852,10 +850,10 @@ Packages that work on all platforms (no binary dependencies).
 | `sphinxcontrib-jsmath` | 🐍 Pure Python | 🐍 Pure Python |
 | `sphinxcontrib-qthelp` | 🐍 Pure Python | 🐍 Pure Python |
 | `sphinxcontrib-serializinghtml` | 🐍 Pure Python | 🐍 Pure Python |
-| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
+| `sqlalchemy` | 🐍 Pure Python | ✅ Supported |
 | `sqlalchemy-bigquery` | 🐍 Pure Python | 🐍 Pure Python |
 | `sqlalchemy-spanner` | 🐍 Pure Python | 🐍 Pure Python |
-| `SQLAlchemy-Utils` | 🐍 Pure Python | 🐍 Pure Python |
+| `sqlalchemy-utils` | 🐍 Pure Python | 🐍 Pure Python |
 | `sqlglot` | 🐍 Pure Python | 🐍 Pure Python |
 | `sqlparse` | 🐍 Pure Python | 🐍 Pure Python |
 | `sse-starlette` | 🐍 Pure Python | 🐍 Pure Python |
@@ -865,7 +863,7 @@ Packages that work on all platforms (no binary dependencies).
 | `statsd` | 🐍 Pure Python | 🐍 Pure Python |
 | `stevedore` | 🐍 Pure Python | 🐍 Pure Python |
 | `streamlit` | 🐍 Pure Python | 🐍 Pure Python |
-| `StrEnum` | 🐍 Pure Python | 🐍 Pure Python |
+| `strenum` | 🐍 Pure Python | 🐍 Pure Python |
 | `stripe` | 🐍 Pure Python | 🐍 Pure Python |
 | `structlog` | 🐍 Pure Python | 🐍 Pure Python |
 | `swe-rex` | 🐍 Pure Python | 🐍 Pure Python |
@@ -919,10 +917,10 @@ Packages that work on all platforms (no binary dependencies).
 | `types-awscrt` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-cffi` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-protobuf` | 🐍 Pure Python | 🐍 Pure Python |
-| `types-pyOpenSSL` | 🐍 Pure Python | 🐍 Pure Python |
+| `types-pyopenssl` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-python-dateutil` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-pytz` | 🐍 Pure Python | 🐍 Pure Python |
-| `types-PyYAML` | 🐍 Pure Python | 🐍 Pure Python |
+| `types-pyyaml` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-redis` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-requests` | 🐍 Pure Python | 🐍 Pure Python |
 | `types-s3transfer` | 🐍 Pure Python | 🐍 Pure Python |
@@ -943,7 +941,7 @@ Packages that work on all platforms (no binary dependencies).
 |---------|---------|-----|
 | `ua-parser` | 🐍 Pure Python | 🐍 Pure Python |
 | `uc-micro-py` | 🐍 Pure Python | 🐍 Pure Python |
-| `Unidecode` | 🐍 Pure Python | 🐍 Pure Python |
+| `unidecode` | 🐍 Pure Python | 🐍 Pure Python |
 | `universal-pathlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `unstructured-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `uri-template` | 🐍 Pure Python | 🐍 Pure Python |
@@ -981,12 +979,12 @@ Packages that work on all platforms (no binary dependencies).
 | `webencodings` | 🐍 Pure Python | 🐍 Pure Python |
 | `websocket-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `websockets` | 🐍 Pure Python | 🐍 Pure Python |
-| `Werkzeug` | 🐍 Pure Python | 🐍 Pure Python |
+| `werkzeug` | 🐍 Pure Python | 🐍 Pure Python |
 | `wheel` | 🐍 Pure Python | 🐍 Pure Python |
 | `widgetsnbextension` | 🐍 Pure Python | 🐍 Pure Python |
 | `wrapt` | 🐍 Pure Python | 🐍 Pure Python |
 | `wsproto` | 🐍 Pure Python | 🐍 Pure Python |
-| `WTForms` | 🐍 Pure Python | 🐍 Pure Python |
+| `wtforms` | 🐍 Pure Python | 🐍 Pure Python |
 
 ---
 
@@ -1018,8 +1016,9 @@ Packages that work on all platforms (no binary dependencies).
 |---------|---------|-----|
 | `zeep` | 🐍 Pure Python | 🐍 Pure Python |
 | `zipp` | 🐍 Pure Python | 🐍 Pure Python |
+| `zope-event` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---
 
-**Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/PSProject/tree/master/MobilePlatformSupport)
+**Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/MobilePlatformSupport)

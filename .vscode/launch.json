@@ -1,0 +1,64 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MobilePlatformSupport-new}",
+            "name": "Debug mobile-wheels-checker",
+            "target": "mobile-wheels-checker",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug mobile-wheels-checker"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MobilePlatformSupport-new}",
+            "name": "Release mobile-wheels-checker",
+            "target": "mobile-wheels-checker",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release mobile-wheels-checker"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MobilePlatformSupport-new}",
+            "name": "Debug dependency-checker",
+            "target": "dependency-checker",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug dependency-checker"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MobilePlatformSupport-new}",
+            "name": "Release dependency-checker",
+            "target": "dependency-checker",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release dependency-checker"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MobilePlatformSupport-new}",
+            "name": "Debug DependencyChecker",
+            "target": "DependencyChecker",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug DependencyChecker"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:MobilePlatformSupport-new}",
+            "name": "Release DependencyChecker",
+            "target": "DependencyChecker",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release DependencyChecker"
+        }
+    ]
+}

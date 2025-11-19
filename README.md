@@ -276,7 +276,9 @@ The tool generates:
 
 2. **Markdown reports** (exported to output directory):
    - `mobile-wheels-results.md` - Main report with complete listings and statistics
-   - `pure-python-packages.md` - Full alphabetical list (if >100 pure Python packages)
+   - `pure-python/` - Folder structure with organized pure Python packages (if >100 pure Python packages)
+     - `index.md` - Letter navigation and top 10 packages per letter
+     - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists organized by first letter
    - `binary-without-mobile.md` - Full alphabetical list (if >100 binary packages without mobile support)
    - `excluded-packages.md` - GPU/CUDA and Windows-only packages that were filtered out (shows packages that are 100% incompatible with mobile platforms)
 

@@ -1,6 +1,6 @@
 # Mobile Platform Support Report
 
-**Generated:** 2025-11-19 18:53:12  
+**Generated:** 2025-11-19 19:54:23  
 **Packages Checked:** 1000  
 **Dependency Checking:** Disabled
 
@@ -29,8 +29,9 @@ Custom iOS/Android builds from [pypi.anaconda.org/pyswift/simple](https://pypi.a
 | `numpy` | ⚠️ Not available | ✅ Supported |
 | `cryptography` | ⚠️ Not available | ✅ Supported |
 | `cffi` | ⚠️ Not available | ✅ Supported |
+| `pydantic-core` | ⚠️ Not available | ✅ Supported |
 | `aiohttp` | ⚠️ Not available | ✅ Supported |
-| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
+| `sqlalchemy` | 🐍 Pure Python | ✅ Supported |
 | `greenlet` | ⚠️ Not available | ✅ Supported |
 | `msgpack` | ⚠️ Not available | ✅ Supported |
 | `regex` | ⚠️ Not available | ✅ Supported |
@@ -49,9 +50,9 @@ Custom iOS/Android builds from [pypi.anaconda.org/pyswift/simple](https://pypi.a
 ## 🐍 Pure Python Packages
 
 Packages that work on all platforms (no binary dependencies).
-_Showing first 100 packages by download popularity. Total: 839_
+_Showing first 100 packages by download popularity. Total: 838_
 
-📄 **[View all 839 pure Python packages (A-Z)](pure-python-packages.md)**
+📄 **[View all 838 pure Python packages (A-Z)](pure-python-packages.md)**
 
 | Package | Android | iOS |
 |---------|---------|-----|
@@ -84,9 +85,9 @@ _Showing first 100 packages by download popularity. Total: 839_
 | `h11` | 🐍 Pure Python | 🐍 Pure Python |
 | `pytz` | 🐍 Pure Python | 🐍 Pure Python |
 | `anyio` | 🐍 Pure Python | 🐍 Pure Python |
-| `Pygments` | 🐍 Pure Python | 🐍 Pure Python |
+| `pygments` | 🐍 Pure Python | 🐍 Pure Python |
 | `sniffio` | 🐍 Pure Python | 🐍 Pure Python |
-| `Jinja2` | 🐍 Pure Python | 🐍 Pure Python |
+| `jinja2` | 🐍 Pure Python | 🐍 Pure Python |
 | `annotated-types` | 🐍 Pure Python | 🐍 Pure Python |
 | `importlib-metadata` | 🐍 Pure Python | 🐍 Pure Python |
 | `pluggy` | 🐍 Pure Python | 🐍 Pure Python |
@@ -108,7 +109,7 @@ _Showing first 100 packages by download popularity. Total: 839_
 | `pyasn1-modules` | 🐍 Pure Python | 🐍 Pure Python |
 | `pytest` | 🐍 Pure Python | 🐍 Pure Python |
 | `frozenlist` | 🐍 Pure Python | 🐍 Pure Python |
-| `PyJWT` | 🐍 Pure Python | 🐍 Pure Python |
+| `pyjwt` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonschema` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich` | 🐍 Pure Python | 🐍 Pure Python |
 | `googleapis-common-protos` | 🐍 Pure Python | 🐍 Pure Python |
@@ -123,7 +124,7 @@ _Showing first 100 packages by download popularity. Total: 839_
 | `tomli` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `mdurl` | 🐍 Pure Python | 🐍 Pure Python |
-| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
+| `sqlalchemy` | 🐍 Pure Python | ✅ Supported |
 | `aiohappyeyeballs` | 🐍 Pure Python | 🐍 Pure Python |
 | `pathspec` | 🐍 Pure Python | 🐍 Pure Python |
 | `openpyxl` | 🐍 Pure Python | 🐍 Pure Python |
@@ -139,14 +140,14 @@ _Showing first 100 packages by download popularity. Total: 839_
 | `uvicorn` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastapi` | 🐍 Pure Python | 🐍 Pure Python |
 | `distlib` | 🐍 Pure Python | 🐍 Pure Python |
-| `pyOpenSSL` | 🐍 Pure Python | 🐍 Pure Python |
+| `pyopenssl` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-toolbelt` | 🐍 Pure Python | 🐍 Pure Python |
 | `docutils` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-semantic-conventions` | 🐍 Pure Python | 🐍 Pure Python |
 | `exceptiongroup` | 🐍 Pure Python | 🐍 Pure Python |
 | `trove-classifiers` | 🐍 Pure Python | 🐍 Pure Python |
 | `more-itertools` | 🐍 Pure Python | 🐍 Pure Python |
-| `Werkzeug` | 🐍 Pure Python | 🐍 Pure Python |
+| `werkzeug` | 🐍 Pure Python | 🐍 Pure Python |
 | `isodate` | 🐍 Pure Python | 🐍 Pure Python |
 | `yandexcloud` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-sdk` | 🐍 Pure Python | 🐍 Pure Python |
@@ -156,21 +157,21 @@ _Showing first 100 packages by download popularity. Total: 839_
 | `opentelemetry-proto` | 🐍 Pure Python | 🐍 Pure Python |
 | `google-cloud-storage` | 🐍 Pure Python | 🐍 Pure Python |
 
-_... and 739 more packages. [View full list](pure-python-packages.md)_
+_... and 738 more packages. [View full list](pure-python-packages.md)_
 
 
 ## ❌ Binary Packages Without Mobile Support
 
 Packages with binary wheels but no iOS/Android support.
-_Showing first 100 packages by download popularity. Total: 118_
+_Showing first 100 packages by download popularity. Total: 115_
 
-📄 **[View all 118 packages without mobile support (A-Z)](binary-without-mobile.md)**
+📄 **[View all 115 packages without mobile support (A-Z)](binary-without-mobile.md)**
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `PyYAML` | ⚠️ Not available | ⚠️ Not available |
+| `pyyaml` | ⚠️ Not available | ⚠️ Not available |
 | `pandas` | ⚠️ Not available | ⚠️ Not available |
-| `MarkupSafe` | ⚠️ Not available | ⚠️ Not available |
+| `markupsafe` | ⚠️ Not available | ⚠️ Not available |
 | `pyarrow` | ⚠️ Not available | ⚠️ Not available |
 | `grpcio` | ⚠️ Not available | ⚠️ Not available |
 | `rpds-py` | ⚠️ Not available | ⚠️ Not available |
@@ -180,12 +181,13 @@ _Showing first 100 packages by download popularity. Total: 118_
 | `snowflake-connector-python` | ⚠️ Not available | ⚠️ Not available |
 | `grpcio-tools` | ⚠️ Not available | ⚠️ Not available |
 | `psycopg2-binary` | ⚠️ Not available | ⚠️ Not available |
-| `PyNaCl` | ⚠️ Not available | ⚠️ Not available |
+| `pynacl` | ⚠️ Not available | ⚠️ Not available |
 | `scikit-learn` | ⚠️ Not available | ⚠️ Not available |
 | `zstandard` | ⚠️ Not available | ⚠️ Not available |
 | `google-crc32c` | ⚠️ Not available | ⚠️ Not available |
-| `RapidFuzz` | ⚠️ Not available | ⚠️ Not available |
+| `rapidfuzz` | ⚠️ Not available | ⚠️ Not available |
 | `ruff` | ⚠️ Not available | ⚠️ Not available |
+| `ruamel-yaml-clib` | ⚠️ Not available | ⚠️ Not available |
 | `jiter` | ⚠️ Not available | ⚠️ Not available |
 | `tokenizers` | ⚠️ Not available | ⚠️ Not available |
 | `tornado` | ⚠️ Not available | ⚠️ Not available |
@@ -199,12 +201,11 @@ _Showing first 100 packages by download popularity. Total: 118_
 | `httptools` | ⚠️ Not available | ⚠️ Not available |
 | `shapely` | ⚠️ Not available | ⚠️ Not available |
 | `lz4` | ⚠️ Not available | ⚠️ Not available |
-| `PyMuPDF` | ⚠️ Not available | ⚠️ Not available |
+| `pymupdf` | ⚠️ Not available | ⚠️ Not available |
+| `zope-interface` | ⚠️ Not available | ⚠️ Not available |
 | `safetensors` | ⚠️ Not available | ⚠️ Not available |
 | `pycryptodomex` | ⚠️ Not available | ⚠️ Not available |
 | `argon2-cffi-bindings` | ⚠️ Not available | ⚠️ Not available |
-| `triton` | ⚠️ Not available | ⚠️ Not available |
-| `nvidia-nvjitlink-cu12` | ⚠️ Not available | ⚠️ Not available |
 | `xxhash` | ⚠️ Not available | ⚠️ Not available |
 | `confluent-kafka` | ⚠️ Not available | ⚠️ Not available |
 | `psycopg2` | ⚠️ Not available | ⚠️ Not available |
@@ -253,7 +254,7 @@ _Showing first 100 packages by download popularity. Total: 118_
 | `thinc` | ⚠️ Not available | ⚠️ Not available |
 | `blis` | ⚠️ Not available | ⚠️ Not available |
 | `marisa-trie` | ⚠️ Not available | ⚠️ Not available |
-| `Levenshtein` | ⚠️ Not available | ⚠️ Not available |
+| `levenshtein` | ⚠️ Not available | ⚠️ Not available |
 | `cymem` | ⚠️ Not available | ⚠️ Not available |
 | `murmurhash` | ⚠️ Not available | ⚠️ Not available |
 | `oracledb` | ⚠️ Not available | ⚠️ Not available |
@@ -269,7 +270,7 @@ _Showing first 100 packages by download popularity. Total: 118_
 | `ormsgpack` | ⚠️ Not available | ⚠️ Not available |
 | `onnx` | ⚠️ Not available | ⚠️ Not available |
 
-_... and 18 more packages. [View full list](binary-without-mobile.md)_
+_... and 15 more packages. [View full list](binary-without-mobile.md)_
 
 
 ## 📈 Summary Statistics
@@ -279,22 +280,22 @@ _... and 18 more packages. [View full list](binary-without-mobile.md)_
 | Category | Count | Percentage |
 |----------|-------|------------|
 | Official Binary Wheels (PyPI) | 6 | 0.6% |
-| PySwift Binary Wheels | 18 | 1.8% |
-| Pure Python | 839 | 83.9% |
-| Binary Without Mobile Support | 118 | 11.8% |
+| PySwift Binary Wheels | 19 | 1.9% |
+| Pure Python | 838 | 83.8% |
+| Binary Without Mobile Support | 115 | 11.5% |
 | **Total** | **1000** | **100%** |
 
 ### Platform Support (Binary Wheels)
 
 | Platform | Count | Percentage |
 |----------|-------|------------|
-| Android Support | 5 / 24 | 20.8% |
-| iOS Support | 22 / 24 | 91.7% |
-| Both Platforms | 3 / 24 | 12.5% |
+| Android Support | 5 / 25 | 20.0% |
+| iOS Support | 23 / 25 | 92.0% |
+| Both Platforms | 3 / 25 | 12.0% |
 
 ---
 
-**Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/PSProject/tree/master/MobilePlatformSupport)  
+**Generated by:** [MobilePlatformSupport](https://github.com/Py-Swift/MobilePlatformSupport)  
 **Data Sources:**
 - PyPI: [pypi.org](https://pypi.org)
 - PySwift: [pypi.anaconda.org/pyswift/simple](https://pypi.anaconda.org/pyswift/simple)
