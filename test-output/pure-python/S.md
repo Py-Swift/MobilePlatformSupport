@@ -1,7 +1,7 @@
 # Pure Python Packages - S
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with S:** 17
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with S:** 61
 
 [← Back to Index](index.md)
 
@@ -11,20 +11,64 @@
 |---------|---------|-----|
 | `s3fs` | 🐍 Pure Python | 🐍 Pure Python |
 | `s3transfer` | 🐍 Pure Python | 🐍 Pure Python |
+| `sagemaker` | 🐍 Pure Python | 🐍 Pure Python |
+| `schema` | 🐍 Pure Python | 🐍 Pure Python |
+| `scp` | 🐍 Pure Python | 🐍 Pure Python |
+| `scramp` | 🐍 Pure Python | 🐍 Pure Python |
+| `seaborn` | 🐍 Pure Python | 🐍 Pure Python |
 | `SecretStorage` | 🐍 Pure Python | 🐍 Pure Python |
+| `selenium` | 🐍 Pure Python | 🐍 Pure Python |
+| `semantic-version` | 🐍 Pure Python | 🐍 Pure Python |
+| `semver` | 🐍 Pure Python | 🐍 Pure Python |
+| `Send2Trash` | 🐍 Pure Python | 🐍 Pure Python |
+| `sendgrid` | 🐍 Pure Python | 🐍 Pure Python |
+| `sentence-transformers` | 🐍 Pure Python | 🐍 Pure Python |
 | `sentry-sdk` | 🐍 Pure Python | 🐍 Pure Python |
 | `setuptools` | 🐍 Pure Python | 🐍 Pure Python |
 | `setuptools-scm` | 🐍 Pure Python | 🐍 Pure Python |
+| `sh` | 🐍 Pure Python | 🐍 Pure Python |
 | `shellingham` | 🐍 Pure Python | 🐍 Pure Python |
+| `simple-salesforce` | 🐍 Pure Python | 🐍 Pure Python |
+| `simplejson` | 🐍 Pure Python | 🐍 Pure Python |
 | `six` | 🐍 Pure Python | 🐍 Pure Python |
+| `slack-sdk` | 🐍 Pure Python | 🐍 Pure Python |
+| `smart-open` | 🐍 Pure Python | 🐍 Pure Python |
+| `smdebug-rulesconfig` | 🐍 Pure Python | 🐍 Pure Python |
 | `smmap` | 🐍 Pure Python | 🐍 Pure Python |
 | `sniffio` | 🐍 Pure Python | 🐍 Pure Python |
+| `snowballstemmer` | 🐍 Pure Python | 🐍 Pure Python |
+| `snowflake-snowpark-python` | 🐍 Pure Python | 🐍 Pure Python |
 | `snowflake-sqlalchemy` | 🐍 Pure Python | 🐍 Pure Python |
+| `snowplow-tracker` | 🐍 Pure Python | 🐍 Pure Python |
 | `sortedcontainers` | 🐍 Pure Python | 🐍 Pure Python |
 | `soupsieve` | 🐍 Pure Python | 🐍 Pure Python |
+| `spacy-legacy` | 🐍 Pure Python | 🐍 Pure Python |
+| `spacy-loggers` | 🐍 Pure Python | 🐍 Pure Python |
+| `Sphinx` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinx-rtd-theme` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinxcontrib-applehelp` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinxcontrib-devhelp` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinxcontrib-htmlhelp` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinxcontrib-jsmath` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinxcontrib-qthelp` | 🐍 Pure Python | 🐍 Pure Python |
+| `sphinxcontrib-serializinghtml` | 🐍 Pure Python | 🐍 Pure Python |
+| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
+| `sqlalchemy-bigquery` | 🐍 Pure Python | 🐍 Pure Python |
+| `sqlalchemy-spanner` | 🐍 Pure Python | 🐍 Pure Python |
+| `SQLAlchemy-Utils` | 🐍 Pure Python | 🐍 Pure Python |
+| `sqlglot` | 🐍 Pure Python | 🐍 Pure Python |
 | `sqlparse` | 🐍 Pure Python | 🐍 Pure Python |
+| `sse-starlette` | 🐍 Pure Python | 🐍 Pure Python |
+| `sshtunnel` | 🐍 Pure Python | 🐍 Pure Python |
 | `stack-data` | 🐍 Pure Python | 🐍 Pure Python |
 | `starlette` | 🐍 Pure Python | 🐍 Pure Python |
+| `statsd` | 🐍 Pure Python | 🐍 Pure Python |
+| `stevedore` | 🐍 Pure Python | 🐍 Pure Python |
+| `streamlit` | 🐍 Pure Python | 🐍 Pure Python |
+| `StrEnum` | 🐍 Pure Python | 🐍 Pure Python |
+| `stripe` | 🐍 Pure Python | 🐍 Pure Python |
+| `structlog` | 🐍 Pure Python | 🐍 Pure Python |
+| `swe-rex` | 🐍 Pure Python | 🐍 Pure Python |
 | `sympy` | 🐍 Pure Python | 🐍 Pure Python |
 
 

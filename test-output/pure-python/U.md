@@ -1,7 +1,7 @@
 # Pure Python Packages - U
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with U:** 3
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with U:** 11
 
 [← Back to Index](index.md)
 
@@ -9,8 +9,16 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ua-parser` | 🐍 Pure Python | 🐍 Pure Python |
+| `uc-micro-py` | 🐍 Pure Python | 🐍 Pure Python |
+| `Unidecode` | 🐍 Pure Python | 🐍 Pure Python |
+| `universal-pathlib` | 🐍 Pure Python | 🐍 Pure Python |
+| `unstructured-client` | 🐍 Pure Python | 🐍 Pure Python |
+| `uri-template` | 🐍 Pure Python | 🐍 Pure Python |
 | `uritemplate` | 🐍 Pure Python | 🐍 Pure Python |
 | `urllib3` | 🐍 Pure Python | 🐍 Pure Python |
+| `userpath` | 🐍 Pure Python | 🐍 Pure Python |
+| `uuid6` | 🐍 Pure Python | 🐍 Pure Python |
 | `uvicorn` | 🐍 Pure Python | 🐍 Pure Python |
 
 

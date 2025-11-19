@@ -1,7 +1,7 @@
 # Pure Python Packages - M
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with M:** 14
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with M:** 39
 
 [← Back to Index](index.md)
 
@@ -9,20 +9,45 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `makefun` | 🐍 Pure Python | 🐍 Pure Python |
 | `Mako` | 🐍 Pure Python | 🐍 Pure Python |
 | `Markdown` | 🐍 Pure Python | 🐍 Pure Python |
 | `markdown-it-py` | 🐍 Pure Python | 🐍 Pure Python |
+| `markdownify` | 🐍 Pure Python | 🐍 Pure Python |
 | `marshmallow` | 🐍 Pure Python | 🐍 Pure Python |
+| `mashumaro` | 🐍 Pure Python | 🐍 Pure Python |
 | `matplotlib-inline` | 🐍 Pure Python | 🐍 Pure Python |
 | `mccabe` | 🐍 Pure Python | 🐍 Pure Python |
+| `mcp` | 🐍 Pure Python | 🐍 Pure Python |
+| `mdit-py-plugins` | 🐍 Pure Python | 🐍 Pure Python |
 | `mdurl` | 🐍 Pure Python | 🐍 Pure Python |
+| `mergedeep` | 🐍 Pure Python | 🐍 Pure Python |
+| `meson` | 🐍 Pure Python | 🐍 Pure Python |
+| `meson-python` | 🐍 Pure Python | 🐍 Pure Python |
+| `mistune` | 🐍 Pure Python | 🐍 Pure Python |
+| `mkdocs` | 🐍 Pure Python | 🐍 Pure Python |
+| `mkdocs-material` | 🐍 Pure Python | 🐍 Pure Python |
+| `mkdocstrings-python` | 🐍 Pure Python | 🐍 Pure Python |
+| `mlflow` | 🐍 Pure Python | 🐍 Pure Python |
+| `mlflow-skinny` | 🐍 Pure Python | 🐍 Pure Python |
+| `mock` | 🐍 Pure Python | 🐍 Pure Python |
+| `monotonic` | 🐍 Pure Python | 🐍 Pure Python |
 | `more-itertools` | 🐍 Pure Python | 🐍 Pure Python |
+| `moto` | 🐍 Pure Python | 🐍 Pure Python |
 | `mpmath` | 🐍 Pure Python | 🐍 Pure Python |
 | `msal` | 🐍 Pure Python | 🐍 Pure Python |
 | `msal-extensions` | 🐍 Pure Python | 🐍 Pure Python |
+| `msrest` | 🐍 Pure Python | 🐍 Pure Python |
+| `msrestazure` | 🐍 Pure Python | 🐍 Pure Python |
 | `multidict` | 🐍 Pure Python | 🐍 Pure Python |
 | `mypy` | 🐍 Pure Python | 🐍 Pure Python |
+| `mypy-boto3-batch` | 🐍 Pure Python | 🐍 Pure Python |
+| `mypy-boto3-iam` | 🐍 Pure Python | 🐍 Pure Python |
+| `mypy-boto3-rds` | 🐍 Pure Python | 🐍 Pure Python |
+| `mypy-boto3-s3` | 🐍 Pure Python | 🐍 Pure Python |
+| `mypy-boto3-sts` | 🐍 Pure Python | 🐍 Pure Python |
 | `mypy-extensions` | 🐍 Pure Python | 🐍 Pure Python |
+| `mysql-connector-python` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

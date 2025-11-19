@@ -1,7 +1,7 @@
 # Pure Python Packages - E
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with E:** 7
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with E:** 15
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,17 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ecdsa` | 🐍 Pure Python | 🐍 Pure Python |
 | `editables` | 🐍 Pure Python | 🐍 Pure Python |
+| `einops` | 🐍 Pure Python | 🐍 Pure Python |
+| `elastic-transport` | 🐍 Pure Python | 🐍 Pure Python |
+| `elasticsearch` | 🐍 Pure Python | 🐍 Pure Python |
 | `email-validator` | 🐍 Pure Python | 🐍 Pure Python |
+| `emoji` | 🐍 Pure Python | 🐍 Pure Python |
+| `entrypoints` | 🐍 Pure Python | 🐍 Pure Python |
+| `envier` | 🐍 Pure Python | 🐍 Pure Python |
 | `et-xmlfile` | 🐍 Pure Python | 🐍 Pure Python |
+| `eval-type-backport` | 🐍 Pure Python | 🐍 Pure Python |
 | `Events` | 🐍 Pure Python | 🐍 Pure Python |
 | `exceptiongroup` | 🐍 Pure Python | 🐍 Pure Python |
 | `execnet` | 🐍 Pure Python | 🐍 Pure Python |

@@ -1,7 +1,7 @@
 # Pure Python Packages - B
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with B:** 8
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with B:** 22
 
 [← Back to Index](index.md)
 
@@ -10,13 +10,27 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `babel` | 🐍 Pure Python | 🐍 Pure Python |
+| `backcall` | 🐍 Pure Python | 🐍 Pure Python |
 | `backoff` | 🐍 Pure Python | 🐍 Pure Python |
+| `bandit` | 🐍 Pure Python | 🐍 Pure Python |
+| `bashlex` | 🐍 Pure Python | 🐍 Pure Python |
+| `beartype` | 🐍 Pure Python | 🐍 Pure Python |
 | `beautifulsoup4` | 🐍 Pure Python | 🐍 Pure Python |
+| `bidict` | 🐍 Pure Python | 🐍 Pure Python |
+| `billiard` | 🐍 Pure Python | 🐍 Pure Python |
 | `black` | 🐍 Pure Python | 🐍 Pure Python |
+| `bleach` | 🐍 Pure Python | 🐍 Pure Python |
 | `blinker` | 🐍 Pure Python | 🐍 Pure Python |
+| `blobfile` | 🐍 Pure Python | 🐍 Pure Python |
+| `boltons` | 🐍 Pure Python | 🐍 Pure Python |
+| `boostedblob` | 🐍 Pure Python | 🐍 Pure Python |
 | `boto3` | 🐍 Pure Python | 🐍 Pure Python |
+| `boto3-stubs` | 🐍 Pure Python | 🐍 Pure Python |
 | `botocore` | 🐍 Pure Python | 🐍 Pure Python |
+| `botocore-stubs` | 🐍 Pure Python | 🐍 Pure Python |
+| `bracex` | 🐍 Pure Python | 🐍 Pure Python |
 | `build` | 🐍 Pure Python | 🐍 Pure Python |
+| `bytecode` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

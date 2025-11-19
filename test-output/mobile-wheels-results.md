@@ -1,7 +1,7 @@
 # Mobile Platform Support Report
 
-**Generated:** 2025-11-19 21:51:26  
-**Packages Checked:** 300  
+**Generated:** 2025-11-19 22:27:59  
+**Packages Checked:** 1000  
 **Dependency Checking:** Disabled
 
 ---
@@ -15,6 +15,9 @@ Packages with official iOS/Android wheels available on PyPI.
 | `pillow` | ⚠️ Not available | ✅ Supported |
 | `pyzmq` | ✅ Supported | ⚠️ Not available |
 | `dulwich` | ✅ Supported | 🐍 Pure Python |
+| `mmh3` | ✅ Supported | ✅ Supported |
+| `maxminddb` | ✅ Supported | ✅ Supported |
+| `optree` | ✅ Supported | ✅ Supported |
 
 
 ## 🔧 PySwift Binary Wheels
@@ -23,17 +26,32 @@ Custom iOS/Android builds from [pypi.anaconda.org/pyswift/simple](https://pypi.a
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `numpy` | ⚠️ Not available | ✅ Supported |
+| `cryptography` | ⚠️ Not available | ✅ Supported |
 | `cffi` | ⚠️ Not available | ✅ Supported |
+| `aiohttp` | ⚠️ Not available | ✅ Supported |
+| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
+| `greenlet` | ⚠️ Not available | ✅ Supported |
+| `msgpack` | ⚠️ Not available | ✅ Supported |
 | `regex` | ⚠️ Not available | ✅ Supported |
+| `coverage` | 🐍 Pure Python | ✅ Supported |
+| `bcrypt` | ⚠️ Not available | ✅ Supported |
+| `matplotlib` | ⚠️ Not available | ✅ Supported |
+| `kiwisolver` | ⚠️ Not available | ✅ Supported |
+| `contourpy` | ⚠️ Not available | ✅ Supported |
 | `orjson` | ⚠️ Not available | ✅ Supported |
+| `pycryptodome` | ⚠️ Not available | ✅ Supported |
+| `brotli` | ⚠️ Not available | ✅ Supported |
+| `pendulum` | 🐍 Pure Python | ✅ Supported |
+| `bitarray` | ⚠️ Not available | ✅ Supported |
 
 
 ## 🐍 Pure Python Packages
 
 Packages that work on all platforms (no binary dependencies).
-_Showing first 100 packages by download popularity. Total: 252_
+_Showing first 100 packages by download popularity. Total: 854_
 
-📄 **[View all 252 pure Python packages (A-Z)](pure-python/index.md)**
+📄 **[View all 854 pure Python packages (A-Z)](pure-python/index.md)**
 
 | Package | Android | iOS |
 |---------|---------|-----|
@@ -105,6 +123,7 @@ _Showing first 100 packages by download popularity. Total: 252_
 | `tomli` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
 | `mdurl` | 🐍 Pure Python | 🐍 Pure Python |
+| `SQLAlchemy` | 🐍 Pure Python | ✅ Supported |
 | `aiohappyeyeballs` | 🐍 Pure Python | 🐍 Pure Python |
 | `pathspec` | 🐍 Pure Python | 🐍 Pure Python |
 | `openpyxl` | 🐍 Pure Python | 🐍 Pure Python |
@@ -136,14 +155,17 @@ _Showing first 100 packages by download popularity. Total: 252_
 | `opentelemetry-api` | 🐍 Pure Python | 🐍 Pure Python |
 | `opentelemetry-proto` | 🐍 Pure Python | 🐍 Pure Python |
 | `google-cloud-storage` | 🐍 Pure Python | 🐍 Pure Python |
-| `websocket-client` | 🐍 Pure Python | 🐍 Pure Python |
 
-_... and 152 more packages. [View full list](pure-python/index.md)_
+_... and 754 more packages. [View full list](pure-python/index.md)_
 
 
 ## ❌ Binary Packages Without Mobile Support
 
 Packages with binary wheels but no iOS/Android support.
+_Showing first 100 packages by download popularity. Total: 117_
+
+📄 **[View all 117 packages without mobile support (A-Z)](binary-without-mobile/index.md)**
+
 | Package | Android | iOS |
 |---------|---------|-----|
 | `PyYAML` | ⚠️ Not available | ⚠️ Not available |
@@ -176,6 +198,78 @@ Packages with binary wheels but no iOS/Android support.
 | `tiktoken` | ⚠️ Not available | ⚠️ Not available |
 | `httptools` | ⚠️ Not available | ⚠️ Not available |
 | `shapely` | ⚠️ Not available | ⚠️ Not available |
+| `lz4` | ⚠️ Not available | ⚠️ Not available |
+| `PyMuPDF` | ⚠️ Not available | ⚠️ Not available |
+| `safetensors` | ⚠️ Not available | ⚠️ Not available |
+| `pycryptodomex` | ⚠️ Not available | ⚠️ Not available |
+| `argon2-cffi-bindings` | ⚠️ Not available | ⚠️ Not available |
+| `xxhash` | ⚠️ Not available | ⚠️ Not available |
+| `confluent-kafka` | ⚠️ Not available | ⚠️ Not available |
+| `psycopg2` | ⚠️ Not available | ⚠️ Not available |
+| `h5py` | ⚠️ Not available | ⚠️ Not available |
+| `numba` | ⚠️ Not available | ⚠️ Not available |
+| `llvmlite` | ⚠️ Not available | ⚠️ Not available |
+| `xgboost` | ⚠️ Not available | ⚠️ Not available |
+| `sentencepiece` | ⚠️ Not available | ⚠️ Not available |
+| `setproctitle` | ⚠️ Not available | ⚠️ Not available |
+| `pyodbc` | ⚠️ Not available | ⚠️ Not available |
+| `zopfli` | ⚠️ Not available | ⚠️ Not available |
+| `ray` | ⚠️ Not available | ⚠️ Not available |
+| `opencv-python` | ⚠️ Not available | ⚠️ Not available |
+| `gevent` | ⚠️ Not available | ⚠️ Not available |
+| `pymssql` | ⚠️ Not available | ⚠️ Not available |
+| `apache-beam` | ⚠️ Not available | ⚠️ Not available |
+| `asyncpg` | ⚠️ Not available | ⚠️ Not available |
+| `pypandoc-binary` | ⚠️ Not available | ⚠️ Not available |
+| `tensorflow` | ⚠️ Not available | ⚠️ Not available |
+| `fastavro` | ⚠️ Not available | ⚠️ Not available |
+| `torchvision` | ⚠️ Not available | ⚠️ Not available |
+| `libcst` | ⚠️ Not available | ⚠️ Not available |
+| `nh3` | ⚠️ Not available | ⚠️ Not available |
+| `duckdb` | ⚠️ Not available | ⚠️ Not available |
+| `onnxruntime` | ⚠️ Not available | ⚠️ Not available |
+| `ninja` | ⚠️ Not available | ⚠️ Not available |
+| `ijson` | ⚠️ Not available | ⚠️ Not available |
+| `psycopg-binary` | ⚠️ Not available | ⚠️ Not available |
+| `playwright` | ⚠️ Not available | ⚠️ Not available |
+| `ujson` | ⚠️ Not available | ⚠️ Not available |
+| `statsmodels` | ⚠️ Not available | ⚠️ Not available |
+| `ml-dtypes` | ⚠️ Not available | ⚠️ Not available |
+| `cramjam` | ⚠️ Not available | ⚠️ Not available |
+| `ddtrace` | ⚠️ Not available | ⚠️ Not available |
+| `wandb` | ⚠️ Not available | ⚠️ Not available |
+| `scikit-image` | ⚠️ Not available | ⚠️ Not available |
+| `dbt-extractor` | ⚠️ Not available | ⚠️ Not available |
+| `msgspec` | ⚠️ Not available | ⚠️ Not available |
+| `semgrep` | ⚠️ Not available | ⚠️ Not available |
+| `opencv-python-headless` | ⚠️ Not available | ⚠️ Not available |
+| `mysqlclient` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter` | ⚠️ Not available | ⚠️ Not available |
+| `spacy` | ⚠️ Not available | ⚠️ Not available |
+| `thriftpy2` | ⚠️ Not available | ⚠️ Not available |
+| `jpype1` | ⚠️ Not available | ⚠️ Not available |
+| `thinc` | ⚠️ Not available | ⚠️ Not available |
+| `blis` | ⚠️ Not available | ⚠️ Not available |
+| `marisa-trie` | ⚠️ Not available | ⚠️ Not available |
+| `Levenshtein` | ⚠️ Not available | ⚠️ Not available |
+| `cymem` | ⚠️ Not available | ⚠️ Not available |
+| `murmurhash` | ⚠️ Not available | ⚠️ Not available |
+| `oracledb` | ⚠️ Not available | ⚠️ Not available |
+| `srsly` | ⚠️ Not available | ⚠️ Not available |
+| `libclang` | ⚠️ Not available | ⚠️ Not available |
+| `torchaudio` | ⚠️ Not available | ⚠️ Not available |
+| `preshed` | ⚠️ Not available | ⚠️ Not available |
+| `pyproj` | ⚠️ Not available | ⚠️ Not available |
+| `polars-runtime-32` | ⚠️ Not available | ⚠️ Not available |
+| `fastparquet` | ⚠️ Not available | ⚠️ Not available |
+| `time-machine` | ⚠️ Not available | ⚠️ Not available |
+| `cmake` | ⚠️ Not available | ⚠️ Not available |
+| `ormsgpack` | ⚠️ Not available | ⚠️ Not available |
+| `onnx` | ⚠️ Not available | ⚠️ Not available |
+| `pyroaring` | ⚠️ Not available | ⚠️ Not available |
+| `hiredis` | ⚠️ Not available | ⚠️ Not available |
+
+_... and 17 more packages. [View full list](binary-without-mobile/index.md)_
 
 
 ## 📈 Summary Statistics
@@ -184,19 +278,19 @@ Packages with binary wheels but no iOS/Android support.
 
 | Category | Count | Percentage |
 |----------|-------|------------|
-| Official Binary Wheels (PyPI) | 3 | 1.0% |
-| PySwift Binary Wheels | 3 | 1.0% |
-| Pure Python | 252 | 84.0% |
-| Binary Without Mobile Support | 30 | 10.0% |
-| **Total** | **300** | **100%** |
+| Official Binary Wheels (PyPI) | 6 | 0.6% |
+| PySwift Binary Wheels | 18 | 1.8% |
+| Pure Python | 854 | 85.4% |
+| Binary Without Mobile Support | 117 | 11.7% |
+| **Total** | **1000** | **100%** |
 
 ### Platform Support (Binary Wheels)
 
 | Platform | Count | Percentage |
 |----------|-------|------------|
-| Android Support | 2 / 6 | 33.3% |
-| iOS Support | 4 / 6 | 66.7% |
-| Both Platforms | 0 / 6 | 0.0% |
+| Android Support | 5 / 24 | 20.8% |
+| iOS Support | 22 / 24 | 91.7% |
+| Both Platforms | 3 / 24 | 12.5% |
 
 ---
 

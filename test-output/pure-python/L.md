@@ -1,7 +1,7 @@
 # Pure Python Packages - L
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with L:** 3
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with L:** 28
 
 [← Back to Index](index.md)
 
@@ -10,8 +10,33 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `langchain` | 🐍 Pure Python | 🐍 Pure Python |
+| `langchain-community` | 🐍 Pure Python | 🐍 Pure Python |
 | `langchain-core` | 🐍 Pure Python | 🐍 Pure Python |
+| `langchain-google-vertexai` | 🐍 Pure Python | 🐍 Pure Python |
+| `langchain-openai` | 🐍 Pure Python | 🐍 Pure Python |
+| `langchain-text-splitters` | 🐍 Pure Python | 🐍 Pure Python |
+| `langcodes` | 🐍 Pure Python | 🐍 Pure Python |
+| `langdetect` | 🐍 Pure Python | 🐍 Pure Python |
+| `langgraph` | 🐍 Pure Python | 🐍 Pure Python |
+| `langgraph-checkpoint` | 🐍 Pure Python | 🐍 Pure Python |
+| `langgraph-prebuilt` | 🐍 Pure Python | 🐍 Pure Python |
+| `langgraph-sdk` | 🐍 Pure Python | 🐍 Pure Python |
 | `langsmith` | 🐍 Pure Python | 🐍 Pure Python |
+| `language-data` | 🐍 Pure Python | 🐍 Pure Python |
+| `lark` | 🐍 Pure Python | 🐍 Pure Python |
+| `lazy-loader` | 🐍 Pure Python | 🐍 Pure Python |
+| `lazy-object-proxy` | 🐍 Pure Python | 🐍 Pure Python |
+| `leather` | 🐍 Pure Python | 🐍 Pure Python |
+| `limits` | 🐍 Pure Python | 🐍 Pure Python |
+| `linkify-it-py` | 🐍 Pure Python | 🐍 Pure Python |
+| `litellm` | 🐍 Pure Python | 🐍 Pure Python |
+| `llama-cloud-services` | 🐍 Pure Python | 🐍 Pure Python |
+| `llama-parse` | 🐍 Pure Python | 🐍 Pure Python |
+| `locket` | 🐍 Pure Python | 🐍 Pure Python |
+| `lockfile` | 🐍 Pure Python | 🐍 Pure Python |
+| `locust` | 🐍 Pure Python | 🐍 Pure Python |
+| `loguru` | 🐍 Pure Python | 🐍 Pure Python |
+| `looker-sdk` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

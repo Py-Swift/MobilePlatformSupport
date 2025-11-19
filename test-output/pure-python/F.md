@@ -1,7 +1,7 @@
 # Pure Python Packages - F
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with F:** 8
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with F:** 32
 
 [← Back to Index](index.md)
 
@@ -9,14 +9,38 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `factory-boy` | 🐍 Pure Python | 🐍 Pure Python |
+| `Faker` | 🐍 Pure Python | 🐍 Pure Python |
+| `fakeredis` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `fastapi-cli` | 🐍 Pure Python | 🐍 Pure Python |
+| `fastapi-cloud-cli` | 🐍 Pure Python | 🐍 Pure Python |
+| `fasteners` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastjsonschema` | 🐍 Pure Python | 🐍 Pure Python |
+| `fastmcp` | 🐍 Pure Python | 🐍 Pure Python |
 | `filelock` | 🐍 Pure Python | 🐍 Pure Python |
+| `filetype` | 🐍 Pure Python | 🐍 Pure Python |
+| `findpython` | 🐍 Pure Python | 🐍 Pure Python |
+| `fire` | 🐍 Pure Python | 🐍 Pure Python |
+| `flake8` | 🐍 Pure Python | 🐍 Pure Python |
 | `Flask` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask-appbuilder` | 🐍 Pure Python | 🐍 Pure Python |
+| `flask-cors` | 🐍 Pure Python | 🐍 Pure Python |
+| `Flask-Limiter` | 🐍 Pure Python | 🐍 Pure Python |
+| `Flask-Login` | 🐍 Pure Python | 🐍 Pure Python |
+| `Flask-SQLAlchemy` | 🐍 Pure Python | 🐍 Pure Python |
+| `Flask-WTF` | 🐍 Pure Python | 🐍 Pure Python |
+| `flatbuffers` | 🐍 Pure Python | 🐍 Pure Python |
+| `flit-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `fonttools` | 🐍 Pure Python | 🐍 Pure Python |
+| `fqdn` | 🐍 Pure Python | 🐍 Pure Python |
+| `freezegun` | 🐍 Pure Python | 🐍 Pure Python |
+| `frozendict` | 🐍 Pure Python | 🐍 Pure Python |
 | `frozenlist` | 🐍 Pure Python | 🐍 Pure Python |
 | `fsspec` | 🐍 Pure Python | 🐍 Pure Python |
+| `ftfy` | 🐍 Pure Python | 🐍 Pure Python |
 | `future` | 🐍 Pure Python | 🐍 Pure Python |
+| `fuzzywuzzy` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

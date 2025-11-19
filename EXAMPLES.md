@@ -62,7 +62,9 @@ The tool creates markdown files in the output directory:
 2. **pure-python/** - Folder with organized pure Python packages (if >100 packages)
    - `index.md` - Letter navigation and top 10 per letter
    - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists
-3. **binary-without-mobile.md** - Full alphabetical list (if >100 binary packages)
+3. **binary-without-mobile/** - Folder with packages lacking mobile support (if >100 packages)
+   - `index.md` - Letter navigation and top 10 per letter
+   - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists
 4. **excluded-packages.md** - GPU/CUDA and Windows-only packages filtered out
 
 ```
@@ -73,7 +75,11 @@ The tool creates markdown files in the output directory:
 │   ├── A.md
 │   ├── B.md
 │   └── ...
-├── binary-without-mobile.md
+├── binary-without-mobile/
+│   ├── index.md
+│   ├── A.md
+│   ├── B.md
+│   └── ...
 └── excluded-packages.md
 ```
 

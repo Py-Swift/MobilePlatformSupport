@@ -1,7 +1,7 @@
 # Pure Python Packages - N
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with N:** 3
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with N:** 11
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,17 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `narwhals` | 🐍 Pure Python | 🐍 Pure Python |
+| `natsort` | 🐍 Pure Python | 🐍 Pure Python |
+| `nbclient` | 🐍 Pure Python | 🐍 Pure Python |
+| `nbconvert` | 🐍 Pure Python | 🐍 Pure Python |
+| `nbformat` | 🐍 Pure Python | 🐍 Pure Python |
 | `nest-asyncio` | 🐍 Pure Python | 🐍 Pure Python |
 | `networkx` | 🐍 Pure Python | 🐍 Pure Python |
+| `nltk` | 🐍 Pure Python | 🐍 Pure Python |
 | `nodeenv` | 🐍 Pure Python | 🐍 Pure Python |
+| `notebook` | 🐍 Pure Python | 🐍 Pure Python |
+| `notebook-shim` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

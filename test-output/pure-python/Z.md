@@ -1,7 +1,7 @@
 # Pure Python Packages - Z
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with Z:** 1
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with Z:** 2
 
 [← Back to Index](index.md)
 
@@ -9,6 +9,7 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `zeep` | 🐍 Pure Python | 🐍 Pure Python |
 | `zipp` | 🐍 Pure Python | 🐍 Pure Python |
 
 

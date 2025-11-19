@@ -1,7 +1,7 @@
-# Pure Python Packages - V
+# Binary Packages Without Mobile Support - X
 
 **Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with V:** 3
+**Total Packages Starting with X:** 2
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,8 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `validators` | 🐍 Pure Python | 🐍 Pure Python |
-| `vine` | 🐍 Pure Python | 🐍 Pure Python |
-| `virtualenv` | 🐍 Pure Python | 🐍 Pure Python |
+| `xgboost` | ⚠️ Not available | ⚠️ Not available |
+| `xxhash` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

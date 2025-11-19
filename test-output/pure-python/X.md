@@ -1,7 +1,7 @@
 # Pure Python Packages - X
 
-**Generated:** 2025-11-19 21:51:26  
-**Total Packages Starting with X:** 1
+**Generated:** 2025-11-19 22:27:59  
+**Total Packages Starting with X:** 4
 
 [← Back to Index](index.md)
 
@@ -9,6 +9,9 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `xarray` | 🐍 Pure Python | 🐍 Pure Python |
+| `xlrd` | 🐍 Pure Python | 🐍 Pure Python |
+| `xlsxwriter` | 🐍 Pure Python | 🐍 Pure Python |
 | `xmltodict` | 🐍 Pure Python | 🐍 Pure Python |
 
 
