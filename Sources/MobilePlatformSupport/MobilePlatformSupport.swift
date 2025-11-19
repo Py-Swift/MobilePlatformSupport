@@ -22,13 +22,15 @@ public struct PackageInfo: Codable {
     public var android: PlatformSupport?
     public var ios: PlatformSupport?
     public var source: PackageIndex?
-    
-    public init(name: String, android: PlatformSupport? = nil, ios: PlatformSupport? = nil, source: PackageIndex? = nil) {
+    public var androidVersion: String?
+    public var iosVersion: String?    
+    public init(name: String, android: PlatformSupport? = nil, ios: PlatformSupport? = nil, source: PackageIndex? = nil, androidVersion: String? = nil, iosVersion: String? = nil) {
         self.name = name
         self.android = android
         self.ios = ios
         self.source = source
-    }
+        self.androidVersion = androidVersion
+        self.iosVersion = iosVersion    }
 }
 
 /// PyPI package metadata response
@@ -372,7 +374,51 @@ public class MobilePlatformSupport {
         return String(platformParts.first ?? "any")
     }
     
+    /// Extract version and Python version from wheel filename
+    /// Wheel filename format: {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.whl
+    private func extractVersionInfo(from filename: String) -> (version: String?, pythonVersion: Int?) {
+        let withoutExtension = filename.replacingOccurrences(of: ".whl", with: "")
+        let components = withoutExtension.split(separator: "-")
+        
+        var packageVersion: String? = nil
+        var pythonVersion: Int? = nil
+        
+        // Version is typically the second component
+        // Example: numpy-1.24.3-cp313-cp313-ios_arm64.whl
+        if components.count >= 2 {
+            packageVersion = String(components[1])
+        }
+        
+        // Extract Python version from tag (cp313, cp312, etc.)
+        for component in components {
+            let str = String(component)
+            if str.hasPrefix("cp") {
+                if let pyVer = Int(str.dropFirst(2)) {
+                    pythonVersion = pyVer
+                    break
+                }
+            }
+        }
+        
+        return (packageVersion, pythonVersion)
+    }
+    
+    
     /// Annotate a package with platform support information
+    /// Extract version from wheel filename
+    /// Wheel filename format: {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.whl
+    private func extractVersion(from filename: String) -> String? {
+        let withoutExtension = filename.replacingOccurrences(of: ".whl", with: "")
+        let components = withoutExtension.split(separator: "-")
+        
+        // Version is typically the second component
+        // Example: numpy-1.24.3-cp39-cp39-ios_arm64.whl -> version is "1.24.3"
+        if components.count >= 2 {
+            return String(components[1])
+        }
+        return nil
+    }
+
     /// Also checks if package is available in PySwift index and reads its wheels
     public func annotatePackage(_ packageName: String) async throws -> PackageInfo? {
         // Skip deprecated and non-mobile packages
@@ -383,6 +429,8 @@ public class MobilePlatformSupport {
         var availablePlatforms = Set<String>()
         var pypiPlatforms = Set<String>()
         var pyswiftPlatforms = Set<String>()
+        var pypiVersions: [String: (version: String, pyVer: Int)] = [:]  // platform -> (version, python_version)
+        var pyswiftVersions: [String: (version: String, pyVer: Int)] = [:]
         
         // Check PyPI first (official source takes priority)
         do {
@@ -391,6 +439,19 @@ public class MobilePlatformSupport {
                 let platformTag = extractPlatformTag(from: download.filename)
                 pypiPlatforms.insert(platformTag)
                 availablePlatforms.insert(platformTag)
+                
+                // Track version with Python version for later selection
+                let versionInfo = extractVersionInfo(from: download.filename)
+                if let version = versionInfo.version, let pyVer = versionInfo.pythonVersion {
+                    // Keep the version with highest Python version (prefer cp313, cp314, etc.)
+                    if let existing = pypiVersions[platformTag] {
+                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && version > existing.version) {
+                            pypiVersions[platformTag] = (version, pyVer)
+                        }
+                    } else {
+                        pypiVersions[platformTag] = (version, pyVer)
+                    }
+                }
             }
         } catch {
             // PyPI error, will check PySwift as fallback
@@ -406,6 +467,19 @@ public class MobilePlatformSupport {
                 let platformTag = extractPlatformTag(from: filename)
                 pyswiftPlatforms.insert(platformTag)
                 availablePlatforms.insert(platformTag)
+                
+                // Track version with Python version for later selection
+                let versionInfo = extractVersionInfo(from: filename)
+                if let version = versionInfo.version, let pyVer = versionInfo.pythonVersion {
+                    // Keep the version with highest Python version (prefer cp313, cp314, etc.)
+                    if let existing = pyswiftVersions[platformTag] {
+                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && version > existing.version) {
+                            pyswiftVersions[platformTag] = (version, pyVer)
+                        }
+                    } else {
+                        pyswiftVersions[platformTag] = (version, pyVer)
+                    }
+                }
             }
         }
         
@@ -447,8 +521,32 @@ public class MobilePlatformSupport {
             switch platform {
             case .android:
                 package.android = support
+                // Set version from highest Python version wheel
+                if source == .pypi, let versionInfo = pypiVersions["android"] {
+                    package.androidVersion = versionInfo.version
+                } else if source == .pyswift, let versionInfo = pyswiftVersions["android"] {
+                    package.androidVersion = versionInfo.version
+                }
+                // Set version from highest Python version wheel
+                if source == .pypi, let versionInfo = pypiVersions["android"] {
+                    package.androidVersion = versionInfo.version
+                } else if source == .pyswift, let versionInfo = pyswiftVersions["android"] {
+                    package.androidVersion = versionInfo.version
+                }
             case .ios:
                 package.ios = support
+                // Set version from highest Python version wheel
+                if source == .pypi, let versionInfo = pypiVersions["ios"] {
+                    package.iosVersion = versionInfo.version
+                } else if source == .pyswift, let versionInfo = pyswiftVersions["ios"] {
+                    package.iosVersion = versionInfo.version
+                }
+                // Set version from highest Python version wheel
+                if source == .pypi, let versionInfo = pypiVersions["ios"] {
+                    package.iosVersion = versionInfo.version
+                } else if source == .pyswift, let versionInfo = pyswiftVersions["ios"] {
+                    package.iosVersion = versionInfo.version
+                }
             }
         }
         

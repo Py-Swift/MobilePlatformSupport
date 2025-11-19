@@ -42,8 +42,8 @@ public struct MarkdownReportGenerator {
         """
         
         for package in officialBinaryWheels {
-            let androidStatus = formatStatusMarkdown(package.android)
-            let iosStatus = formatStatusMarkdown(package.ios)
+            let androidStatus = formatStatusMarkdown(package.android, version: package.androidVersion)
+            let iosStatus = formatStatusMarkdown(package.ios, version: package.iosVersion)
             
             if depsEnabled {
                 if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
@@ -73,8 +73,8 @@ public struct MarkdownReportGenerator {
         """
         
         for package in pyswiftBinaryWheels {
-            let androidStatus = formatStatusMarkdown(package.android)
-            let iosStatus = formatStatusMarkdown(package.ios)
+            let androidStatus = formatStatusMarkdown(package.android, version: package.androidVersion)
+            let iosStatus = formatStatusMarkdown(package.ios, version: package.iosVersion)
             
             if depsEnabled {
                 if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
@@ -113,8 +113,8 @@ public struct MarkdownReportGenerator {
         
         let maxDisplay = min(100, purePython.count)
         for package in purePython.prefix(maxDisplay) {
-            let androidStatus = formatStatusMarkdown(package.android)
-            let iosStatus = formatStatusMarkdown(package.ios)
+            let androidStatus = formatStatusMarkdown(package.android, version: nil)
+            let iosStatus = formatStatusMarkdown(package.ios, version: nil)
             
             if depsEnabled {
                 if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
@@ -153,8 +153,8 @@ public struct MarkdownReportGenerator {
         
         let maxBinaryDisplay = min(100, binaryWithoutMobile.count)
         for package in binaryWithoutMobile.prefix(maxBinaryDisplay) {
-            let androidStatus = formatStatusMarkdown(package.android)
-            let iosStatus = formatStatusMarkdown(package.ios)
+            let androidStatus = formatStatusMarkdown(package.android, version: nil)
+            let iosStatus = formatStatusMarkdown(package.ios, version: nil)
             
             if depsEnabled {
                 if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
@@ -349,8 +349,8 @@ public struct MarkdownReportGenerator {
             """
             
             for package in letterPackages {
-                let androidStatus = formatStatusMarkdown(package.android)
-                let iosStatus = formatStatusMarkdown(package.ios)
+                let androidStatus = formatStatusMarkdown(package.android, version: nil)
+                let iosStatus = formatStatusMarkdown(package.ios, version: nil)
                 
                 if depsEnabled {
                     if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
@@ -467,8 +467,8 @@ public struct MarkdownReportGenerator {
             """
             
             for package in letterPackages {
-                let androidStatus = formatStatusMarkdown(package.android)
-                let iosStatus = formatStatusMarkdown(package.ios)
+                let androidStatus = formatStatusMarkdown(package.android, version: nil)
+                let iosStatus = formatStatusMarkdown(package.ios, version: nil)
                 
                 if depsEnabled {
                     if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
@@ -497,14 +497,16 @@ public struct MarkdownReportGenerator {
         }
     }
     
-    private func formatStatusMarkdown(_ status: PlatformSupport?) -> String {
+    private func formatStatusMarkdown(_ status: PlatformSupport?, version: String?) -> String {
         guard let status = status else {
             return "❓ Unknown"
         }
         
+        let versionStr = version.map { " (\($0))" } ?? ""
+        
         switch status {
         case .success:
-            return "✅ Supported"
+            return "✅ Supported\(versionStr)"
         case .purePython:
             return "🐍 Pure Python"
         case .warning:
