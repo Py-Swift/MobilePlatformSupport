@@ -723,9 +723,9 @@ public struct MarkdownReportGenerator {
             Array(packages[$0..<min($0 + chunkSize, packages.count)])
         }
         
-        // Export each chunk
+        // Export each chunk (compact format to save storage)
         let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.outputFormatting = [.sortedKeys]
         
         for (index, chunk) in chunks.enumerated() {
             let chunkFilename = "chunk-\(index + 1).json"
@@ -749,7 +749,7 @@ public struct MarkdownReportGenerator {
             }
         ] as [String : Any]
         
-        let indexData = try JSONSerialization.data(withJSONObject: chunkIndex, options: [.prettyPrinted, .sortedKeys])
+        let indexData = try JSONSerialization.data(withJSONObject: chunkIndex, options: [.sortedKeys])
         let indexPath = (chunksDir as NSString).appendingPathComponent("index.json")
         try indexData.write(to: URL(fileURLWithPath: indexPath))
         
