@@ -302,8 +302,8 @@ The tool generates:
     "packagesChecked": 1500,
     "dependencyChecking": false
   },
-  "packages": [
-    {
+  "packages": {
+    "numpy": {
       "name": "numpy",
       "android": "not_available",
       "ios": "supported",
@@ -312,6 +312,16 @@ The tool generates:
       "category": "pyswift_binary",
       "dependencies": ["package1", "package2"],
       "allDepsSupported": true
+    }
+  },
+  "packagesList": [
+    {
+      "name": "numpy",
+      "android": "not_available",
+      "ios": "supported",
+      "iosVersion": "2.3.4",
+      "source": "pyswift",
+      "category": "pyswift_binary"
     }
   ],
   "summary": {
@@ -325,6 +335,16 @@ The tool generates:
   }
 }
 ```
+
+The JSON provides **two formats for optimal performance**:
+- **`packages` (dictionary)**: Package name as key for O(1) lookups
+  ```javascript
+  const numpy = data.packages["numpy"]; // Instant access
+  ```
+- **`packagesList` (array)**: Preserves insertion order for iteration
+  ```javascript
+  data.packagesList.forEach(pkg => ...); // Maintains download rank
+  ```
 
 The JSON export is ideal for:
 - **Web applications**: Load data dynamically into search interfaces

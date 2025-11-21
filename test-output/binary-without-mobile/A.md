@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - A
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with A:** 4
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with A:** 23
 
 [← Back to Index](index.md)
 
@@ -9,10 +9,29 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ada-url` | ⚠️ Not available | ⚠️ Not available |
+| `aiocsv` | ⚠️ Not available | ⚠️ Not available |
+| `aiokafka` | ⚠️ Not available | ⚠️ Not available |
+| `aioquic` | ⚠️ Not available | ⚠️ Not available |
+| `anki` | ⚠️ Not available | ⚠️ Not available |
+| `anki-audio` | ⚠️ Not available | ⚠️ Not available |
+| `annoy` | ⚠️ Not available | ⚠️ Not available |
 | `apache-beam` | ⚠️ Not available | ⚠️ Not available |
+| `apache-sedona` | ⚠️ Not available | ⚠️ Not available |
 | `argon2-cffi-bindings` | ⚠️ Not available | ⚠️ Not available |
+| `array-record` | ⚠️ Not available | ⚠️ Not available |
+| `arro3-core` | ⚠️ Not available | ⚠️ Not available |
+| `artifacts-keyring` | ⚠️ Not available | ⚠️ Not available |
+| `ast-grep-cli` | ⚠️ Not available | ⚠️ Not available |
+| `ast-grep-py` | ⚠️ Not available | ⚠️ Not available |
+| `astropy` | ⚠️ Not available | ⚠️ Not available |
 | `asyncpg` | ⚠️ Not available | ⚠️ Not available |
+| `audioop-lts` | ⚠️ Not available | ⚠️ Not available |
+| `autobahn` | ⚠️ Not available | ⚠️ Not available |
 | `av` | ⚠️ Not available | ⚠️ Not available |
+| `awscrt` | ⚠️ Not available | ⚠️ Not available |
+| `awslambdaric` | ⚠️ Not available | ⚠️ Not available |
+| `azure-cognitiveservices-speech` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

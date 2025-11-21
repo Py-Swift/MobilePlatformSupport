@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - B
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with B:** 1
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with B:** 13
 
 [← Back to Index](index.md)
 
@@ -9,7 +9,19 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `backports-datetime-fromisoformat` | ⚠️ Not available | ⚠️ Not available |
+| `bchlib` | ⚠️ Not available | ⚠️ Not available |
+| `biopython` | ⚠️ Not available | ⚠️ Not available |
+| `biotite` | ⚠️ Not available | ⚠️ Not available |
+| `biotraj` | ⚠️ Not available | ⚠️ Not available |
+| `bitsandbytes` | ⚠️ Not available | ⚠️ Not available |
+| `bitstruct` | ⚠️ Not available | ⚠️ Not available |
+| `blake3` | ⚠️ Not available | ⚠️ Not available |
 | `blis` | ⚠️ Not available | ⚠️ Not available |
+| `blosc2` | ⚠️ Not available | ⚠️ Not available |
+| `Bottleneck` | ⚠️ Not available | ⚠️ Not available |
+| `brotlicffi` | ⚠️ Not available | ⚠️ Not available |
+| `brotlipy` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - F
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with F:** 4
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with F:** 12
 
 [← Back to Index](index.md)
 
@@ -11,8 +11,16 @@
 |---------|---------|-----|
 | `faiss-cpu` | ⚠️ Not available | ⚠️ Not available |
 | `fastavro` | ⚠️ Not available | ⚠️ Not available |
+| `fastexcel` | ⚠️ Not available | ⚠️ Not available |
 | `fastparquet` | ⚠️ Not available | ⚠️ Not available |
+| `fastrlock` | ⚠️ Not available | ⚠️ Not available |
+| `fasttext` | ⚠️ Not available | ⚠️ Not available |
+| `fasttext-wheel` | ⚠️ Not available | ⚠️ Not available |
 | `fastuuid` | ⚠️ Not available | ⚠️ Not available |
+| `fiona` | ⚠️ Not available | ⚠️ Not available |
+| `flpc` | ⚠️ Not available | ⚠️ Not available |
+| `freetype-py` | ⚠️ Not available | ⚠️ Not available |
+| `frida` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

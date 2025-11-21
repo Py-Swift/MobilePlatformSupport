@@ -1,7 +1,7 @@
 # Pure Python Packages - Y
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with Y:** 4
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with Y:** 19
 
 [← Back to Index](index.md)
 
@@ -9,10 +9,25 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `yacs` | 🐍 Pure Python | 🐍 Pure Python |
+| `yamale` | 🐍 Pure Python | 🐍 Pure Python |
+| `yaml-config` | 🐍 Pure Python | 🐍 Pure Python |
+| `yamlfix` | 🐍 Pure Python | 🐍 Pure Python |
 | `yamllint` | 🐍 Pure Python | 🐍 Pure Python |
+| `yandex-query-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `yandexcloud` | 🐍 Pure Python | 🐍 Pure Python |
 | `yapf` | 🐍 Pure Python | 🐍 Pure Python |
+| `yarg` | 🐍 Pure Python | 🐍 Pure Python |
 | `yarl` | 🐍 Pure Python | 🐍 Pure Python |
+| `yaspin` | 🐍 Pure Python | 🐍 Pure Python |
+| `ydata-profiling` | 🐍 Pure Python | 🐍 Pure Python |
+| `ydb` | 🐍 Pure Python | 🐍 Pure Python |
+| `ydb-dbapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `yfinance` | 🐍 Pure Python | 🐍 Pure Python |
+| `youtube-transcript-api` | 🐍 Pure Python | 🐍 Pure Python |
+| `ypy-websocket` | 🐍 Pure Python | 🐍 Pure Python |
+| `yq` | 🐍 Pure Python | 🐍 Pure Python |
+| `yt-dlp` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

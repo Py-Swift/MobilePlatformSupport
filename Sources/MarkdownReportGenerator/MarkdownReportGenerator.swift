@@ -17,7 +17,8 @@ public struct PackageJSON: Codable {
 
 public struct ReportJSON: Codable {
     let metadata: MetadataJSON
-    let packages: [PackageJSON]
+    let packages: [String: PackageJSON]  // Dictionary for O(1) lookup
+    let packagesList: [PackageJSON]      // Array to preserve order
     let summary: SummaryJSON
 }
 
@@ -684,10 +685,17 @@ public struct MarkdownReportGenerator {
             someDepsUnsupported: someDepsUnsupported
         )
         
+        // Create packages dictionary for O(1) lookup
+        var packagesDict: [String: PackageJSON] = [:]
+        for package in jsonPackages {
+            packagesDict[package.name] = package
+        }
+        
         // Create full report
         let report = ReportJSON(
             metadata: metadata,
-            packages: jsonPackages,
+            packages: packagesDict,
+            packagesList: jsonPackages,
             summary: summary
         )
         

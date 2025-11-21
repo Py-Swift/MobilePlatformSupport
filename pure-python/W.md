@@ -1,7 +1,7 @@
 # Pure Python Packages - W
 
-**Generated:** 2025-11-19 23:24:48  
-**Total Packages Starting with W:** 18
+**Generated:** 2025-11-21 10:52:25  
+**Total Packages Starting with W:** 45
 
 [← Back to Index](index.md)
 
@@ -9,24 +9,51 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `w3lib` | 🐍 Pure Python | 🐍 Pure Python |
+| `wadler-lindig` | 🐍 Pure Python | 🐍 Pure Python |
+| `waitress` | 🐍 Pure Python | 🐍 Pure Python |
+| `Wand` | 🐍 Pure Python | 🐍 Pure Python |
+| `warcio` | 🐍 Pure Python | 🐍 Pure Python |
 | `wasabi` | 🐍 Pure Python | 🐍 Pure Python |
+| `wasmer` | 🐍 Pure Python | 🐍 Pure Python |
+| `wasmer-compiler-cranelift` | 🐍 Pure Python | 🐍 Pure Python |
+| `wassima` | 🐍 Pure Python | 🐍 Pure Python |
 | `watchdog` | 🐍 Pure Python | 🐍 Pure Python |
+| `watchdog-gevent` | 🐍 Pure Python | 🐍 Pure Python |
+| `watchgod` | 🐍 Pure Python | 🐍 Pure Python |
 | `watchtower` | 🐍 Pure Python | 🐍 Pure Python |
 | `wcmatch` | 🐍 Pure Python | 🐍 Pure Python |
 | `wcwidth` | 🐍 Pure Python | 🐍 Pure Python |
+| `weasel` | 🐍 Pure Python | 🐍 Pure Python |
 | `weasyprint` | 🐍 Pure Python | 🐍 Pure Python |
 | `weaviate-client` | 🐍 Pure Python | 🐍 Pure Python |
+| `web3` | 🐍 Pure Python | 🐍 Pure Python |
+| `webargs` | 🐍 Pure Python | 🐍 Pure Python |
 | `webcolors` | 🐍 Pure Python | 🐍 Pure Python |
+| `webdataset` | 🐍 Pure Python | 🐍 Pure Python |
 | `webdriver-manager` | 🐍 Pure Python | 🐍 Pure Python |
 | `webencodings` | 🐍 Pure Python | 🐍 Pure Python |
+| `WebOb` | 🐍 Pure Python | 🐍 Pure Python |
 | `websocket-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `websockets` | 🐍 Pure Python | 🐍 Pure Python |
+| `WebTest` | 🐍 Pure Python | 🐍 Pure Python |
+| `webvtt-py` | 🐍 Pure Python | 🐍 Pure Python |
 | `Werkzeug` | 🐍 Pure Python | 🐍 Pure Python |
+| `west` | 🐍 Pure Python | 🐍 Pure Python |
+| `whatthepatch` | 🐍 Pure Python | 🐍 Pure Python |
 | `wheel` | 🐍 Pure Python | 🐍 Pure Python |
+| `whenever` | 🐍 Pure Python | 🐍 Pure Python |
+| `whitenoise` | 🐍 Pure Python | 🐍 Pure Python |
 | `widgetsnbextension` | 🐍 Pure Python | 🐍 Pure Python |
+| `wirerope` | 🐍 Pure Python | 🐍 Pure Python |
+| `wordfreq` | 🐍 Pure Python | 🐍 Pure Python |
+| `workalendar` | 🐍 Pure Python | 🐍 Pure Python |
+| `workos` | 🐍 Pure Python | 🐍 Pure Python |
 | `wrapt` | 🐍 Pure Python | 🐍 Pure Python |
+| `wrapt-timeout-decorator` | 🐍 Pure Python | 🐍 Pure Python |
 | `wsproto` | 🐍 Pure Python | 🐍 Pure Python |
 | `WTForms` | 🐍 Pure Python | 🐍 Pure Python |
+| `wurlitzer` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

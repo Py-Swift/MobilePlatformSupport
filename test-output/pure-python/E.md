@@ -1,7 +1,7 @@
 # Pure Python Packages - E
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with E:** 15
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with E:** 66
 
 [← Back to Index](index.md)
 
@@ -9,21 +9,72 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `e2b` | 🐍 Pure Python | 🐍 Pure Python |
+| `easydict` | 🐍 Pure Python | 🐍 Pure Python |
+| `easygui` | 🐍 Pure Python | 🐍 Pure Python |
+| `easyocr` | 🐍 Pure Python | 🐍 Pure Python |
+| `ebcdic` | 🐍 Pure Python | 🐍 Pure Python |
+| `ec2-metadata` | 🐍 Pure Python | 🐍 Pure Python |
 | `ecdsa` | 🐍 Pure Python | 🐍 Pure Python |
+| `ecs-logging` | 🐍 Pure Python | 🐍 Pure Python |
 | `editables` | 🐍 Pure Python | 🐍 Pure Python |
+| `editor` | 🐍 Pure Python | 🐍 Pure Python |
+| `EditorConfig` | 🐍 Pure Python | 🐍 Pure Python |
 | `einops` | 🐍 Pure Python | 🐍 Pure Python |
+| `einx` | 🐍 Pure Python | 🐍 Pure Python |
+| `elastic-apm` | 🐍 Pure Python | 🐍 Pure Python |
 | `elastic-transport` | 🐍 Pure Python | 🐍 Pure Python |
 | `elasticsearch` | 🐍 Pure Python | 🐍 Pure Python |
+| `elasticsearch-dbapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `elasticsearch-dsl` | 🐍 Pure Python | 🐍 Pure Python |
+| `elementary-data` | 🐍 Pure Python | 🐍 Pure Python |
+| `elementpath` | 🐍 Pure Python | 🐍 Pure Python |
+| `elevenlabs` | 🐍 Pure Python | 🐍 Pure Python |
 | `email-validator` | 🐍 Pure Python | 🐍 Pure Python |
+| `embedchain` | 🐍 Pure Python | 🐍 Pure Python |
+| `embedding-reader` | 🐍 Pure Python | 🐍 Pure Python |
+| `emmet-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `emoji` | 🐍 Pure Python | 🐍 Pure Python |
+| `enrich` | 🐍 Pure Python | 🐍 Pure Python |
+| `ensure` | 🐍 Pure Python | 🐍 Pure Python |
 | `entrypoints` | 🐍 Pure Python | 🐍 Pure Python |
+| `enum-compat` | 🐍 Pure Python | 🐍 Pure Python |
+| `enum34` | 🐍 Pure Python | 🐍 Pure Python |
 | `envier` | 🐍 Pure Python | 🐍 Pure Python |
+| `environs` | 🐍 Pure Python | 🐍 Pure Python |
+| `envs` | 🐍 Pure Python | 🐍 Pure Python |
+| `envyaml` | 🐍 Pure Python | 🐍 Pure Python |
+| `enzyme` | 🐍 Pure Python | 🐍 Pure Python |
+| `eradicate` | 🐍 Pure Python | 🐍 Pure Python |
+| `eralchemy` | 🐍 Pure Python | 🐍 Pure Python |
+| `eralchemy2` | 🐍 Pure Python | 🐍 Pure Python |
+| `esp-idf-kconfig` | 🐍 Pure Python | 🐍 Pure Python |
+| `esp-idf-size` | 🐍 Pure Python | 🐍 Pure Python |
 | `et-xmlfile` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-abi` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-account` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-hash` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-keyfile` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-keys` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-rlp` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-typing` | 🐍 Pure Python | 🐍 Pure Python |
+| `eth-utils` | 🐍 Pure Python | 🐍 Pure Python |
+| `etils` | 🐍 Pure Python | 🐍 Pure Python |
 | `eval-type-backport` | 🐍 Pure Python | 🐍 Pure Python |
+| `evaluate` | 🐍 Pure Python | 🐍 Pure Python |
+| `eventlet` | 🐍 Pure Python | 🐍 Pure Python |
 | `Events` | 🐍 Pure Python | 🐍 Pure Python |
+| `evidently` | 🐍 Pure Python | 🐍 Pure Python |
+| `exa-py` | 🐍 Pure Python | 🐍 Pure Python |
 | `exceptiongroup` | 🐍 Pure Python | 🐍 Pure Python |
+| `exchangelib` | 🐍 Pure Python | 🐍 Pure Python |
 | `execnet` | 🐍 Pure Python | 🐍 Pure Python |
 | `executing` | 🐍 Pure Python | 🐍 Pure Python |
+| `exit-codes` | 🐍 Pure Python | 🐍 Pure Python |
+| `expandvars` | 🐍 Pure Python | 🐍 Pure Python |
+| `expecttest` | 🐍 Pure Python | 🐍 Pure Python |
+| `expiringdict` | 🐍 Pure Python | 🐍 Pure Python |
+| `extract-msg` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

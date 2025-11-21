@@ -1,7 +1,7 @@
 # Pure Python Packages - N
 
-**Generated:** 2025-11-19 23:24:48  
-**Total Packages Starting with N:** 11
+**Generated:** 2025-11-21 10:52:25  
+**Total Packages Starting with N:** 39
 
 [← Back to Index](index.md)
 
@@ -9,17 +9,45 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `Naked` | 🐍 Pure Python | 🐍 Pure Python |
+| `nameparser` | 🐍 Pure Python | 🐍 Pure Python |
+| `namex` | 🐍 Pure Python | 🐍 Pure Python |
+| `nanobind` | 🐍 Pure Python | 🐍 Pure Python |
+| `nanoid` | 🐍 Pure Python | 🐍 Pure Python |
 | `narwhals` | 🐍 Pure Python | 🐍 Pure Python |
 | `natsort` | 🐍 Pure Python | 🐍 Pure Python |
+| `nbclassic` | 🐍 Pure Python | 🐍 Pure Python |
 | `nbclient` | 🐍 Pure Python | 🐍 Pure Python |
 | `nbconvert` | 🐍 Pure Python | 🐍 Pure Python |
 | `nbformat` | 🐍 Pure Python | 🐍 Pure Python |
+| `nbsphinx` | 🐍 Pure Python | 🐍 Pure Python |
+| `ndg-httpsclient` | 🐍 Pure Python | 🐍 Pure Python |
+| `ndjson` | 🐍 Pure Python | 🐍 Pure Python |
+| `nebius` | 🐍 Pure Python | 🐍 Pure Python |
+| `neo4j` | 🐍 Pure Python | 🐍 Pure Python |
 | `nest-asyncio` | 🐍 Pure Python | 🐍 Pure Python |
+| `netaddr` | 🐍 Pure Python | 🐍 Pure Python |
 | `networkx` | 🐍 Pure Python | 🐍 Pure Python |
+| `newrelic-telemetry-sdk` | 🐍 Pure Python | 🐍 Pure Python |
+| `newspaper3k` | 🐍 Pure Python | 🐍 Pure Python |
+| `nexus-rpc` | 🐍 Pure Python | 🐍 Pure Python |
+| `nibabel` | 🐍 Pure Python | 🐍 Pure Python |
+| `niquests` | 🐍 Pure Python | 🐍 Pure Python |
 | `nltk` | 🐍 Pure Python | 🐍 Pure Python |
+| `node-semver` | 🐍 Pure Python | 🐍 Pure Python |
 | `nodeenv` | 🐍 Pure Python | 🐍 Pure Python |
 | `notebook` | 🐍 Pure Python | 🐍 Pure Python |
 | `notebook-shim` | 🐍 Pure Python | 🐍 Pure Python |
+| `nothing` | 🐍 Pure Python | 🐍 Pure Python |
+| `notion-client` | 🐍 Pure Python | 🐍 Pure Python |
+| `nox` | 🐍 Pure Python | 🐍 Pure Python |
+| `ntlm-auth` | 🐍 Pure Python | 🐍 Pure Python |
+| `nulltype` | 🐍 Pure Python | 🐍 Pure Python |
+| `num2words` | 🐍 Pure Python | 🐍 Pure Python |
+| `numdifftools` | 🐍 Pure Python | 🐍 Pure Python |
+| `numpy-financial` | 🐍 Pure Python | 🐍 Pure Python |
+| `numpy-typing-compat` | 🐍 Pure Python | 🐍 Pure Python |
+| `numpydoc` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

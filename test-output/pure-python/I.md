@@ -1,7 +1,7 @@
 # Pure Python Packages - I
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with I:** 26
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with I:** 64
 
 [← Back to Index](index.md)
 
@@ -9,32 +9,70 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ibis-framework` | 🐍 Pure Python | 🐍 Pure Python |
+| `ibm-cloud-sdk-core` | 🐍 Pure Python | 🐍 Pure Python |
+| `ibm-platform-services` | 🐍 Pure Python | 🐍 Pure Python |
+| `ibm-watsonx-ai` | 🐍 Pure Python | 🐍 Pure Python |
 | `ibmcloudant` | 🐍 Pure Python | 🐍 Pure Python |
+| `icalendar` | 🐍 Pure Python | 🐍 Pure Python |
+| `icdiff` | 🐍 Pure Python | 🐍 Pure Python |
+| `icecream` | 🐍 Pure Python | 🐍 Pure Python |
 | `id` | 🐍 Pure Python | 🐍 Pure Python |
 | `identify` | 🐍 Pure Python | 🐍 Pure Python |
+| `idf-component-manager` | 🐍 Pure Python | 🐍 Pure Python |
 | `idna` | 🐍 Pure Python | 🐍 Pure Python |
+| `ifaddr` | 🐍 Pure Python | 🐍 Pure Python |
+| `ImageHash` | 🐍 Pure Python | 🐍 Pure Python |
 | `ImageIO` | 🐍 Pure Python | 🐍 Pure Python |
 | `imagesize` | 🐍 Pure Python | 🐍 Pure Python |
+| `IMAPClient` | 🐍 Pure Python | 🐍 Pure Python |
 | `imbalanced-learn` | 🐍 Pure Python | 🐍 Pure Python |
+| `imblearn` | 🐍 Pure Python | 🐍 Pure Python |
+| `imgaug` | 🐍 Pure Python | 🐍 Pure Python |
 | `immutabledict` | 🐍 Pure Python | 🐍 Pure Python |
+| `import-deps` | 🐍 Pure Python | 🐍 Pure Python |
+| `import-linter` | 🐍 Pure Python | 🐍 Pure Python |
 | `importlib-metadata` | 🐍 Pure Python | 🐍 Pure Python |
 | `importlib-resources` | 🐍 Pure Python | 🐍 Pure Python |
 | `impyla` | 🐍 Pure Python | 🐍 Pure Python |
+| `imscore` | 🐍 Pure Python | 🐍 Pure Python |
 | `incremental` | 🐍 Pure Python | 🐍 Pure Python |
 | `inflect` | 🐍 Pure Python | 🐍 Pure Python |
 | `inflection` | 🐍 Pure Python | 🐍 Pure Python |
+| `Inflector` | 🐍 Pure Python | 🐍 Pure Python |
+| `influxdb` | 🐍 Pure Python | 🐍 Pure Python |
+| `influxdb-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `iniconfig` | 🐍 Pure Python | 🐍 Pure Python |
+| `injector` | 🐍 Pure Python | 🐍 Pure Python |
+| `inline-snapshot` | 🐍 Pure Python | 🐍 Pure Python |
+| `inputimeout` | 🐍 Pure Python | 🐍 Pure Python |
+| `inquirer` | 🐍 Pure Python | 🐍 Pure Python |
+| `inquirerpy` | 🐍 Pure Python | 🐍 Pure Python |
+| `inspect-ai` | 🐍 Pure Python | 🐍 Pure Python |
 | `installer` | 🐍 Pure Python | 🐍 Pure Python |
+| `instructor` | 🐍 Pure Python | 🐍 Pure Python |
+| `intelhex` | 🐍 Pure Python | 🐍 Pure Python |
+| `interegular` | 🐍 Pure Python | 🐍 Pure Python |
+| `interface-meta` | 🐍 Pure Python | 🐍 Pure Python |
 | `invoke` | 🐍 Pure Python | 🐍 Pure Python |
+| `ip3country` | 🐍 Pure Python | 🐍 Pure Python |
+| `ipaddress` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipdb` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipykernel` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipython` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipython-pygments-lexers` | 🐍 Pure Python | 🐍 Pure Python |
 | `ipywidgets` | 🐍 Pure Python | 🐍 Pure Python |
+| `iso3166` | 🐍 Pure Python | 🐍 Pure Python |
+| `iso8601` | 🐍 Pure Python | 🐍 Pure Python |
 | `isodate` | 🐍 Pure Python | 🐍 Pure Python |
 | `isoduration` | 🐍 Pure Python | 🐍 Pure Python |
 | `isort` | 🐍 Pure Python | 🐍 Pure Python |
+| `itables` | 🐍 Pure Python | 🐍 Pure Python |
+| `itemadapter` | 🐍 Pure Python | 🐍 Pure Python |
+| `itemloaders` | 🐍 Pure Python | 🐍 Pure Python |
+| `iterative-telemetry` | 🐍 Pure Python | 🐍 Pure Python |
 | `itsdangerous` | 🐍 Pure Python | 🐍 Pure Python |
+| `itypes` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

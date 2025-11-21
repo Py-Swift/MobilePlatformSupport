@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - T
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with T:** 13
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with T:** 39
 
 [← Back to Index](index.md)
 
@@ -9,19 +9,45 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `tableauhyperapi` | ⚠️ Not available | ⚠️ Not available |
+| `tables` | ⚠️ Not available | ⚠️ Not available |
+| `tach` | ⚠️ Not available | ⚠️ Not available |
 | `temporalio` | ⚠️ Not available | ⚠️ Not available |
+| `tensordict` | ⚠️ Not available | ⚠️ Not available |
 | `tensorflow` | ⚠️ Not available | ⚠️ Not available |
+| `tensorflow-addons` | ⚠️ Not available | ⚠️ Not available |
+| `tensorflow-cpu` | ⚠️ Not available | ⚠️ Not available |
+| `tensorflow-io-gcs-filesystem` | ⚠️ Not available | ⚠️ Not available |
+| `tensorflow-text` | ⚠️ Not available | ⚠️ Not available |
+| `tensorstore` | ⚠️ Not available | ⚠️ Not available |
+| `test-results-parser` | ⚠️ Not available | ⚠️ Not available |
 | `thinc` | ⚠️ Not available | ⚠️ Not available |
 | `thriftpy2` | ⚠️ Not available | ⚠️ Not available |
 | `tiktoken` | ⚠️ Not available | ⚠️ Not available |
 | `time-machine` | ⚠️ Not available | ⚠️ Not available |
+| `timezonefinder` | ⚠️ Not available | ⚠️ Not available |
+| `tink` | ⚠️ Not available | ⚠️ Not available |
 | `tokenizers` | ⚠️ Not available | ⚠️ Not available |
 | `torch` | ⚠️ Not available | ⚠️ Not available |
 | `torchaudio` | ⚠️ Not available | ⚠️ Not available |
 | `torchvision` | ⚠️ Not available | ⚠️ Not available |
 | `tornado` | ⚠️ Not available | ⚠️ Not available |
 | `tree-sitter` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-bash` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-c-sharp` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-embedded-template` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-go` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-java` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-javascript` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-language-pack` | ⚠️ Not available | ⚠️ Not available |
 | `tree-sitter-languages` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-python` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-rust` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-typescript` | ⚠️ Not available | ⚠️ Not available |
+| `tree-sitter-yaml` | ⚠️ Not available | ⚠️ Not available |
+| `ty` | ⚠️ Not available | ⚠️ Not available |
+| `typed-ast` | ⚠️ Not available | ⚠️ Not available |
+| `tzfpy` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

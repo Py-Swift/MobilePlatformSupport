@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - D
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with D:** 4
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with D:** 10
 
 [← Back to Index](index.md)
 
@@ -10,8 +10,14 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `dbt-extractor` | ⚠️ Not available | ⚠️ Not available |
+| `dbus-fast` | ⚠️ Not available | ⚠️ Not available |
 | `ddtrace` | ⚠️ Not available | ⚠️ Not available |
+| `decord` | ⚠️ Not available | ⚠️ Not available |
 | `deltalake` | ⚠️ Not available | ⚠️ Not available |
+| `dependency-injector` | ⚠️ Not available | ⚠️ Not available |
+| `deptry` | ⚠️ Not available | ⚠️ Not available |
+| `dm-tree` | ⚠️ Not available | ⚠️ Not available |
+| `docling-parse` | ⚠️ Not available | ⚠️ Not available |
 | `duckdb` | ⚠️ Not available | ⚠️ Not available |
 
 

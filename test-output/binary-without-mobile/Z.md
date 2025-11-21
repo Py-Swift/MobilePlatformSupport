@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - Z
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with Z:** 2
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with Z:** 4
 
 [← Back to Index](index.md)
 
@@ -9,8 +9,10 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `z3-solver` | ⚠️ Not available | ⚠️ Not available |
 | `zopfli` | ⚠️ Not available | ⚠️ Not available |
 | `zstandard` | ⚠️ Not available | ⚠️ Not available |
+| `zstd` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

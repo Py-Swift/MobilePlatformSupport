@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - R
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with R:** 5
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with R:** 14
 
 [← Back to Index](index.md)
 
@@ -10,10 +10,19 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `RapidFuzz` | ⚠️ Not available | ⚠️ Not available |
+| `rasterio` | ⚠️ Not available | ⚠️ Not available |
 | `ray` | ⚠️ Not available | ⚠️ Not available |
+| `rcssmin` | ⚠️ Not available | ⚠️ Not available |
+| `rdkit` | ⚠️ Not available | ⚠️ Not available |
+| `regress` | ⚠️ Not available | ⚠️ Not available |
 | `rignore` | ⚠️ Not available | ⚠️ Not available |
+| `rjsmin` | ⚠️ Not available | ⚠️ Not available |
 | `rpds-py` | ⚠️ Not available | ⚠️ Not available |
+| `rtree` | ⚠️ Not available | ⚠️ Not available |
 | `ruff` | ⚠️ Not available | ⚠️ Not available |
+| `ruptures` | ⚠️ Not available | ⚠️ Not available |
+| `rust-just` | ⚠️ Not available | ⚠️ Not available |
+| `rustworkx` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

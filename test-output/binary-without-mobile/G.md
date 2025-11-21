@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - G
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with G:** 4
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with G:** 11
 
 [← Back to Index](index.md)
 
@@ -9,10 +9,17 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `gensim` | ⚠️ Not available | ⚠️ Not available |
 | `gevent` | ⚠️ Not available | ⚠️ Not available |
+| `geventhttpclient` | ⚠️ Not available | ⚠️ Not available |
+| `glfw` | ⚠️ Not available | ⚠️ Not available |
 | `google-crc32c` | ⚠️ Not available | ⚠️ Not available |
+| `google-re2` | ⚠️ Not available | ⚠️ Not available |
+| `grimp` | ⚠️ Not available | ⚠️ Not available |
 | `grpcio` | ⚠️ Not available | ⚠️ Not available |
 | `grpcio-tools` | ⚠️ Not available | ⚠️ Not available |
+| `gssapi` | ⚠️ Not available | ⚠️ Not available |
+| `guppy3` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

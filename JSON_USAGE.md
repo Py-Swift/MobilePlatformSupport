@@ -13,8 +13,8 @@ The `mobile-wheels-checker` tool automatically exports JSON alongside markdown r
     "packagesChecked": 1500,
     "dependencyChecking": false
   },
-  "packages": [
-    {
+  "packages": {
+    "numpy": {
       "name": "numpy",
       "android": "not_available",
       "ios": "supported",
@@ -23,6 +23,25 @@ The `mobile-wheels-checker` tool automatically exports JSON alongside markdown r
       "category": "pyswift_binary",
       "dependencies": null,
       "allDepsSupported": null
+    },
+    "requests": {
+      "name": "requests",
+      "android": "pure_python",
+      "ios": "pure_python",
+      "source": "pypi",
+      "category": "pure_python",
+      "dependencies": null,
+      "allDepsSupported": null
+    }
+  },
+  "packagesList": [
+    {
+      "name": "numpy",
+      "android": "not_available",
+      "ios": "supported",
+      "iosVersion": "2.3.4",
+      "source": "pyswift",
+      "category": "pyswift_binary"
     }
   ],
   "summary": {
@@ -38,6 +57,37 @@ The `mobile-wheels-checker` tool automatically exports JSON alongside markdown r
   }
 }
 ```
+
+### Data Structure Optimization
+
+The JSON export provides **two formats** for maximum efficiency:
+
+1. **`packages` (Dictionary)**: Package name as key → **O(1) lookup**
+   ```javascript
+   // Fast direct access by package name
+   const numpy = data.packages["numpy"];
+   const isSupported = data.packages["requests"].ios === "pure_python";
+   ```
+
+2. **`packagesList` (Array)**: Preserves insertion order → **Easy iteration**
+   ```javascript
+   // Iterate in original order (by download popularity)
+   data.packagesList.forEach(pkg => console.log(pkg.name));
+   
+   // Filter by category
+   const purePython = data.packagesList.filter(p => p.category === "pure_python");
+   ```
+
+**Use `packages` for:**
+- Looking up specific packages by name
+- Checking if a package exists
+- Getting package info instantly
+
+**Use `packagesList` for:**
+- Displaying all packages in order
+- Filtering/sorting operations
+- Pagination
+- Maintaining download rank order
 
 ### Fields
 
@@ -108,20 +158,28 @@ Create a search page in your MkDocs site:
 
 **docs/js/package-search.js:**
 ```javascript
-let packagesData = [];
+let packagesData = {};
 
 // Load JSON data
 fetch('mobile-wheels-results.json')
   .then(response => response.json())
   .then(data => {
-    packagesData = data.packages;
-    console.log(`Loaded ${packagesData.length} packages`);
+    packagesData = data.packages; // Dictionary for O(1) lookup
+    console.log(`Loaded ${Object.keys(packagesData).length} packages`);
   });
 
 // Search functionality
 document.getElementById('search-input').addEventListener('input', (e) => {
   const query = e.target.value.toLowerCase();
-  const results = packagesData.filter(pkg => 
+  
+  // Fast dictionary search - O(1) for exact match
+  if (packagesData[query]) {
+    displayResults([packagesData[query]]);
+    return;
+  }
+  
+  // Partial match search
+  const results = Object.values(packagesData).filter(pkg => 
     pkg.name.toLowerCase().includes(query)
   ).slice(0, 50); // Limit to 50 results
   
@@ -165,6 +223,12 @@ function formatSupport(status) {
   };
   return icons[status] || status;
 }
+
+// Quick lookup by package name
+function getPackageInfo(packageName) {
+  return packagesData[packageName]; // O(1) lookup!
+}
+```
 ```
 
 ### 2. Lazy Loading with Chunked JSON
@@ -253,8 +317,8 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-# Insert packages
-for pkg in data['packages']:
+# Insert packages from dictionary (more efficient!)
+for pkg_name, pkg in data['packages'].items():
     cur.execute("""
         INSERT INTO python_packages 
         (name, android_support, android_version, ios_support, ios_version, 
@@ -281,6 +345,7 @@ conn.close()
 
 print(f"Imported {len(data['packages'])} packages")
 ```
+```
 
 ### 4. SQLite WASM (Client-Side Database)
 
@@ -298,6 +363,7 @@ Use SQL.js for client-side database:
 
     <script>
     let db;
+    let packagesDict = {}; // Keep dictionary for fast lookup
 
     // Initialize database
     async function initDB() {
@@ -322,12 +388,16 @@ Use SQL.js for client-side database:
         const response = await fetch('mobile-wheels-results.json');
         const data = await response.json();
         
+        // Store dictionary for O(1) lookup
+        packagesDict = data.packages;
+        
         const stmt = db.prepare(`
             INSERT INTO packages (name, android, ios, category, source)
             VALUES (?, ?, ?, ?, ?)
         `);
         
-        for (const pkg of data.packages) {
+        // Insert from packagesList to maintain order
+        for (const pkg of data.packagesList) {
             stmt.run([pkg.name, pkg.android, pkg.ios, pkg.category, pkg.source]);
         }
         
@@ -335,8 +405,13 @@ Use SQL.js for client-side database:
         console.log('Database ready!');
     }
 
-    // Search function
-    function search(query) {
+    // Fast lookup using dictionary
+    function getPackageDirect(packageName) {
+        return packagesDict[packageName]; // O(1)!
+    }
+
+    // SQL search for complex queries
+    function searchSQL(query) {
         const results = db.exec(`
             SELECT * FROM packages 
             WHERE name LIKE '%${query}%'
@@ -351,12 +426,23 @@ Use SQL.js for client-side database:
 
     // Search event
     document.getElementById('search').addEventListener('input', (e) => {
-        const results = search(e.target.value);
+        const query = e.target.value;
+        
+        // Try direct lookup first
+        const direct = getPackageDirect(query);
+        if (direct) {
+            displayResults([[direct.name, direct.android, direct.ios, direct.category, direct.source]]);
+            return;
+        }
+        
+        // Fall back to SQL search
+        const results = searchSQL(query);
         displayResults(results);
     });
     </script>
 </body>
 </html>
+```
 ```
 
 ### 5. MkDocs Integration with Material Theme

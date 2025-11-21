@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - U
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with U:** 3
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with U:** 6
 
 [← Back to Index](index.md)
 
@@ -9,8 +9,11 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `uamqp` | ⚠️ Not available | ⚠️ Not available |
 | `ujson` | ⚠️ Not available | ⚠️ Not available |
+| `uuid-utils` | ⚠️ Not available | ⚠️ Not available |
 | `uv` | ⚠️ Not available | ⚠️ Not available |
+| `uv-build` | ⚠️ Not available | ⚠️ Not available |
 | `uvloop` | ⚠️ Not available | ⚠️ Not available |
 
 

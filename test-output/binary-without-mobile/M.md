@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - M
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with M:** 6
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with M:** 22
 
 [← Back to Index](index.md)
 
@@ -9,11 +9,27 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `manifold3d` | ⚠️ Not available | ⚠️ Not available |
+| `mapbox-earcut` | ⚠️ Not available | ⚠️ Not available |
 | `marisa-trie` | ⚠️ Not available | ⚠️ Not available |
 | `MarkupSafe` | ⚠️ Not available | ⚠️ Not available |
+| `maturin` | ⚠️ Not available | ⚠️ Not available |
+| `mecab-python3` | ⚠️ Not available | ⚠️ Not available |
+| `mediapipe` | ⚠️ Not available | ⚠️ Not available |
+| `memray` | ⚠️ Not available | ⚠️ Not available |
+| `milvus-lite` | ⚠️ Not available | ⚠️ Not available |
+| `minify-html` | ⚠️ Not available | ⚠️ Not available |
+| `mitmproxy-rs` | ⚠️ Not available | ⚠️ Not available |
+| `mjml-python` | ⚠️ Not available | ⚠️ Not available |
 | `ml-dtypes` | ⚠️ Not available | ⚠️ Not available |
+| `mmcif` | ⚠️ Not available | ⚠️ Not available |
+| `mmhash3` | ⚠️ Not available | ⚠️ Not available |
+| `mpi4py` | ⚠️ Not available | ⚠️ Not available |
 | `msgspec` | ⚠️ Not available | ⚠️ Not available |
 | `murmurhash` | ⚠️ Not available | ⚠️ Not available |
+| `mutf8` | ⚠️ Not available | ⚠️ Not available |
+| `mwparserfromhell` | ⚠️ Not available | ⚠️ Not available |
+| `mxnet` | ⚠️ Not available | ⚠️ Not available |
 | `mysqlclient` | ⚠️ Not available | ⚠️ Not available |
 
 

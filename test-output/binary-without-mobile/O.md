@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - O
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with O:** 6
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with O:** 15
 
 [← Back to Index](index.md)
 
@@ -11,10 +11,19 @@
 |---------|---------|-----|
 | `onnx` | ⚠️ Not available | ⚠️ Not available |
 | `onnxruntime` | ⚠️ Not available | ⚠️ Not available |
+| `open3d` | ⚠️ Not available | ⚠️ Not available |
+| `openai-harmony` | ⚠️ Not available | ⚠️ Not available |
+| `opencv-contrib-python` | ⚠️ Not available | ⚠️ Not available |
+| `opencv-contrib-python-headless` | ⚠️ Not available | ⚠️ Not available |
 | `opencv-python` | ⚠️ Not available | ⚠️ Not available |
 | `opencv-python-headless` | ⚠️ Not available | ⚠️ Not available |
+| `openlineage-sql` | ⚠️ Not available | ⚠️ Not available |
+| `openvino` | ⚠️ Not available | ⚠️ Not available |
 | `oracledb` | ⚠️ Not available | ⚠️ Not available |
 | `ormsgpack` | ⚠️ Not available | ⚠️ Not available |
+| `ortools` | ⚠️ Not available | ⚠️ Not available |
+| `osqp` | ⚠️ Not available | ⚠️ Not available |
+| `outlines-core` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

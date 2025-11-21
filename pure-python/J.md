@@ -1,7 +1,7 @@
 # Pure Python Packages - J
 
-**Generated:** 2025-11-19 23:24:48  
-**Total Packages Starting with J:** 32
+**Generated:** 2025-11-21 10:52:25  
+**Total Packages Starting with J:** 75
 
 [← Back to Index](index.md)
 
@@ -9,38 +9,81 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `j2cli` | 🐍 Pure Python | 🐍 Pure Python |
+| `jacobi` | 🐍 Pure Python | 🐍 Pure Python |
+| `janus` | 🐍 Pure Python | 🐍 Pure Python |
+| `javalang` | 🐍 Pure Python | 🐍 Pure Python |
+| `javaobj-py3` | 🐍 Pure Python | 🐍 Pure Python |
+| `javaproperties` | 🐍 Pure Python | 🐍 Pure Python |
 | `jax` | 🐍 Pure Python | 🐍 Pure Python |
+| `jaxtyping` | 🐍 Pure Python | 🐍 Pure Python |
 | `JayDeBeApi` | 🐍 Pure Python | 🐍 Pure Python |
+| `jdcal` | 🐍 Pure Python | 🐍 Pure Python |
 | `jedi` | 🐍 Pure Python | 🐍 Pure Python |
 | `jeepney` | 🐍 Pure Python | 🐍 Pure Python |
+| `jenkinsapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `jh2` | 🐍 Pure Python | 🐍 Pure Python |
 | `Jinja2` | 🐍 Pure Python | 🐍 Pure Python |
+| `jinja2-cli` | 🐍 Pure Python | 🐍 Pure Python |
+| `jinja2-humanize-extension` | 🐍 Pure Python | 🐍 Pure Python |
+| `jinja2-simple-tags` | 🐍 Pure Python | 🐍 Pure Python |
+| `jinjasql` | 🐍 Pure Python | 🐍 Pure Python |
 | `jira` | 🐍 Pure Python | 🐍 Pure Python |
+| `jiwer` | 🐍 Pure Python | 🐍 Pure Python |
 | `jmespath` | 🐍 Pure Python | 🐍 Pure Python |
 | `joblib` | 🐍 Pure Python | 🐍 Pure Python |
+| `josepy` | 🐍 Pure Python | 🐍 Pure Python |
+| `joserfc` | 🐍 Pure Python | 🐍 Pure Python |
+| `jproperties` | 🐍 Pure Python | 🐍 Pure Python |
+| `Js2Py` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsbeautifier` | 🐍 Pure Python | 🐍 Pure Python |
+| `jschema-to-python` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsii` | 🐍 Pure Python | 🐍 Pure Python |
+| `json-delta` | 🐍 Pure Python | 🐍 Pure Python |
+| `json-merge-patch` | 🐍 Pure Python | 🐍 Pure Python |
+| `json-repair` | 🐍 Pure Python | 🐍 Pure Python |
 | `json5` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonargparse` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonconversion` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsondiff` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonlines` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonmerge` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpatch` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpath-ng` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonpath-python` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpickle` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonpointer` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonref` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsons` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonschema` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonschema-path` | 🐍 Pure Python | 🐍 Pure Python |
+| `jsonschema-spec` | 🐍 Pure Python | 🐍 Pure Python |
 | `jsonschema-specifications` | 🐍 Pure Python | 🐍 Pure Python |
+| `junit-xml` | 🐍 Pure Python | 🐍 Pure Python |
+| `junit2html` | 🐍 Pure Python | 🐍 Pure Python |
 | `junitparser` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-book` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-console` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-core` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-events` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-kernel-gateway` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-lsp` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-packaging` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-server` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-server-fileid` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyter-server-terminals` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-server-ydoc` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupyter-ydoc` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab-pygments` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab-server` | 🐍 Pure Python | 🐍 Pure Python |
 | `jupyterlab-widgets` | 🐍 Pure Python | 🐍 Pure Python |
+| `jupytext` | 🐍 Pure Python | 🐍 Pure Python |
+| `jusText` | 🐍 Pure Python | 🐍 Pure Python |
 | `jwcrypto` | 🐍 Pure Python | 🐍 Pure Python |
+| `jwt` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

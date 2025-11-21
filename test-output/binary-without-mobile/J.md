@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - J
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with J:** 3
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with J:** 7
 
 [← Back to Index](index.md)
 
@@ -10,8 +10,12 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `jaxlib` | ⚠️ Not available | ⚠️ Not available |
+| `jellyfish` | ⚠️ Not available | ⚠️ Not available |
 | `jiter` | ⚠️ Not available | ⚠️ Not available |
 | `jpype1` | ⚠️ Not available | ⚠️ Not available |
+| `jq` | ⚠️ Not available | ⚠️ Not available |
+| `jsonnet` | ⚠️ Not available | ⚠️ Not available |
+| `jsonschema-rs` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

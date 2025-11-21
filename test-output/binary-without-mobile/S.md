@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - S
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with S:** 12
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with S:** 27
 
 [← Back to Index](index.md)
 
@@ -10,17 +10,32 @@
 | Package | Android | iOS |
 |---------|---------|-----|
 | `safetensors` | ⚠️ Not available | ⚠️ Not available |
+| `scandir` | ⚠️ Not available | ⚠️ Not available |
 | `scikit-image` | ⚠️ Not available | ⚠️ Not available |
 | `scikit-learn` | ⚠️ Not available | ⚠️ Not available |
 | `scipy` | ⚠️ Not available | ⚠️ Not available |
+| `scs` | ⚠️ Not available | ⚠️ Not available |
+| `selectolax` | ⚠️ Not available | ⚠️ Not available |
 | `semgrep` | ⚠️ Not available | ⚠️ Not available |
 | `sentencepiece` | ⚠️ Not available | ⚠️ Not available |
 | `setproctitle` | ⚠️ Not available | ⚠️ Not available |
+| `shap` | ⚠️ Not available | ⚠️ Not available |
 | `shapely` | ⚠️ Not available | ⚠️ Not available |
+| `shiboken6` | ⚠️ Not available | ⚠️ Not available |
+| `simsimd` | ⚠️ Not available | ⚠️ Not available |
 | `snowflake-connector-python` | ⚠️ Not available | ⚠️ Not available |
+| `solders` | ⚠️ Not available | ⚠️ Not available |
+| `soxr` | ⚠️ Not available | ⚠️ Not available |
 | `spacy` | ⚠️ Not available | ⚠️ Not available |
+| `sqlglotrs` | ⚠️ Not available | ⚠️ Not available |
 | `srsly` | ⚠️ Not available | ⚠️ Not available |
+| `sspilib` | ⚠️ Not available | ⚠️ Not available |
+| `statsforecast` | ⚠️ Not available | ⚠️ Not available |
+| `statsig-python-core` | ⚠️ Not available | ⚠️ Not available |
 | `statsmodels` | ⚠️ Not available | ⚠️ Not available |
+| `stringzilla` | ⚠️ Not available | ⚠️ Not available |
+| `SudachiPy` | ⚠️ Not available | ⚠️ Not available |
+| `swig` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

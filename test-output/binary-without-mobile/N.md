@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - N
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with N:** 3
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with N:** 10
 
 [← Back to Index](index.md)
 
@@ -9,9 +9,16 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ndindex` | ⚠️ Not available | ⚠️ Not available |
+| `netCDF4` | ⚠️ Not available | ⚠️ Not available |
+| `newrelic` | ⚠️ Not available | ⚠️ Not available |
 | `nh3` | ⚠️ Not available | ⚠️ Not available |
 | `ninja` | ⚠️ Not available | ⚠️ Not available |
+| `nodejs-wheel-binaries` | ⚠️ Not available | ⚠️ Not available |
 | `numba` | ⚠️ Not available | ⚠️ Not available |
+| `numcodecs` | ⚠️ Not available | ⚠️ Not available |
+| `numexpr` | ⚠️ Not available | ⚠️ Not available |
+| `numpy-quaternion` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---

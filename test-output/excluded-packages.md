@@ -1,12 +1,12 @@
 # Excluded Packages - Not Compatible with Mobile Platforms
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Excluded:** 2334
+**Generated:** 2025-11-21 11:00:28  
+**Total Excluded:** 2343
 
 This document lists packages that were automatically filtered out during mobile platform support checking. These packages are **not compatible with mobile platforms** (iOS/Android) and should never be used in mobile applications.
 
 ---
-## 🎮 GPU/CUDA Packages (1403)
+## 🎮 GPU/CUDA Packages (1412)
 
 These packages require GPU hardware and CUDA drivers which are not available on mobile platforms.
 
@@ -157,7 +157,11 @@ These packages require GPU hardware and CUDA drivers which are not available on 
 | `CudaPyInt` | Requires GPU/CUDA (not available on iOS/Android) |
 | `cudaq` | Requires GPU/CUDA (not available on iOS/Android) |
 | `cudaq-qec` | Requires GPU/CUDA (not available on iOS/Android) |
+| `cudaq-qec-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
+| `cudaq-qec-cu13` | Requires GPU/CUDA (not available on iOS/Android) |
 | `cudaq-solvers` | Requires GPU/CUDA (not available on iOS/Android) |
+| `cudaq-solvers-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
+| `cudaq-solvers-cu13` | Requires GPU/CUDA (not available on iOS/Android) |
 | `cudart` | Requires GPU/CUDA (not available on iOS/Android) |
 | `cudatalog` | Requires GPU/CUDA (not available on iOS/Android) |
 | `cudatools` | Requires GPU/CUDA (not available on iOS/Android) |
@@ -367,8 +371,10 @@ These packages require GPU hardware and CUDA drivers which are not available on 
 | `gpu-watchmen` | Requires GPU/CUDA (not available on iOS/Android) |
 | `gpu4pyscf-cuda11x` | Requires GPU/CUDA (not available on iOS/Android) |
 | `gpu4pyscf-cuda12x` | Requires GPU/CUDA (not available on iOS/Android) |
+| `gpu4pyscf-cuda13x` | Requires GPU/CUDA (not available on iOS/Android) |
 | `gpu4pyscf-libxc-cuda11x` | Requires GPU/CUDA (not available on iOS/Android) |
 | `gpu4pyscf-libxc-cuda12x` | Requires GPU/CUDA (not available on iOS/Android) |
+| `gpu4pyscf-libxc-cuda13x` | Requires GPU/CUDA (not available on iOS/Android) |
 | `graphscope-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
 | `gs-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
 | `hammadml-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
@@ -923,7 +929,9 @@ These packages require GPU hardware and CUDA drivers which are not available on 
 | `nvidia-nat-redis` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nat-s3` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nat-semantic-kernel` | Requires GPU/CUDA (not available on iOS/Android) |
+| `nvidia-nat-strands` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nat-test` | Requires GPU/CUDA (not available on iOS/Android) |
+| `nvidia-nat-vanna` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nat-weave` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nat-zep-cloud` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nccl` | Requires GPU/CUDA (not available on iOS/Android) |
@@ -1215,6 +1223,7 @@ These packages require GPU hardware and CUDA drivers which are not available on 
 | `recis-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
 | `recollex-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
 | `redner-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
+| `remo-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
 | `rescupy` | Requires GPU/CUDA (not available on iOS/Android) |
 | `rescupybs` | Requires GPU/CUDA (not available on iOS/Android) |
 | `rf-faiss-gpu` | Requires GPU/CUDA (not available on iOS/Android) |
@@ -2374,11 +2383,11 @@ These packages have architecture or system requirements incompatible with mobile
 
 | Category | Count | Percentage |
 |----------|-------|------------|
-| GPU/CUDA Packages | 1403 | 60.1% |
-| Windows-Only Packages | 916 | 39.2% |
+| GPU/CUDA Packages | 1412 | 60.3% |
+| Windows-Only Packages | 916 | 39.1% |
 | Deprecated Packages | 8 | 0.3% |
 | Other Non-Mobile | 7 | 0.3% |
-| **Total** | **2334** | **100%** |
+| **Total** | **2343** | **100%** |
 
 ---
 

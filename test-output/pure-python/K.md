@@ -1,7 +1,7 @@
 # Pure Python Packages - K
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with K:** 7
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with K:** 25
 
 [← Back to Index](index.md)
 
@@ -9,11 +9,29 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `k8` | 🐍 Pure Python | 🐍 Pure Python |
 | `kafka-python` | 🐍 Pure Python | 🐍 Pure Python |
+| `kagglehub` | 🐍 Pure Python | 🐍 Pure Python |
+| `kaitaistruct` | 🐍 Pure Python | 🐍 Pure Python |
+| `kaleido` | 🐍 Pure Python | 🐍 Pure Python |
+| `kazoo` | 🐍 Pure Python | 🐍 Pure Python |
+| `kconfiglib` | 🐍 Pure Python | 🐍 Pure Python |
 | `keras` | 🐍 Pure Python | 🐍 Pure Python |
+| `Keras-Applications` | 🐍 Pure Python | 🐍 Pure Python |
+| `Keras-Preprocessing` | 🐍 Pure Python | 🐍 Pure Python |
+| `keras-tuner` | 🐍 Pure Python | 🐍 Pure Python |
 | `keyring` | 🐍 Pure Python | 🐍 Pure Python |
+| `keystoneauth1` | 🐍 Pure Python | 🐍 Pure Python |
 | `kfp` | 🐍 Pure Python | 🐍 Pure Python |
+| `kfp-pipeline-spec` | 🐍 Pure Python | 🐍 Pure Python |
+| `kgb` | 🐍 Pure Python | 🐍 Pure Python |
+| `knack` | 🐍 Pure Python | 🐍 Pure Python |
+| `knowit` | 🐍 Pure Python | 🐍 Pure Python |
+| `koalas` | 🐍 Pure Python | 🐍 Pure Python |
 | `kombu` | 🐍 Pure Python | 🐍 Pure Python |
+| `korean-lunar-calendar` | 🐍 Pure Python | 🐍 Pure Python |
+| `kornia` | 🐍 Pure Python | 🐍 Pure Python |
+| `kt-legacy` | 🐍 Pure Python | 🐍 Pure Python |
 | `kubernetes` | 🐍 Pure Python | 🐍 Pure Python |
 | `kubernetes-asyncio` | 🐍 Pure Python | 🐍 Pure Python |
 

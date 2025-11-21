@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - L
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with L:** 7
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with L:** 18
 
 [← Back to Index](index.md)
 
@@ -9,11 +9,22 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `lancedb` | ⚠️ Not available | ⚠️ Not available |
 | `Levenshtein` | ⚠️ Not available | ⚠️ Not available |
 | `libclang` | ⚠️ Not available | ⚠️ Not available |
 | `libcst` | ⚠️ Not available | ⚠️ Not available |
+| `liblinear-multicore` | ⚠️ Not available | ⚠️ Not available |
+| `libsass` | ⚠️ Not available | ⚠️ Not available |
+| `libusb-package` | ⚠️ Not available | ⚠️ Not available |
 | `lightgbm` | ⚠️ Not available | ⚠️ Not available |
+| `line-profiler` | ⚠️ Not available | ⚠️ Not available |
+| `lingua-language-detector` | ⚠️ Not available | ⚠️ Not available |
+| `lintrunner` | ⚠️ Not available | ⚠️ Not available |
+| `livekit` | ⚠️ Not available | ⚠️ Not available |
+| `llguidance` | ⚠️ Not available | ⚠️ Not available |
 | `llvmlite` | ⚠️ Not available | ⚠️ Not available |
+| `Logbook` | ⚠️ Not available | ⚠️ Not available |
+| `lupa` | ⚠️ Not available | ⚠️ Not available |
 | `lxml` | ⚠️ Not available | ⚠️ Not available |
 | `lz4` | ⚠️ Not available | ⚠️ Not available |
 

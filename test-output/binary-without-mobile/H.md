@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - H
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with H:** 4
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with H:** 9
 
 [← Back to Index](index.md)
 
@@ -9,7 +9,12 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `h3` | ⚠️ Not available | ⚠️ Not available |
 | `h5py` | ⚠️ Not available | ⚠️ Not available |
+| `habluetooth` | ⚠️ Not available | ⚠️ Not available |
+| `hdbcli` | ⚠️ Not available | ⚠️ Not available |
+| `hdbscan` | ⚠️ Not available | ⚠️ Not available |
+| `hf-transfer` | ⚠️ Not available | ⚠️ Not available |
 | `hf-xet` | ⚠️ Not available | ⚠️ Not available |
 | `hiredis` | ⚠️ Not available | ⚠️ Not available |
 | `httptools` | ⚠️ Not available | ⚠️ Not available |

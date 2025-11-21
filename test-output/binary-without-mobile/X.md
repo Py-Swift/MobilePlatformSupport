@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - X
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with X:** 2
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with X:** 6
 
 [← Back to Index](index.md)
 
@@ -9,7 +9,11 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `xattr` | ⚠️ Not available | ⚠️ Not available |
+| `xformers` | ⚠️ Not available | ⚠️ Not available |
 | `xgboost` | ⚠️ Not available | ⚠️ Not available |
+| `xgrammar` | ⚠️ Not available | ⚠️ Not available |
+| `xmlsec` | ⚠️ Not available | ⚠️ Not available |
 | `xxhash` | ⚠️ Not available | ⚠️ Not available |
 
 

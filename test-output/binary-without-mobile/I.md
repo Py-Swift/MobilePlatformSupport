@@ -1,7 +1,7 @@
 # Binary Packages Without Mobile Support - I
 
-**Generated:** 2025-11-19 22:27:59  
-**Total Packages Starting with I:** 1
+**Generated:** 2025-11-21 11:00:28  
+**Total Packages Starting with I:** 9
 
 [← Back to Index](index.md)
 
@@ -9,7 +9,15 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
+| `ibm-db` | ⚠️ Not available | ⚠️ Not available |
+| `igraph` | ⚠️ Not available | ⚠️ Not available |
 | `ijson` | ⚠️ Not available | ⚠️ Not available |
+| `imagecodecs` | ⚠️ Not available | ⚠️ Not available |
+| `imageio-ffmpeg` | ⚠️ Not available | ⚠️ Not available |
+| `immutables` | ⚠️ Not available | ⚠️ Not available |
+| `inflate64` | ⚠️ Not available | ⚠️ Not available |
+| `isal` | ⚠️ Not available | ⚠️ Not available |
+| `iterfzf` | ⚠️ Not available | ⚠️ Not available |
 
 
 ---
