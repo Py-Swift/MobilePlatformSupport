@@ -2,18 +2,12 @@
   "chunk_size" : 1000,
   "chunks" : [
     {
-      "count" : 1000,
-      "end_index" : 999,
+      "count" : 101,
+      "end_index" : 100,
       "filename" : "chunk-1.json",
       "start_index" : 0
-    },
-    {
-      "count" : 460,
-      "end_index" : 1459,
-      "filename" : "chunk-2.json",
-      "start_index" : 1000
     }
   ],
-  "total_chunks" : 2,
-  "total_packages" : 1460
+  "total_chunks" : 1,
+  "total_packages" : 101
 }

@@ -1,6 +1,6 @@
 # Binary Packages Without Mobile Support - L
 
-**Generated:** 2025-11-21 11:08:04  
+**Generated:** 2025-11-21 11:13:22  
 **Total Packages Starting with L:** 18
 
 [← Back to Index](index.md)

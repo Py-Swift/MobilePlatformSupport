@@ -648,73 +648,12 @@ public struct MarkdownReportGenerator {
             ))
         }
         
-        // Calculate summary statistics
-        let allBinaryWheels = officialBinaryWheels + pyswiftBinaryWheels
-        let androidSuccess = allBinaryWheels.filter { $0.android == .success }.count
-        let iosSuccess = allBinaryWheels.filter { $0.ios == .success }.count
-        let bothSupported = allBinaryWheels.filter { $0.android == .success && $0.ios == .success }.count
-        
-        var allDepsOK: Int? = nil
-        var someDepsUnsupported: Int? = nil
-        if depsEnabled {
-            allDepsOK = allPackagesWithDeps.filter { $0.2 }.count
-            someDepsUnsupported = allPackagesWithDeps.count - (allDepsOK ?? 0)
-        }
-        
-        // Create metadata
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let dateString = dateFormatter.string(from: timestamp)
-        
-        let metadata = MetadataJSON(
-            generated: dateString,
-            packagesChecked: limit,
-            dependencyChecking: depsEnabled
+        // Export chunked JSON files only (full JSON disabled for performance)
+        try generateChunkedJSON(
+            packages: jsonPackages,
+            chunkSize: 1000,
+            basePath: basePath
         )
-        
-        // Create summary
-        let summary = SummaryJSON(
-            officialBinaryWheels: officialBinaryWheels.count,
-            pyswiftBinaryWheels: pyswiftBinaryWheels.count,
-            purePython: purePython.count,
-            binaryWithoutMobile: binaryWithoutMobile.count,
-            androidSupport: androidSuccess,
-            iosSupport: iosSuccess,
-            bothPlatforms: bothSupported,
-            allDepsSupported: allDepsOK,
-            someDepsUnsupported: someDepsUnsupported
-        )
-        
-        // Create packages dictionary for O(1) lookup
-        var packagesDict: [String: PackageJSON] = [:]
-        for package in jsonPackages {
-            packagesDict[package.name] = package
-        }
-        
-        // Create full report
-        let report = ReportJSON(
-            metadata: metadata,
-            packages: packagesDict,
-            packagesList: jsonPackages,
-            summary: summary
-        )
-        
-        // Export full JSON
-        let jsonPath = (basePath as NSString).appendingPathComponent("mobile-wheels-results.json")
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
-        let jsonData = try encoder.encode(report)
-        try jsonData.write(to: URL(fileURLWithPath: jsonPath))
-        print("✅ JSON report exported to: \(jsonPath)")
-        
-        // Export chunked JSON files for better performance with large datasets
-        if jsonPackages.count > 1000 {
-            try generateChunkedJSON(
-                packages: jsonPackages,
-                chunkSize: 1000,
-                basePath: basePath
-            )
-        }
     }
     
     private func generateChunkedJSON(
