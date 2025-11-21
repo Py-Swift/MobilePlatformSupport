@@ -704,7 +704,7 @@ public struct MarkdownReportGenerator {
         // Export chunked JSON files only (full JSON disabled for performance)
         try generateChunkedJSON(
             packages: jsonPackages,
-            chunkSize: 1000,
+            chunkSize: 5000,
             basePath: basePath
         )
     }
