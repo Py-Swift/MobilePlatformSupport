@@ -219,9 +219,10 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         let checker = MobilePlatformSupport()
         
         do {
-            // Download PySwift index first
-            print("📥 Downloading PySwift index...")
+            // Download PySwift and KivySchool indexes first
+            print("📥 Downloading PySwift and KivySchool indexes...")
             _ = try await checker.fetchPySwiftPackages()
+            _ = try await checker.fetchKivySchoolPackages()
             print()
             
             // Download packages from PyPI
@@ -290,6 +291,12 @@ struct MobileWheelsChecker: AsyncParsableCommand {
                 !($0.android == .warning && $0.ios == .warning)
             }
             
+            let kivyschoolBinaryWheels = results.filter {
+                $0.source == .kivyschool &&
+                ($0.android == .success || $0.ios == .success) &&
+                !($0.android == .warning && $0.ios == .warning)
+            }
+            
             let purePython = results.filter { 
                 $0.android == .purePython || $0.ios == .purePython
             }
@@ -340,6 +347,31 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             print(String(repeating: "-", count: 71))
             
             for package in pyswiftBinaryWheels {
+                let androidStatus = Self.formatStatus(package.android)
+                let iosStatus = Self.formatStatus(package.ios)
+                
+                if deps {
+                    if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
+                        let depsOK = depInfo.2 ? "✅" : "⚠️"
+                        let depCount = depInfo.1.count
+                        print("\(package.name.padding(toLength: 20, withPad: " ", startingAt: 0)) \(androidStatus.padding(toLength: 20, withPad: " ", startingAt: 0)) \(iosStatus.padding(toLength: 20, withPad: " ", startingAt: 0)) \(depsOK) (\(depCount))")
+                    }
+                } else {
+                    print("\(package.name.padding(toLength: 20, withPad: " ", startingAt: 0)) \(androidStatus.padding(toLength: 25, withPad: " ", startingAt: 0)) \(iosStatus.padding(toLength: 25, withPad: " ", startingAt: 0))")
+                }
+            }
+            
+            // Display KivySchool Binary Wheels
+            print("\n🔧 KivySchool Binary Wheels (pypi.anaconda.org/kivyschool/simple):")
+            print(String(repeating: "=", count: 71))
+            if deps {
+                print("\("Package".padding(toLength: 20, withPad: " ", startingAt: 0)) \("Android".padding(toLength: 20, withPad: " ", startingAt: 0)) \("iOS".padding(toLength: 20, withPad: " ", startingAt: 0)) \("Deps OK".padding(toLength: 10, withPad: " ", startingAt: 0))")
+            } else {
+                print("\("Package".padding(toLength: 20, withPad: " ", startingAt: 0)) \("Android".padding(toLength: 25, withPad: " ", startingAt: 0)) \("iOS".padding(toLength: 25, withPad: " ", startingAt: 0))")
+            }
+            print(String(repeating: "-", count: 71))
+            
+            for package in kivyschoolBinaryWheels {
                 let androidStatus = Self.formatStatus(package.android)
                 let iosStatus = Self.formatStatus(package.ios)
                 
@@ -422,11 +454,12 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             print("- Total packages checked: \(testPackages.count)")
             print("- Official binary wheels (PyPI): \(officialBinaryWheels.count)")
             print("- PySwift binary wheels: \(pyswiftBinaryWheels.count)")
+            print("- KivySchool binary wheels: \(kivyschoolBinaryWheels.count)")
             print("- Pure Python: \(purePython.count)")
             print("- Binary without mobile support: \(binaryWithoutMobile.count)")
             print("")
             
-            let allBinaryWheels = officialBinaryWheels + pyswiftBinaryWheels
+            let allBinaryWheels = officialBinaryWheels + pyswiftBinaryWheels + kivyschoolBinaryWheels
             let androidSuccess = allBinaryWheels.filter { $0.android == .success }.count
             let iosSuccess = allBinaryWheels.filter { $0.ios == .success }.count
             let bothSupported = allBinaryWheels.filter { $0.android == .success && $0.ios == .success }.count
@@ -461,6 +494,7 @@ struct MobileWheelsChecker: AsyncParsableCommand {
                 depsEnabled: deps,
                 officialBinaryWheels: officialBinaryWheels,
                 pyswiftBinaryWheels: pyswiftBinaryWheels,
+                kivyschoolBinaryWheels: kivyschoolBinaryWheels,
                 purePython: purePython,
                 binaryWithoutMobile: binaryWithoutMobile,
                 purePythonSorted: purePythonSorted,

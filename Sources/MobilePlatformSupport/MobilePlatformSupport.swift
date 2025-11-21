@@ -56,6 +56,7 @@ public struct PackageMetadata: Codable {
 public enum PackageIndex: String, Codable {
     case pypi = "PyPI"
     case pyswift = "PySwift"
+    case kivyschool = "KivySchool"
 }
 
 /// Mobile platform support checker for Python packages
@@ -63,8 +64,10 @@ public class MobilePlatformSupport {
     
     private static let baseURL = "https://pypi.org/pypi"
     private static let pyswiftSimpleURL = "https://pypi.anaconda.org/pyswift/simple"
+    private static let kivyschoolSimpleURL = "https://pypi.anaconda.org/kivyschool/simple"
     
     private var pyswiftPackages: Set<String>?
+    private var kivyschoolPackages: Set<String>?
     
     /// Known deprecated packages that should be excluded
     public static let deprecatedPackages: Set<String> = [
@@ -316,6 +319,88 @@ public class MobilePlatformSupport {
         return wheels
     }
     
+    /// Download and parse the KivySchool simple index to get available packages
+    public func fetchKivySchoolPackages() async throws -> Set<String> {
+        if let cached = kivyschoolPackages {
+            return cached
+        }
+        
+        guard let url = URL(string: Self.kivyschoolSimpleURL) else {
+            throw MobilePlatformError.invalidResponse
+        }
+        
+        let (data, response) = try await session.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw MobilePlatformError.invalidResponse
+        }
+        
+        guard let html = String(data: data, encoding: .utf8) else {
+            throw MobilePlatformError.invalidResponse
+        }
+        
+        // Parse HTML to extract package names
+        var packages = Set<String>()
+        let lines = html.components(separatedBy: .newlines)
+        
+        for line in lines {
+            if let startRange = line.range(of: "<a href=\""),
+               let endRange = line.range(of: "\">", range: startRange.upperBound..<line.endIndex),
+               let closeTag = line.range(of: "</a>", range: endRange.upperBound..<line.endIndex) {
+                let packageName = String(line[endRange.upperBound..<closeTag.lowerBound])
+                let normalized = Self.normalizePackageName(packageName)
+                packages.insert(normalized)
+            }
+        }
+        
+        kivyschoolPackages = packages
+        print("📦 Loaded \(packages.count) packages from KivySchool index")
+        return packages
+    }
+    
+    /// Check if a package is available in KivySchool index
+    public func isAvailableInKivySchool(_ packageName: String) async throws -> Bool {
+        let packages = try await fetchKivySchoolPackages()
+        let normalized = Self.normalizePackageName(packageName)
+        return packages.contains(normalized)
+    }
+    
+    /// Fetch wheel filenames from KivySchool package page
+    public func fetchKivySchoolWheels(for packageName: String) async throws -> [String] {
+        guard let url = getKivySchoolPackageURL(for: packageName) else {
+            throw MobilePlatformError.invalidPackageName(packageName)
+        }
+        
+        let (data, response) = try await session.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            return []
+        }
+        
+        guard let html = String(data: data, encoding: .utf8) else {
+            return []
+        }
+        
+        // Parse HTML to extract wheel filenames
+        var wheels: [String] = []
+        let lines = html.components(separatedBy: .newlines)
+        
+        for line in lines {
+            if let startRange = line.range(of: "<a href=\""),
+               let endRange = line.range(of: "\">", range: startRange.upperBound..<line.endIndex),
+               let closeTag = line.range(of: "</a>", range: endRange.upperBound..<line.endIndex) {
+                let filename = String(line[endRange.upperBound..<closeTag.lowerBound])
+                if filename.hasSuffix(".whl") {
+                    wheels.append(filename)
+                }
+            }
+        }
+        
+        return wheels
+    }
+    
     /// Get JSON URL for a package
     private func getJSONURL(for packageName: String) -> URL? {
         return URL(string: "\(Self.baseURL)/\(packageName)/json")
@@ -325,6 +410,12 @@ public class MobilePlatformSupport {
     private func getPySwiftPackageURL(for packageName: String) -> URL? {
         let normalized = Self.normalizePackageName(packageName)
         return URL(string: "\(Self.pyswiftSimpleURL)/\(normalized)/")
+    }
+    
+    /// Get KivySchool package URL
+    private func getKivySchoolPackageURL(for packageName: String) -> URL? {
+        let normalized = Self.normalizePackageName(packageName)
+        return URL(string: "\(Self.kivyschoolSimpleURL)/\(normalized)/")
     }
     
     /// Fetch package data from PyPI
@@ -445,7 +536,7 @@ public class MobilePlatformSupport {
         return nil
     }
 
-    /// Also checks if package is available in PySwift index and reads its wheels
+    /// Also checks if package is available in PySwift and KivySchool indexes and reads their wheels
     public func annotatePackage(_ packageName: String) async throws -> PackageInfo? {
         // Skip deprecated and non-mobile packages
         if Self.deprecatedPackages.contains(packageName) || Self.nonMobilePackages.contains(packageName) {
@@ -455,8 +546,10 @@ public class MobilePlatformSupport {
         var availablePlatforms = Set<String>()
         var pypiPlatforms = Set<String>()
         var pyswiftPlatforms = Set<String>()
+        var kivyschoolPlatforms = Set<String>()
         var pypiVersions: [String: (version: String, pyVer: Int)] = [:]  // platform -> (version, python_version)
         var pyswiftVersions: [String: (version: String, pyVer: Int)] = [:]
+        var kivyschoolVersions: [String: (version: String, pyVer: Int)] = [:]
         
         // Check PyPI first (official source takes priority)
         do {
@@ -480,7 +573,7 @@ public class MobilePlatformSupport {
                 }
             }
         } catch {
-            // PyPI error, will check PySwift as fallback
+            // PyPI error, will check PySwift and KivySchool as fallback
         }
         
         // Check if package is in PySwift
@@ -509,6 +602,32 @@ public class MobilePlatformSupport {
             }
         }
         
+        // Check if package is in KivySchool
+        let inKivySchool = try await isAvailableInKivySchool(packageName)
+        
+        if inKivySchool {
+            // Fetch wheels from KivySchool
+            let kivyschoolWheels = try await fetchKivySchoolWheels(for: packageName)
+            for filename in kivyschoolWheels {
+                let platformTag = extractPlatformTag(from: filename)
+                kivyschoolPlatforms.insert(platformTag)
+                availablePlatforms.insert(platformTag)
+                
+                // Track version with Python version for later selection
+                let versionInfo = extractVersionInfo(from: filename)
+                if let version = versionInfo.version, let pyVer = versionInfo.pythonVersion {
+                    // Keep the version with highest Python version (prefer cp313, cp314, etc.)
+                    if let existing = kivyschoolVersions[platformTag] {
+                        if pyVer > existing.pyVer || (pyVer == existing.pyVer && isVersionGreater(version, existing.version)) {
+                            kivyschoolVersions[platformTag] = (version, pyVer)
+                        }
+                    } else {
+                        kivyschoolVersions[platformTag] = (version, pyVer)
+                    }
+                }
+            }
+        }
+        
         // If no platforms found at all, throw error
         if availablePlatforms.isEmpty {
             throw MobilePlatformError.invalidResponse
@@ -517,11 +636,11 @@ public class MobilePlatformSupport {
         // Determine if this is a pure Python package (only "any" platform)
         let isPurePython = availablePlatforms == ["any"]
         
-        // Determine source: PyPI official wheels are preferred
-        // Only use PySwift if PyPI doesn't have iOS/Android wheels but PySwift does
+        // Determine source: PyPI official wheels are preferred, then PySwift, then KivySchool
         let pypiHasMobileWheels = pypiPlatforms.contains("ios") || pypiPlatforms.contains("android")
         let pyswiftHasMobileWheels = pyswiftPlatforms.contains("ios") || pyswiftPlatforms.contains("android")
-        let source: PackageIndex = pypiHasMobileWheels ? .pypi : (pyswiftHasMobileWheels ? .pyswift : .pypi)
+        let kivyschoolHasMobileWheels = kivyschoolPlatforms.contains("ios") || kivyschoolPlatforms.contains("android")
+        let source: PackageIndex = pypiHasMobileWheels ? .pypi : (pyswiftHasMobileWheels ? .pyswift : (kivyschoolHasMobileWheels ? .kivyschool : .pypi))
         
         var package = PackageInfo(name: packageName, source: source)
         
@@ -547,30 +666,22 @@ public class MobilePlatformSupport {
             switch platform {
             case .android:
                 package.android = support
-                // Set version from highest Python version wheel
+                // Set version from highest Python version wheel (priority: PyPI > PySwift > KivySchool)
                 if source == .pypi, let versionInfo = pypiVersions["android"] {
                     package.androidVersion = versionInfo.version
                 } else if source == .pyswift, let versionInfo = pyswiftVersions["android"] {
                     package.androidVersion = versionInfo.version
-                }
-                // Set version from highest Python version wheel
-                if source == .pypi, let versionInfo = pypiVersions["android"] {
-                    package.androidVersion = versionInfo.version
-                } else if source == .pyswift, let versionInfo = pyswiftVersions["android"] {
+                } else if source == .kivyschool, let versionInfo = kivyschoolVersions["android"] {
                     package.androidVersion = versionInfo.version
                 }
             case .ios:
                 package.ios = support
-                // Set version from highest Python version wheel
+                // Set version from highest Python version wheel (priority: PyPI > PySwift > KivySchool)
                 if source == .pypi, let versionInfo = pypiVersions["ios"] {
                     package.iosVersion = versionInfo.version
                 } else if source == .pyswift, let versionInfo = pyswiftVersions["ios"] {
                     package.iosVersion = versionInfo.version
-                }
-                // Set version from highest Python version wheel
-                if source == .pypi, let versionInfo = pypiVersions["ios"] {
-                    package.iosVersion = versionInfo.version
-                } else if source == .pyswift, let versionInfo = pyswiftVersions["ios"] {
+                } else if source == .kivyschool, let versionInfo = kivyschoolVersions["ios"] {
                     package.iosVersion = versionInfo.version
                 }
             }

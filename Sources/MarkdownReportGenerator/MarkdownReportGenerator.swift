@@ -31,6 +31,7 @@ public struct MetadataJSON: Codable {
 public struct SummaryJSON: Codable {
     let officialBinaryWheels: Int
     let pyswiftBinaryWheels: Int
+    let kivyschoolBinaryWheels: Int
     let purePython: Int
     let binaryWithoutMobile: Int
     let androidSupport: Int
@@ -50,6 +51,7 @@ public struct MarkdownReportGenerator {
         depsEnabled: Bool,
         officialBinaryWheels: [PackageInfo],
         pyswiftBinaryWheels: [PackageInfo],
+        kivyschoolBinaryWheels: [PackageInfo],
         purePython: [PackageInfo],
         binaryWithoutMobile: [PackageInfo],
         purePythonSorted: [PackageInfo],
@@ -135,7 +137,38 @@ public struct MarkdownReportGenerator {
         markdown += """
         
         
-        ## 🐍 Pure Python Packages
+        ## � KivySchool Binary Wheels
+        
+        Custom iOS/Android builds from [pypi.anaconda.org/kivyschool/simple](https://pypi.anaconda.org/kivyschool/simple).
+        
+        | Package | Android | iOS |\(depsEnabled ? " Dependencies |" : "")
+        |---------|---------|-----|\(depsEnabled ? "-------------|" : "")
+        
+        """
+        
+        for package in kivyschoolBinaryWheels {
+            let androidStatus = formatStatusMarkdown(package.android, version: package.androidVersion)
+            let iosStatus = formatStatusMarkdown(package.ios, version: package.iosVersion)
+            
+            if depsEnabled {
+                if let depInfo = allPackagesWithDeps.first(where: { $0.0.name == package.name }) {
+                    let depsOK = depInfo.2 ? "✅ All supported" : "⚠️ Some unsupported"
+                    let depCount = depInfo.1.count
+                    markdown += "| `\(package.name)` | \(androidStatus) | \(iosStatus) | \(depsOK) (\(depCount)) |\n"
+                }
+            } else {
+                markdown += "| `\(package.name)` | \(androidStatus) | \(iosStatus) |\n"
+            }
+        }
+        
+        if kivyschoolBinaryWheels.isEmpty {
+            markdown += "\n_No packages found._\n"
+        }
+        
+        markdown += """
+        
+        
+        ## �🐍 Pure Python Packages
         
         Packages that work on all platforms (no binary dependencies).
         
@@ -215,7 +248,7 @@ public struct MarkdownReportGenerator {
         }
         
         // Summary statistics
-        let allBinaryWheels = officialBinaryWheels + pyswiftBinaryWheels
+        let allBinaryWheels = officialBinaryWheels + pyswiftBinaryWheels + kivyschoolBinaryWheels
         let androidSuccess = allBinaryWheels.filter { $0.android == .success }.count
         let iosSuccess = allBinaryWheels.filter { $0.ios == .success }.count
         let bothSupported = allBinaryWheels.filter { $0.android == .success && $0.ios == .success }.count
@@ -231,6 +264,7 @@ public struct MarkdownReportGenerator {
         |----------|-------|------------|
         | Official Binary Wheels (PyPI) | \(officialBinaryWheels.count) | \(String(format: "%.1f%%", Double(officialBinaryWheels.count) / Double(limit) * 100)) |
         | PySwift Binary Wheels | \(pyswiftBinaryWheels.count) | \(String(format: "%.1f%%", Double(pyswiftBinaryWheels.count) / Double(limit) * 100)) |
+        | KivySchool Binary Wheels | \(kivyschoolBinaryWheels.count) | \(String(format: "%.1f%%", Double(kivyschoolBinaryWheels.count) / Double(limit) * 100)) |
         | Pure Python | \(purePython.count) | \(String(format: "%.1f%%", Double(purePython.count) / Double(limit) * 100)) |
         | Binary Without Mobile Support | \(binaryWithoutMobile.count) | \(String(format: "%.1f%%", Double(binaryWithoutMobile.count) / Double(limit) * 100)) |
         | **Total** | **\(limit)** | **100%** |
@@ -284,6 +318,7 @@ public struct MarkdownReportGenerator {
             depsEnabled: depsEnabled,
             officialBinaryWheels: officialBinaryWheels,
             pyswiftBinaryWheels: pyswiftBinaryWheels,
+            kivyschoolBinaryWheels: kivyschoolBinaryWheels,
             purePython: purePython,
             binaryWithoutMobile: binaryWithoutMobile,
             allPackagesWithDeps: allPackagesWithDeps,
@@ -576,6 +611,7 @@ public struct MarkdownReportGenerator {
         depsEnabled: Bool,
         officialBinaryWheels: [PackageInfo],
         pyswiftBinaryWheels: [PackageInfo],
+        kivyschoolBinaryWheels: [PackageInfo],
         purePython: [PackageInfo],
         binaryWithoutMobile: [PackageInfo],
         allPackagesWithDeps: [(PackageInfo, [PackageInfo], Bool)],
@@ -617,6 +653,22 @@ public struct MarkdownReportGenerator {
             ))
         }
         
+        // Add KivySchool binary wheels
+        for package in kivyschoolBinaryWheels {
+            let deps = depsEnabled ? allPackagesWithDeps.first(where: { $0.0.name == package.name }) : nil
+            jsonPackages.append(PackageJSON(
+                name: package.name,
+                android: formatStatusJSON(package.android),
+                androidVersion: package.androidVersion,
+                ios: formatStatusJSON(package.ios),
+                iosVersion: package.iosVersion,
+                source: "kivyschool",
+                category: "kivyschool_binary",
+                dependencies: deps?.1.map { $0.name },
+                allDepsSupported: deps?.2
+            ))
+        }
+        
         // Add pure Python packages
         for package in purePython {
             let deps = depsEnabled ? allPackagesWithDeps.first(where: { $0.0.name == package.name }) : nil
@@ -626,7 +678,7 @@ public struct MarkdownReportGenerator {
                 androidVersion: package.androidVersion,
                 ios: formatStatusJSON(package.ios),
                 iosVersion: package.iosVersion,
-                source: package.source == .pypi ? "pypi" : "pyswift",
+                source: package.source == .pypi ? "pypi" : (package.source == .pyswift ? "pyswift" : "kivyschool"),
                 category: "pure_python",
                 dependencies: deps?.1.map { $0.name },
                 allDepsSupported: deps?.2
