@@ -37,7 +37,7 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         version: "1.0.0"
     )
     
-    @Argument(help: "Number of packages to check")
+    @Argument(help: "Number of packages to check (0 = all packages)")
     var limit: Int = 1000
     
     @Flag(name: .shortAndLong, help: "Enable recursive dependency checking")
@@ -53,8 +53,8 @@ struct MobileWheelsChecker: AsyncParsableCommand {
     var output: String?
     
     mutating func validate() throws {
-        guard limit > 0 else {
-            throw ValidationError("Limit must be positive")
+        guard limit >= 0 else {
+            throw ValidationError("Limit must be non-negative (0 = all packages)")
         }
         guard concurrent >= 1 && concurrent <= 50 else {
             throw ValidationError("Concurrent must be between 1 and 50")
@@ -86,7 +86,8 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(TopPyPIResponse.self, from: data)
         
-        let packages = response.rows.prefix(limit).map { $0.project }
+        // If limit is 0, use all packages; otherwise limit
+        let packages = limit == 0 ? response.rows.map { $0.project } : response.rows.prefix(limit).map { $0.project }
         
         // Categorize excluded packages with reasons
         var excludedPackages: [(String, String)] = []
@@ -100,7 +101,7 @@ struct MobileWheelsChecker: AsyncParsableCommand {
         // Filter out GPU/CUDA and non-mobile packages
         let filteredPackages = MobilePlatformSupport.filterMobileCompatiblePackages(Array(packages))
         
-        print("📥 Downloaded top \(packages.count) packages from PyPI")
+        print("📥 Downloaded top \(limit == 0 ? "all" : String(packages.count)) packages from PyPI")
         print("🔍 Filtered to \(filteredPackages.count) mobile-compatible packages (removed \(packages.count - filteredPackages.count) GPU/CUDA/Windows/non-mobile packages)\n")
         return (filteredPackages, excludedPackages)
     }
@@ -233,8 +234,8 @@ struct MobileWheelsChecker: AsyncParsableCommand {
                 // Get all packages from simple index, sorted by downloads
                 let (allPackages, excluded) = try await Self.downloadAllPackagesFromSimpleIndex(sortedByDownloads: true)
                 excludedPackages = excluded
-                // Limit to requested number (or all if limit >= total)
-                testPackages = limit >= allPackages.count ? allPackages : Array(allPackages.prefix(limit))
+                // Limit to requested number (or all if limit is 0 or >= total)
+                testPackages = (limit == 0 || limit >= allPackages.count) ? allPackages : Array(allPackages.prefix(limit))
             } else {
                 // Get top packages from hugovk
                 let (packages, excluded) = try await Self.downloadTopPackages(limit: limit)
