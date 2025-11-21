@@ -1,7 +1,7 @@
 # Pure Python Packages - H
 
-**Generated:** 2025-11-21 10:52:25  
-**Total Packages Starting with H:** 58
+**Generated:** 2025-11-21 11:10:59  
+**Total Packages Starting with H:** 23
 
 [← Back to Index](index.md)
 
@@ -11,62 +11,27 @@
 |---------|---------|-----|
 | `h11` | 🐍 Pure Python | 🐍 Pure Python |
 | `h2` | 🐍 Pure Python | 🐍 Pure Python |
-| `h5netcdf` | 🐍 Pure Python | 🐍 Pure Python |
-| `harfile` | 🐍 Pure Python | 🐍 Pure Python |
-| `hashids` | 🐍 Pure Python | 🐍 Pure Python |
-| `hashin` | 🐍 Pure Python | 🐍 Pure Python |
-| `hashring` | 🐍 Pure Python | 🐍 Pure Python |
 | `hatch` | 🐍 Pure Python | 🐍 Pure Python |
-| `hatch-fancy-pypi-readme` | 🐍 Pure Python | 🐍 Pure Python |
-| `hatch-requirements-txt` | 🐍 Pure Python | 🐍 Pure Python |
 | `hatch-vcs` | 🐍 Pure Python | 🐍 Pure Python |
 | `hatchling` | 🐍 Pure Python | 🐍 Pure Python |
-| `haversine` | 🐍 Pure Python | 🐍 Pure Python |
-| `hbutils` | 🐍 Pure Python | 🐍 Pure Python |
-| `hdijupyterutils` | 🐍 Pure Python | 🐍 Pure Python |
-| `hellosign-python-sdk` | 🐍 Pure Python | 🐍 Pure Python |
 | `hexbytes` | 🐍 Pure Python | 🐍 Pure Python |
-| `hfutils` | 🐍 Pure Python | 🐍 Pure Python |
-| `hijri-converter` | 🐍 Pure Python | 🐍 Pure Python |
-| `hijridate` | 🐍 Pure Python | 🐍 Pure Python |
 | `hishel` | 🐍 Pure Python | 🐍 Pure Python |
-| `hist` | 🐍 Pure Python | 🐍 Pure Python |
-| `histoprint` | 🐍 Pure Python | 🐍 Pure Python |
-| `hjson` | 🐍 Pure Python | 🐍 Pure Python |
-| `hmsclient` | 🐍 Pure Python | 🐍 Pure Python |
 | `holidays` | 🐍 Pure Python | 🐍 Pure Python |
-| `hologram` | 🐍 Pure Python | 🐍 Pure Python |
-| `holoviews` | 🐍 Pure Python | 🐍 Pure Python |
-| `honcho` | 🐍 Pure Python | 🐍 Pure Python |
 | `hpack` | 🐍 Pure Python | 🐍 Pure Python |
-| `html-testRunner` | 🐍 Pure Python | 🐍 Pure Python |
-| `html-text` | 🐍 Pure Python | 🐍 Pure Python |
 | `html2text` | 🐍 Pure Python | 🐍 Pure Python |
 | `html5lib` | 🐍 Pure Python | 🐍 Pure Python |
-| `html5tagger` | 🐍 Pure Python | 🐍 Pure Python |
-| `htmldate` | 🐍 Pure Python | 🐍 Pure Python |
-| `httmock` | 🐍 Pure Python | 🐍 Pure Python |
 | `httpcore` | 🐍 Pure Python | 🐍 Pure Python |
 | `httplib2` | 🐍 Pure Python | 🐍 Pure Python |
 | `httpx` | 🐍 Pure Python | 🐍 Pure Python |
-| `httpx-aiohttp` | 🐍 Pure Python | 🐍 Pure Python |
 | `httpx-sse` | 🐍 Pure Python | 🐍 Pure Python |
-| `httpx-ws` | 🐍 Pure Python | 🐍 Pure Python |
-| `hubspot-api-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `huggingface-hub` | 🐍 Pure Python | 🐍 Pure Python |
 | `humanfriendly` | 🐍 Pure Python | 🐍 Pure Python |
 | `humanize` | 🐍 Pure Python | 🐍 Pure Python |
-| `hupper` | 🐍 Pure Python | 🐍 Pure Python |
 | `hvac` | 🐍 Pure Python | 🐍 Pure Python |
 | `hydra-core` | 🐍 Pure Python | 🐍 Pure Python |
-| `Hypercorn` | 🐍 Pure Python | 🐍 Pure Python |
 | `hyperframe` | 🐍 Pure Python | 🐍 Pure Python |
 | `hyperlink` | 🐍 Pure Python | 🐍 Pure Python |
-| `hyperopt` | 🐍 Pure Python | 🐍 Pure Python |
-| `HyperPyYAML` | 🐍 Pure Python | 🐍 Pure Python |
 | `hypothesis` | 🐍 Pure Python | 🐍 Pure Python |
-| `hypothesis-graphql` | 🐍 Pure Python | 🐍 Pure Python |
-| `hypothesis-jsonschema` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

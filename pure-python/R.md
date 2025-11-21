@@ -1,7 +1,7 @@
 # Pure Python Packages - R
 
-**Generated:** 2025-11-21 10:52:25  
-**Total Packages Starting with R:** 85
+**Generated:** 2025-11-21 11:10:59  
+**Total Packages Starting with R:** 33
 
 [← Back to Index](index.md)
 
@@ -9,91 +9,39 @@
 
 | Package | Android | iOS |
 |---------|---------|-----|
-| `radon` | 🐍 Pure Python | 🐍 Pure Python |
-| `ragas` | 🐍 Pure Python | 🐍 Pure Python |
-| `random-user-agent` | 🐍 Pure Python | 🐍 Pure Python |
-| `rank-bm25` | 🐍 Pure Python | 🐍 Pure Python |
-| `ratelim` | 🐍 Pure Python | 🐍 Pure Python |
-| `raven` | 🐍 Pure Python | 🐍 Pure Python |
 | `rdflib` | 🐍 Pure Python | 🐍 Pure Python |
 | `reactivex` | 🐍 Pure Python | 🐍 Pure Python |
-| `readabilipy` | 🐍 Pure Python | 🐍 Pure Python |
-| `readability-lxml` | 🐍 Pure Python | 🐍 Pure Python |
 | `readchar` | 🐍 Pure Python | 🐍 Pure Python |
-| `readerwriterlock` | 🐍 Pure Python | 🐍 Pure Python |
 | `readme-renderer` | 🐍 Pure Python | 🐍 Pure Python |
 | `realtime` | 🐍 Pure Python | 🐍 Pure Python |
-| `rebulk` | 🐍 Pure Python | 🐍 Pure Python |
-| `recordlinkage` | 🐍 Pure Python | 🐍 Pure Python |
-| `Red-DiscordBot` | 🐍 Pure Python | 🐍 Pure Python |
 | `redis` | 🐍 Pure Python | 🐍 Pure Python |
-| `redis-py-cluster` | 🐍 Pure Python | 🐍 Pure Python |
 | `redshift-connector` | 🐍 Pure Python | 🐍 Pure Python |
-| `reductoai` | 🐍 Pure Python | 🐍 Pure Python |
-| `reedsolo` | 🐍 Pure Python | 🐍 Pure Python |
 | `referencing` | 🐍 Pure Python | 🐍 Pure Python |
-| `reliability` | 🐍 Pure Python | 🐍 Pure Python |
-| `rembg` | 🐍 Pure Python | 🐍 Pure Python |
-| `replicate` | 🐍 Pure Python | 🐍 Pure Python |
 | `reportlab` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-auth-aws-sigv4` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-aws-sign` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-aws4auth` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-cache` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-file` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-futures` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-kerberos` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-mock` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-ntlm` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-oauthlib` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-pkcs12` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-sigv4` | 🐍 Pure Python | 🐍 Pure Python |
 | `requests-toolbelt` | 🐍 Pure Python | 🐍 Pure Python |
-| `requests-unixsocket` | 🐍 Pure Python | 🐍 Pure Python |
-| `requestsexceptions` | 🐍 Pure Python | 🐍 Pure Python |
 | `requirements-parser` | 🐍 Pure Python | 🐍 Pure Python |
-| `resampy` | 🐍 Pure Python | 🐍 Pure Python |
-| `resend` | 🐍 Pure Python | 🐍 Pure Python |
 | `resolvelib` | 🐍 Pure Python | 🐍 Pure Python |
 | `responses` | 🐍 Pure Python | 🐍 Pure Python |
-| `respx` | 🐍 Pure Python | 🐍 Pure Python |
-| `RestrictedPython` | 🐍 Pure Python | 🐍 Pure Python |
-| `result` | 🐍 Pure Python | 🐍 Pure Python |
 | `retry` | 🐍 Pure Python | 🐍 Pure Python |
-| `retry2` | 🐍 Pure Python | 🐍 Pure Python |
-| `retryhttp` | 🐍 Pure Python | 🐍 Pure Python |
 | `retrying` | 🐍 Pure Python | 🐍 Pure Python |
-| `rfc3339` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3339-validator` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3986` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3986-validator` | 🐍 Pure Python | 🐍 Pure Python |
-| `rfc3987` | 🐍 Pure Python | 🐍 Pure Python |
 | `rfc3987-syntax` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich-argparse` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich-click` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich-rst` | 🐍 Pure Python | 🐍 Pure Python |
 | `rich-toolkit` | 🐍 Pure Python | 🐍 Pure Python |
-| `rlp` | 🐍 Pure Python | 🐍 Pure Python |
-| `rlPyCairo` | 🐍 Pure Python | 🐍 Pure Python |
-| `roboflow` | 🐍 Pure Python | 🐍 Pure Python |
-| `robotframework` | 🐍 Pure Python | 🐍 Pure Python |
-| `robotframework-pythonlibcore` | 🐍 Pure Python | 🐍 Pure Python |
-| `robotframework-requests` | 🐍 Pure Python | 🐍 Pure Python |
-| `robotframework-seleniumlibrary` | 🐍 Pure Python | 🐍 Pure Python |
-| `rollbar` | 🐍 Pure Python | 🐍 Pure Python |
-| `roman` | 🐍 Pure Python | 🐍 Pure Python |
 | `roman-numerals-py` | 🐍 Pure Python | 🐍 Pure Python |
-| `rope` | 🐍 Pure Python | 🐍 Pure Python |
-| `rpaframework` | 🐍 Pure Python | 🐍 Pure Python |
-| `rpyc` | 🐍 Pure Python | 🐍 Pure Python |
-| `rq` | 🐍 Pure Python | 🐍 Pure Python |
 | `rsa` | 🐍 Pure Python | 🐍 Pure Python |
-| `rstr` | 🐍 Pure Python | 🐍 Pure Python |
-| `runs` | 🐍 Pure Python | 🐍 Pure Python |
-| `ruyaml` | 🐍 Pure Python | 🐍 Pure Python |
-| `Rx` | 🐍 Pure Python | 🐍 Pure Python |
+| `ruamel-yaml` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

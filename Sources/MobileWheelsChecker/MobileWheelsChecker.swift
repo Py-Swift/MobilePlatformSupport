@@ -396,7 +396,14 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             }
             print(String(repeating: "-", count: 71))
             
-            for package in binaryWithoutMobile {
+            let maxBinaryDisplay = 100
+            for (index, package) in binaryWithoutMobile.enumerated() {
+                if index >= maxBinaryDisplay {
+                    let remaining = binaryWithoutMobile.count - maxBinaryDisplay
+                    print("... +\(remaining) more")
+                    break
+                }
+                
                 let androidStatus = Self.formatStatus(package.android)
                 let iosStatus = Self.formatStatus(package.ios)
                 

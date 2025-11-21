@@ -1,7 +1,7 @@
 # Pure Python Packages - Q
 
-**Generated:** 2025-11-21 10:52:25  
-**Total Packages Starting with Q:** 8
+**Generated:** 2025-11-21 11:10:59  
+**Total Packages Starting with Q:** 4
 
 [← Back to Index](index.md)
 
@@ -11,12 +11,8 @@
 |---------|---------|-----|
 | `qdrant-client` | 🐍 Pure Python | 🐍 Pure Python |
 | `qrcode` | 🐍 Pure Python | 🐍 Pure Python |
-| `qtconsole` | 🐍 Pure Python | 🐍 Pure Python |
-| `QtPy` | 🐍 Pure Python | 🐍 Pure Python |
-| `Quart` | 🐍 Pure Python | 🐍 Pure Python |
 | `querystring-parser` | 🐍 Pure Python | 🐍 Pure Python |
 | `questionary` | 🐍 Pure Python | 🐍 Pure Python |
-| `queuelib` | 🐍 Pure Python | 🐍 Pure Python |
 
 
 ---

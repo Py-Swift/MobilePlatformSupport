@@ -1,6 +1,6 @@
 # Binary Packages Without Mobile Support - Full List
 
-**Generated:** 2025-11-21 11:00:28  
+**Generated:** 2025-11-21 11:08:04  
 **Total Packages:** 386
 
 Packages with binary wheels but no iOS/Android support.
