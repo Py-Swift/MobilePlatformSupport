@@ -284,6 +284,61 @@ The tool generates:
      - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists organized by first letter
    - `excluded-packages.md` - GPU/CUDA and Windows-only packages that were filtered out (shows packages that are 100% incompatible with mobile platforms)
 
+3. **JSON exports** (exported to output directory):
+   - `mobile-wheels-results.json` - Complete report in JSON format with:
+     - `metadata` - Generation timestamp, package count, dependency checking status
+     - `packages` - Array of all packages with platform support, versions, categories, and dependencies
+     - `summary` - Statistics about package distribution and platform support
+   - `json-chunks/` - Chunked JSON files for large datasets (>1000 packages):
+     - `index.json` - Manifest describing chunks (total packages, chunk size, file list)
+     - `chunk-1.json`, `chunk-2.json`, ... - Package data split into 1000-package chunks
+
+#### JSON Structure
+
+```json
+{
+  "metadata": {
+    "generated": "2025-11-21 10:46:41",
+    "packagesChecked": 1500,
+    "dependencyChecking": false
+  },
+  "packages": [
+    {
+      "name": "numpy",
+      "android": "not_available",
+      "ios": "supported",
+      "iosVersion": "2.3.4",
+      "source": "pyswift",
+      "category": "pyswift_binary",
+      "dependencies": ["package1", "package2"],
+      "allDepsSupported": true
+    }
+  ],
+  "summary": {
+    "officialBinaryWheels": 7,
+    "pyswiftBinaryWheels": 19,
+    "purePython": 1268,
+    "binaryWithoutMobile": 166,
+    "androidSupport": 6,
+    "iosSupport": 24,
+    "bothPlatforms": 4
+  }
+}
+```
+
+The JSON export is ideal for:
+- **Web applications**: Load data dynamically into search interfaces
+- **Data analysis**: Process package information programmatically
+- **Database integration**: Import into PostgreSQL, MongoDB, SQLite, etc.
+- **Static site search**: Use with MkDocs, Docsify, or custom search implementations
+- **API endpoints**: Serve package data via REST/GraphQL APIs
+
+For large datasets (>1000 packages), the tool automatically generates chunked JSON files. This improves:
+- **Load performance**: Fetch only needed chunks instead of entire dataset
+- **Memory efficiency**: Process packages in smaller batches
+- **Lazy loading**: Load additional chunks on-demand (pagination, infinite scroll)
+- **CDN-friendly**: Smaller files cache better and load faster
+
 ### PyPI Simple Index Scraping
 
 The `--all` flag scrapes PyPI's Simple Index to get all available packages, then sorts by download count:

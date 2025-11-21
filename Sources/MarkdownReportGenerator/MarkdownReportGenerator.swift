@@ -1,6 +1,46 @@
 import Foundation
 import MobilePlatformSupport
 
+// MARK: - JSON Export Structures
+
+public struct PackageJSON: Codable {
+    let name: String
+    let android: String
+    let androidVersion: String?
+    let ios: String
+    let iosVersion: String?
+    let source: String
+    let category: String
+    let dependencies: [String]?
+    let allDepsSupported: Bool?
+}
+
+public struct ReportJSON: Codable {
+    let metadata: MetadataJSON
+    let packages: [PackageJSON]
+    let summary: SummaryJSON
+}
+
+public struct MetadataJSON: Codable {
+    let generated: String
+    let packagesChecked: Int
+    let dependencyChecking: Bool
+}
+
+public struct SummaryJSON: Codable {
+    let officialBinaryWheels: Int
+    let pyswiftBinaryWheels: Int
+    let purePython: Int
+    let binaryWithoutMobile: Int
+    let androidSupport: Int
+    let iosSupport: Int
+    let bothPlatforms: Int
+    let allDepsSupported: Int?
+    let someDepsUnsupported: Int?
+}
+
+// MARK: - Markdown Report Generator
+
 public struct MarkdownReportGenerator {
     public init() {}
     
@@ -236,6 +276,19 @@ public struct MarkdownReportGenerator {
         let mainFileURL = URL(fileURLWithPath: mainFilename)
         try markdown.write(to: mainFileURL, atomically: true, encoding: .utf8)
         print("\n✅ Markdown report exported to: \(mainFilename)")
+        
+        // Generate JSON export
+        try generateJSONExport(
+            limit: limit,
+            depsEnabled: depsEnabled,
+            officialBinaryWheels: officialBinaryWheels,
+            pyswiftBinaryWheels: pyswiftBinaryWheels,
+            purePython: purePython,
+            binaryWithoutMobile: binaryWithoutMobile,
+            allPackagesWithDeps: allPackagesWithDeps,
+            timestamp: timestamp,
+            basePath: (mainFilename as NSString).deletingLastPathComponent
+        )
         
         // Generate full pure Python packages file if needed
         if purePython.count > 100 {
@@ -511,6 +564,210 @@ public struct MarkdownReportGenerator {
             return "🐍 Pure Python"
         case .warning:
             return "⚠️ Not available"
+        }
+    }
+    
+    // MARK: - JSON Export Methods
+    
+    private func generateJSONExport(
+        limit: Int,
+        depsEnabled: Bool,
+        officialBinaryWheels: [PackageInfo],
+        pyswiftBinaryWheels: [PackageInfo],
+        purePython: [PackageInfo],
+        binaryWithoutMobile: [PackageInfo],
+        allPackagesWithDeps: [(PackageInfo, [PackageInfo], Bool)],
+        timestamp: Date,
+        basePath: String
+    ) throws {
+        // Convert all packages to JSON format
+        var jsonPackages: [PackageJSON] = []
+        
+        // Add official binary wheels
+        for package in officialBinaryWheels {
+            let deps = depsEnabled ? allPackagesWithDeps.first(where: { $0.0.name == package.name }) : nil
+            jsonPackages.append(PackageJSON(
+                name: package.name,
+                android: formatStatusJSON(package.android),
+                androidVersion: package.androidVersion,
+                ios: formatStatusJSON(package.ios),
+                iosVersion: package.iosVersion,
+                source: "pypi",
+                category: "official_binary",
+                dependencies: deps?.1.map { $0.name },
+                allDepsSupported: deps?.2
+            ))
+        }
+        
+        // Add PySwift binary wheels
+        for package in pyswiftBinaryWheels {
+            let deps = depsEnabled ? allPackagesWithDeps.first(where: { $0.0.name == package.name }) : nil
+            jsonPackages.append(PackageJSON(
+                name: package.name,
+                android: formatStatusJSON(package.android),
+                androidVersion: package.androidVersion,
+                ios: formatStatusJSON(package.ios),
+                iosVersion: package.iosVersion,
+                source: "pyswift",
+                category: "pyswift_binary",
+                dependencies: deps?.1.map { $0.name },
+                allDepsSupported: deps?.2
+            ))
+        }
+        
+        // Add pure Python packages
+        for package in purePython {
+            let deps = depsEnabled ? allPackagesWithDeps.first(where: { $0.0.name == package.name }) : nil
+            jsonPackages.append(PackageJSON(
+                name: package.name,
+                android: formatStatusJSON(package.android),
+                androidVersion: package.androidVersion,
+                ios: formatStatusJSON(package.ios),
+                iosVersion: package.iosVersion,
+                source: package.source == .pypi ? "pypi" : "pyswift",
+                category: "pure_python",
+                dependencies: deps?.1.map { $0.name },
+                allDepsSupported: deps?.2
+            ))
+        }
+        
+        // Add binary without mobile support
+        for package in binaryWithoutMobile {
+            let deps = depsEnabled ? allPackagesWithDeps.first(where: { $0.0.name == package.name }) : nil
+            jsonPackages.append(PackageJSON(
+                name: package.name,
+                android: formatStatusJSON(package.android),
+                androidVersion: package.androidVersion,
+                ios: formatStatusJSON(package.ios),
+                iosVersion: package.iosVersion,
+                source: package.source == .pypi ? "pypi" : "pyswift",
+                category: "binary_without_mobile",
+                dependencies: deps?.1.map { $0.name },
+                allDepsSupported: deps?.2
+            ))
+        }
+        
+        // Calculate summary statistics
+        let allBinaryWheels = officialBinaryWheels + pyswiftBinaryWheels
+        let androidSuccess = allBinaryWheels.filter { $0.android == .success }.count
+        let iosSuccess = allBinaryWheels.filter { $0.ios == .success }.count
+        let bothSupported = allBinaryWheels.filter { $0.android == .success && $0.ios == .success }.count
+        
+        var allDepsOK: Int? = nil
+        var someDepsUnsupported: Int? = nil
+        if depsEnabled {
+            allDepsOK = allPackagesWithDeps.filter { $0.2 }.count
+            someDepsUnsupported = allPackagesWithDeps.count - (allDepsOK ?? 0)
+        }
+        
+        // Create metadata
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateString = dateFormatter.string(from: timestamp)
+        
+        let metadata = MetadataJSON(
+            generated: dateString,
+            packagesChecked: limit,
+            dependencyChecking: depsEnabled
+        )
+        
+        // Create summary
+        let summary = SummaryJSON(
+            officialBinaryWheels: officialBinaryWheels.count,
+            pyswiftBinaryWheels: pyswiftBinaryWheels.count,
+            purePython: purePython.count,
+            binaryWithoutMobile: binaryWithoutMobile.count,
+            androidSupport: androidSuccess,
+            iosSupport: iosSuccess,
+            bothPlatforms: bothSupported,
+            allDepsSupported: allDepsOK,
+            someDepsUnsupported: someDepsUnsupported
+        )
+        
+        // Create full report
+        let report = ReportJSON(
+            metadata: metadata,
+            packages: jsonPackages,
+            summary: summary
+        )
+        
+        // Export full JSON
+        let jsonPath = (basePath as NSString).appendingPathComponent("mobile-wheels-results.json")
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let jsonData = try encoder.encode(report)
+        try jsonData.write(to: URL(fileURLWithPath: jsonPath))
+        print("✅ JSON report exported to: \(jsonPath)")
+        
+        // Export chunked JSON files for better performance with large datasets
+        if jsonPackages.count > 1000 {
+            try generateChunkedJSON(
+                packages: jsonPackages,
+                chunkSize: 1000,
+                basePath: basePath
+            )
+        }
+    }
+    
+    private func generateChunkedJSON(
+        packages: [PackageJSON],
+        chunkSize: Int,
+        basePath: String
+    ) throws {
+        // Create json-chunks directory
+        let chunksDir = (basePath as NSString).appendingPathComponent("json-chunks")
+        try FileManager.default.createDirectory(atPath: chunksDir, withIntermediateDirectories: true)
+        
+        // Split packages into chunks
+        let chunks = stride(from: 0, to: packages.count, by: chunkSize).map {
+            Array(packages[$0..<min($0 + chunkSize, packages.count)])
+        }
+        
+        // Export each chunk
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        
+        for (index, chunk) in chunks.enumerated() {
+            let chunkFilename = "chunk-\(index + 1).json"
+            let chunkPath = (chunksDir as NSString).appendingPathComponent(chunkFilename)
+            let chunkData = try encoder.encode(chunk)
+            try chunkData.write(to: URL(fileURLWithPath: chunkPath))
+        }
+        
+        // Create index file for chunks
+        let chunkIndex = [
+            "total_packages": packages.count,
+            "chunk_size": chunkSize,
+            "total_chunks": chunks.count,
+            "chunks": chunks.indices.map { index in
+                [
+                    "filename": "chunk-\(index + 1).json",
+                    "start_index": index * chunkSize,
+                    "end_index": min((index + 1) * chunkSize, packages.count) - 1,
+                    "count": chunks[index].count
+                ]
+            }
+        ] as [String : Any]
+        
+        let indexData = try JSONSerialization.data(withJSONObject: chunkIndex, options: [.prettyPrinted, .sortedKeys])
+        let indexPath = (chunksDir as NSString).appendingPathComponent("index.json")
+        try indexData.write(to: URL(fileURLWithPath: indexPath))
+        
+        print("✅ Chunked JSON exported to: \(chunksDir)/ (\(chunks.count) chunks)")
+    }
+    
+    private func formatStatusJSON(_ status: PlatformSupport?) -> String {
+        guard let status = status else {
+            return "unknown"
+        }
+        
+        switch status {
+        case .success:
+            return "supported"
+        case .purePython:
+            return "pure_python"
+        case .warning:
+            return "not_available"
         }
     }
 }

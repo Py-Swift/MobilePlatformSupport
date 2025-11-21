@@ -56,20 +56,25 @@ swift run mobile-wheels-checker 1000 --all --deps --concurrent 20 --output ~/Doc
 
 ### Output Files
 
-The tool creates markdown files in the output directory:
+The tool creates markdown and JSON files in the output directory:
 
 1. **mobile-wheels-results.md** - Main report with all categories
-2. **pure-python/** - Folder with organized pure Python packages (if >100 packages)
+2. **mobile-wheels-results.json** - Complete JSON export with metadata, packages, and summary
+3. **pure-python/** - Folder with organized pure Python packages (if >100 packages)
    - `index.md` - Letter navigation and top 10 per letter
    - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists
-3. **binary-without-mobile/** - Folder with packages lacking mobile support (if >100 packages)
+4. **binary-without-mobile/** - Folder with packages lacking mobile support (if >100 packages)
    - `index.md` - Letter navigation and top 10 per letter
    - `A.md`, `B.md`, ..., `Z.md` - Full alphabetical lists
-4. **excluded-packages.md** - GPU/CUDA and Windows-only packages filtered out
+5. **json-chunks/** - Chunked JSON for large datasets (if >1000 packages)
+   - `index.json` - Manifest with chunk metadata
+   - `chunk-1.json`, `chunk-2.json`, ... - Package data in 1000-package chunks
+6. **excluded-packages.md** - GPU/CUDA and Windows-only packages filtered out
 
 ```
 ./reports/
 ├── mobile-wheels-results.md
+├── mobile-wheels-results.json
 ├── pure-python/
 │   ├── index.md
 │   ├── A.md
@@ -79,6 +84,11 @@ The tool creates markdown files in the output directory:
 │   ├── index.md
 │   ├── A.md
 │   ├── B.md
+│   └── ...
+├── json-chunks/
+│   ├── index.json
+│   ├── chunk-1.json
+│   ├── chunk-2.json
 │   └── ...
 └── excluded-packages.md
 ```
