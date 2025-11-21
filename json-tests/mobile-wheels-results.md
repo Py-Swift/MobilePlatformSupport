@@ -1,7 +1,7 @@
 # Mobile Platform Support Report
 
-**Generated:** 2025-11-21 12:42:55  
-**Packages Checked:** 100  
+**Generated:** 2025-11-21 12:49:07  
+**Packages Checked:** 200  
 **Dependency Checking:** Disabled
 
 ---
@@ -28,11 +28,22 @@ Custom iOS/Android builds from [pypi.anaconda.org/pyswift/simple](https://pypi.a
 | `aiohttp` | ⚠️ Not available | ✅ Supported (3.13.2) |
 | `sqlalchemy` | 🐍 Pure Python | ✅ Supported (2.0.44) |
 | `greenlet` | ⚠️ Not available | ✅ Supported (3.2.4) |
+| `msgpack` | ⚠️ Not available | ✅ Supported (1.1.2) |
+| `regex` | ⚠️ Not available | ✅ Supported (2025.11.3) |
+| `coverage` | 🐍 Pure Python | ✅ Supported (7.11.3) |
+| `bcrypt` | ⚠️ Not available | ✅ Supported (5.0.0) |
+| `matplotlib` | ⚠️ Not available | ✅ Supported (3.10.7) |
+| `kiwisolver` | ⚠️ Not available | ✅ Supported (1.4.9) |
+| `contourpy` | ⚠️ Not available | ✅ Supported (1.3.3) |
 
 
 ## 🐍 Pure Python Packages
 
 Packages that work on all platforms (no binary dependencies).
+_Showing first 100 packages by download popularity. Total: 169_
+
+📄 **[View all 169 pure Python packages (A-Z)](pure-python/index.md)**
+
 | Package | Android | iOS |
 |---------|---------|-----|
 | `boto3` | 🐍 Pure Python | 🐍 Pure Python |
@@ -118,6 +129,25 @@ Packages that work on all platforms (no binary dependencies).
 | `starlette` | 🐍 Pure Python | 🐍 Pure Python |
 | `uvicorn` | 🐍 Pure Python | 🐍 Pure Python |
 | `fastapi` | 🐍 Pure Python | 🐍 Pure Python |
+| `distlib` | 🐍 Pure Python | 🐍 Pure Python |
+| `pyopenssl` | 🐍 Pure Python | 🐍 Pure Python |
+| `requests-toolbelt` | 🐍 Pure Python | 🐍 Pure Python |
+| `docutils` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-semantic-conventions` | 🐍 Pure Python | 🐍 Pure Python |
+| `exceptiongroup` | 🐍 Pure Python | 🐍 Pure Python |
+| `trove-classifiers` | 🐍 Pure Python | 🐍 Pure Python |
+| `more-itertools` | 🐍 Pure Python | 🐍 Pure Python |
+| `werkzeug` | 🐍 Pure Python | 🐍 Pure Python |
+| `isodate` | 🐍 Pure Python | 🐍 Pure Python |
+| `yandexcloud` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-sdk` | 🐍 Pure Python | 🐍 Pure Python |
+| `proto-plus` | 🐍 Pure Python | 🐍 Pure Python |
+| `mypy-extensions` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-api` | 🐍 Pure Python | 🐍 Pure Python |
+| `opentelemetry-proto` | 🐍 Pure Python | 🐍 Pure Python |
+| `google-cloud-storage` | 🐍 Pure Python | 🐍 Pure Python |
+
+_... and 69 more packages. [View full list](pure-python/index.md)_
 
 
 ## ❌ Binary Packages Without Mobile Support
@@ -135,6 +165,14 @@ Packages with binary wheels but no iOS/Android support.
 | `scipy` | ⚠️ Not available | ⚠️ Not available |
 | `lxml` | ⚠️ Not available | ⚠️ Not available |
 | `snowflake-connector-python` | ⚠️ Not available | ⚠️ Not available |
+| `grpcio-tools` | ⚠️ Not available | ⚠️ Not available |
+| `psycopg2-binary` | ⚠️ Not available | ⚠️ Not available |
+| `pynacl` | ⚠️ Not available | ⚠️ Not available |
+| `scikit-learn` | ⚠️ Not available | ⚠️ Not available |
+| `zstandard` | ⚠️ Not available | ⚠️ Not available |
+| `google-crc32c` | ⚠️ Not available | ⚠️ Not available |
+| `rapidfuzz` | ⚠️ Not available | ⚠️ Not available |
+| `ruff` | ⚠️ Not available | ⚠️ Not available |
 
 
 ## 📈 Summary Statistics
@@ -143,19 +181,19 @@ Packages with binary wheels but no iOS/Android support.
 
 | Category | Count | Percentage |
 |----------|-------|------------|
-| Official Binary Wheels (PyPI) | 1 | 1.0% |
-| PySwift Binary Wheels | 7 | 7.0% |
-| Pure Python | 83 | 83.0% |
-| Binary Without Mobile Support | 10 | 10.0% |
-| **Total** | **100** | **100%** |
+| Official Binary Wheels (PyPI) | 1 | 0.5% |
+| PySwift Binary Wheels | 14 | 7.0% |
+| Pure Python | 169 | 84.5% |
+| Binary Without Mobile Support | 18 | 9.0% |
+| **Total** | **200** | **100%** |
 
 ### Platform Support (Binary Wheels)
 
 | Platform | Count | Percentage |
 |----------|-------|------------|
-| Android Support | 0 / 8 | 0.0% |
-| iOS Support | 8 / 8 | 100.0% |
-| Both Platforms | 0 / 8 | 0.0% |
+| Android Support | 0 / 15 | 0.0% |
+| iOS Support | 15 / 15 | 100.0% |
+| Both Platforms | 0 / 15 | 0.0% |
 
 ---
 

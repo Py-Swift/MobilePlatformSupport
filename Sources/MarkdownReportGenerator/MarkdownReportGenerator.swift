@@ -292,28 +292,29 @@ public struct MarkdownReportGenerator {
         )
         
         // Generate full pure Python packages file if needed
-        if purePython.count > 100 {
-            try generatePurePythonReportFolder(
-                packages: purePythonSorted,
-                depsEnabled: depsEnabled,
-                allPackagesWithDeps: allPackagesWithDeps,
-                timestamp: timestamp,
-                basePath: (purePythonFilename as NSString).deletingLastPathComponent
-            )
-            print("✅ Full pure Python list exported to: pure-python/ folder")
-        }
+        // Disabled: pure-python and binary-without-mobile folders now replaced by chunked JSON database
+        // if purePython.count > 100 {
+        //     try generatePurePythonReportFolder(
+        //         packages: purePythonSorted,
+        //         depsEnabled: depsEnabled,
+        //         allPackagesWithDeps: allPackagesWithDeps,
+        //         timestamp: timestamp,
+        //         basePath: (purePythonFilename as NSString).deletingLastPathComponent
+        //     )
+        //     print("✅ Full pure Python list exported to: pure-python/ folder")
+        // }
         
-        // Generate full binary without mobile file if needed
-        if binaryWithoutMobile.count > 100 {
-            try generateBinaryWithoutMobileReport(
-                packages: binaryWithoutMobileSorted,
-                depsEnabled: depsEnabled,
-                allPackagesWithDeps: allPackagesWithDeps,
-                timestamp: timestamp,
-                filename: binaryWithoutMobileFilename
-            )
-            print("✅ Full binary without mobile list exported to: binary-without-mobile/ folder")
-        }
+        // Disabled: Generate full binary without mobile file if needed
+        // if binaryWithoutMobile.count > 100 {
+        //     try generateBinaryWithoutMobileReport(
+        //         packages: binaryWithoutMobileSorted,
+        //         depsEnabled: depsEnabled,
+        //         allPackagesWithDeps: allPackagesWithDeps,
+        //         timestamp: timestamp,
+        //         filename: binaryWithoutMobileFilename
+        //     )
+        //     print("✅ Full binary without mobile list exported to: binary-without-mobile/ folder")
+        // }
     }
     
     private func generatePurePythonReportFolder(
