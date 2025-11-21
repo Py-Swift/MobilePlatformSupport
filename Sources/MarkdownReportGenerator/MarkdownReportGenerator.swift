@@ -143,7 +143,7 @@ public struct MarkdownReportGenerator {
         
         if purePython.count > 100 {
             markdown += "_Showing first 100 packages by download popularity. Total: \(purePython.count)_\n\n"
-            markdown += "📄 **[View all \(purePython.count) pure Python packages (A-Z)](pure-python/index.md)**\n\n"
+            markdown += "📄 **View all packages in the [JSON chunks database](json-chunks/index.json)**\n\n"
         }
         
         markdown += """
@@ -169,7 +169,7 @@ public struct MarkdownReportGenerator {
         }
         
         if purePython.count > 100 {
-            markdown += "\n_... and \(purePython.count - 100) more packages. [View full list](pure-python/index.md)_\n"
+            markdown += "\n_... and \(purePython.count - 100) more packages. View [JSON chunks database](json-chunks/index.json) for complete list._\n"
         }
         
         markdown += """
@@ -183,7 +183,7 @@ public struct MarkdownReportGenerator {
         
         if binaryWithoutMobile.count > 100 {
             markdown += "_Showing first 100 packages by download popularity. Total: \(binaryWithoutMobile.count)_\n\n"
-            markdown += "📄 **[View all \(binaryWithoutMobile.count) packages without mobile support (A-Z)](binary-without-mobile/index.md)**\n\n"
+            markdown += "📄 **View all packages in the [JSON chunks database](json-chunks/index.json)**\n\n"
         }
         
         markdown += """
@@ -211,7 +211,7 @@ public struct MarkdownReportGenerator {
         if binaryWithoutMobile.isEmpty {
             markdown += "\n_No packages found._\n"
         } else if binaryWithoutMobile.count > 100 {
-            markdown += "\n_... and \(binaryWithoutMobile.count - 100) more packages. [View full list](binary-without-mobile/index.md)_\n"
+            markdown += "\n_... and \(binaryWithoutMobile.count - 100) more packages. View [JSON chunks database](json-chunks/index.json) for complete list._\n"
         }
         
         // Summary statistics
