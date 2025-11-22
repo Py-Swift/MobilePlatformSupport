@@ -52,6 +52,9 @@ struct MobileWheelsChecker: AsyncParsableCommand {
     @Option(name: .shortAndLong, help: "Output directory for exported files (default: current directory)")
     var output: String?
     
+    @Flag(name: [.customLong("use-realm"), .customShort("r")], help: "Use Realm database instead of JSON chunks for storage")
+    var useRealm: Bool = false
+    
     mutating func validate() throws {
         guard limit >= 0 else {
             throw ValidationError("Limit must be non-negative (0 = all packages)")
@@ -250,37 +253,78 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             if deps {
                 print("(Dependency checking enabled)")
             }
+            if useRealm {
+                print("(Using Realm database for storage)")
+            }
             print("(Note: Only packages with binary wheels will be shown)\n")
             
-            let results = try await checker.getBinaryPackages(from: testPackages, concurrency: concurrent)
-            
-            // If dependency checking is enabled, check each package's dependencies
+            let results: [PackageInfo]
             var allPackagesWithDeps: [(PackageInfo, [PackageInfo], Bool)] = []  // (package, deps, allDepsSupported)
             
-            if deps {
-                print("\n🔍 Checking dependencies...\n")
-                for package in results {
-                    print("  Checking \(package.name)...")
-                    var visited = Set<String>()
+            if useRealm {
+                // Use Realm database for processing
+                results = try await processWithRealm(
+                    packages: testPackages,
+                    checker: checker,
+                    concurrency: concurrent,
+                    checkDeps: deps
+                )
+                
+                // If deps were checked, they're already in the database
+                // We still need to populate allPackagesWithDeps for display
+                if deps {
+                    let outputDir = output ?? FileManager.default.currentDirectoryPath
+                    let dbPath = (outputDir as NSString).appendingPathComponent("mobile-wheels.realm")
+                    let db = try PackageDatabase(path: dbPath)
                     
-                    do {
-                        let depResults = try await checker.checkWithDependencies(
-                            packageName: package.name,
-                            depth: 1,
-                            visited: &visited
-                        )
-                        
-                        let dependencies = depResults.filter { $0.key != package.name }.map { $0.value }
-                        let allDepsSupported = dependencies.allSatisfy { dep in
-                            (dep.android == .success || dep.android == .purePython) &&
-                            (dep.ios == .success || dep.ios == .purePython)
+                    for package in results {
+                        if let dbPackage = db.getPackage(name: package.name) {
+                            // dependencies is now List<PackageResult>, not List<String>
+                            var dependencies: [PackageInfo] = []
+                            
+                            for depPackage in dbPackage.dependencies {
+                                let depInfo = PackageInfo(
+                                    name: depPackage.name,
+                                    android: Self.stringToPlatformSupport(depPackage.androidSupport),
+                                    ios: Self.stringToPlatformSupport(depPackage.iosSupport)
+                                )
+                                dependencies.append(depInfo)
+                            }
+                            
+                            allPackagesWithDeps.append((package, dependencies, dbPackage.allDepsSupported))
                         }
+                    }
+                }
+            } else {
+                // Use traditional in-memory processing
+                results = try await checker.getBinaryPackages(from: testPackages, concurrency: concurrent)
+                
+                // If dependency checking is enabled, check each package's dependencies
+                if deps {
+                    print("\n🔍 Checking dependencies...\n")
+                    for package in results {
+                        print("  Checking \(package.name)...")
+                        var visited = Set<String>()
                         
-                        allPackagesWithDeps.append((package, dependencies, allDepsSupported))
-                    } catch {
-                        // If dependency check fails, add package with empty dependencies
-                        print("    ⚠️  Failed to check dependencies: \(error.localizedDescription)")
-                        allPackagesWithDeps.append((package, [], false))
+                        do {
+                            let depResults = try await checker.checkWithDependencies(
+                                packageName: package.name,
+                                depth: 1,
+                                visited: &visited
+                            )
+                            
+                            let dependencies = depResults.filter { $0.key != package.name }.map { $0.value }
+                            let allDepsSupported = dependencies.allSatisfy { dep in
+                                (dep.android == .success || dep.android == .purePython) &&
+                                (dep.ios == .success || dep.ios == .purePython)
+                            }
+                            
+                            allPackagesWithDeps.append((package, dependencies, allDepsSupported))
+                        } catch {
+                            // If dependency check fails, add package with empty dependencies
+                            print("    ⚠️  Failed to check dependencies: \(error.localizedDescription)")
+                            allPackagesWithDeps.append((package, [], false))
+                        }
                     }
                 }
             }
@@ -568,6 +612,15 @@ struct MobileWheelsChecker: AsyncParsableCommand {
             return "🐍 Pure Python"
         case .warning:
             return "⚠️  Not available"
+        }
+    }
+    
+    static func stringToPlatformSupport(_ string: String) -> PlatformSupport? {
+        switch string {
+        case "supported": return .success
+        case "pure_python": return .purePython
+        case "not_available": return .warning
+        default: return nil
         }
     }
     

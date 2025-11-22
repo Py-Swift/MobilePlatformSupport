@@ -1,12 +1,12 @@
 # Excluded Packages - Not Compatible with Mobile Platforms
 
-**Generated:** 2025-11-22 21:49:34  
-**Total Excluded:** 14
+**Generated:** 2025-11-23 00:05:11  
+**Total Excluded:** 19
 
 This document lists packages that were automatically filtered out during mobile platform support checking. These packages are **not compatible with mobile platforms** (iOS/Android) and should never be used in mobile applications.
 
 ---
-## 🎮 GPU/CUDA Packages (13)
+## 🎮 GPU/CUDA Packages (15)
 
 These packages require GPU hardware and CUDA drivers which are not available on mobile platforms.
 
@@ -18,13 +18,32 @@ These packages require GPU hardware and CUDA drivers which are not available on 
 | `nvidia-cuda-runtime-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-cudnn-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-cufft-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
+| `nvidia-cufile-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-curand-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-cusolver-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-cusparse-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
+| `nvidia-cusparselt-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nccl-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nvjitlink-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `nvidia-nvtx-cu12` | Requires GPU/CUDA (not available on iOS/Android) |
 | `triton` | Requires GPU/CUDA (not available on iOS/Android) |
+
+## 🪟 Windows-Only Packages (2)
+
+These packages are specific to Windows operating system and cannot run on mobile platforms.
+
+| Package | Reason |
+|---------|--------|
+| `pywin32` | Windows-specific APIs (not available on iOS/Android) |
+| `pywin32-ctypes` | Windows-specific APIs (not available on iOS/Android) |
+
+## ⚠️ Deprecated Packages (1)
+
+These packages are deprecated and should not be used in any new projects.
+
+| Package | Reason |
+|---------|--------|
+| `bs4` | Deprecated by Python community |
 
 ## 🚫 Other Non-Mobile Packages (1)
 
@@ -40,11 +59,11 @@ These packages have architecture or system requirements incompatible with mobile
 
 | Category | Count | Percentage |
 |----------|-------|------------|
-| GPU/CUDA Packages | 13 | 92.9% |
-| Windows-Only Packages | 0 | 0.0% |
-| Deprecated Packages | 0 | 0.0% |
-| Other Non-Mobile | 1 | 7.1% |
-| **Total** | **14** | **100%** |
+| GPU/CUDA Packages | 15 | 78.9% |
+| Windows-Only Packages | 2 | 10.5% |
+| Deprecated Packages | 1 | 5.3% |
+| Other Non-Mobile | 1 | 5.3% |
+| **Total** | **19** | **100%** |
 
 ---
 

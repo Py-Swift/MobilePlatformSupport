@@ -25,6 +25,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.0"),
+        .package(url: "https://github.com/realm/realm-swift", exact: "10.54.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -48,6 +49,7 @@ let package = Package(
                 "MobilePlatformSupport",
                 "MarkdownReportGenerator",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .product(name: "RealmSwift", package: "realm-swift"),
             ],
             swiftSettings: [
                 .swiftLanguageMode(.v5)
