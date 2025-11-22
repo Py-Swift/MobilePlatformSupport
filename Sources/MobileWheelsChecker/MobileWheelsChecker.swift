@@ -262,19 +262,26 @@ struct MobileWheelsChecker: AsyncParsableCommand {
                 for package in results {
                     print("  Checking \(package.name)...")
                     var visited = Set<String>()
-                    let depResults = try await checker.checkWithDependencies(
-                        packageName: package.name,
-                        depth: 1,
-                        visited: &visited
-                    )
                     
-                    let dependencies = depResults.filter { $0.key != package.name }.map { $0.value }
-                    let allDepsSupported = dependencies.allSatisfy { dep in
-                        (dep.android == .success || dep.android == .purePython) &&
-                        (dep.ios == .success || dep.ios == .purePython)
+                    do {
+                        let depResults = try await checker.checkWithDependencies(
+                            packageName: package.name,
+                            depth: 1,
+                            visited: &visited
+                        )
+                        
+                        let dependencies = depResults.filter { $0.key != package.name }.map { $0.value }
+                        let allDepsSupported = dependencies.allSatisfy { dep in
+                            (dep.android == .success || dep.android == .purePython) &&
+                            (dep.ios == .success || dep.ios == .purePython)
+                        }
+                        
+                        allPackagesWithDeps.append((package, dependencies, allDepsSupported))
+                    } catch {
+                        // If dependency check fails, add package with empty dependencies
+                        print("    ⚠️  Failed to check dependencies: \(error.localizedDescription)")
+                        allPackagesWithDeps.append((package, [], false))
                     }
-                    
-                    allPackagesWithDeps.append((package, dependencies, allDepsSupported))
                 }
             }
             
@@ -478,6 +485,33 @@ struct MobileWheelsChecker: AsyncParsableCommand {
                 print("- All dependencies supported: \(allDepsOK)/\(totalChecked)")
                 if allDepsOK < totalChecked {
                     print("- ⚠️  Some packages have unsupported dependencies")
+                }
+                
+                // Show first 100 packages with unsupported dependencies
+                let packagesWithFailedDeps = allPackagesWithDeps.filter { !$0.2 }
+                if !packagesWithFailedDeps.isEmpty {
+                    print("\n⚠️  Packages with Unsupported Dependencies (first 100):")
+                    print(String(repeating: "=", count: 71))
+                    print("\("Package".padding(toLength: 30, withPad: " ", startingAt: 0)) \("Unsupported Deps".padding(toLength: 40, withPad: " ", startingAt: 0))")
+                    print(String(repeating: "-", count: 71))
+                    
+                    for (index, (package, dependencies, _)) in packagesWithFailedDeps.enumerated() {
+                        if index >= 100 {
+                            let remaining = packagesWithFailedDeps.count - 100
+                            print("... +\(remaining) more")
+                            break
+                        }
+                        
+                        // Find unsupported dependencies
+                        let unsupportedDeps = dependencies.filter { dep in
+                            !(dep.android == .success || dep.android == .purePython) ||
+                            !(dep.ios == .success || dep.ios == .purePython)
+                        }.map { $0.name }
+                        
+                        let depsString = unsupportedDeps.isEmpty ? "unknown" : unsupportedDeps.prefix(3).joined(separator: ", ")
+                        let truncated = unsupportedDeps.count > 3 ? "... +\(unsupportedDeps.count - 3)" : ""
+                        print("\(package.name.padding(toLength: 30, withPad: " ", startingAt: 0)) \((depsString + truncated).padding(toLength: 40, withPad: " ", startingAt: 0))")
+                    }
                 }
             }
             

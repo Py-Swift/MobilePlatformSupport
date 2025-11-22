@@ -628,9 +628,13 @@ public class MobilePlatformSupport {
             }
         }
         
-        // If no platforms found at all, throw error
+        // If no platforms found at all, it might be a pure source package
+        // Treat it as unknown/pure Python
         if availablePlatforms.isEmpty {
-            throw MobilePlatformError.invalidResponse
+            var package = PackageInfo(name: packageName, source: .pypi)
+            package.android = .purePython
+            package.ios = .purePython
+            return package
         }
         
         // Determine if this is a pure Python package (only "any" platform)
@@ -714,7 +718,8 @@ public class MobilePlatformSupport {
                         if let package = package {
                             results[idx] = package
                         }
-                        print("\r\u{001B}[K[\(results.count)/\(limit)] [\(processedCount)/\(packagesToCheck.count)] processing...", terminator: "")
+                        let percentage = Int((Double(processedCount) / Double(packagesToCheck.count)) * 100)
+                        print("\r\u{001B}[K[\(results.count)/\(limit)] [\(percentage)%] processing...", terminator: "")
                         fflush(stdout)
                     }
                 }
@@ -736,7 +741,8 @@ public class MobilePlatformSupport {
                 if let package = package {
                     results[idx] = package
                 }
-                print("\r\u{001B}[K[\(results.count)/\(limit)] [\(processedCount)/\(packagesToCheck.count)] processing...", terminator: "")
+                let percentage = Int((Double(processedCount) / Double(packagesToCheck.count)) * 100)
+                print("\r\u{001B}[K[\(results.count)/\(limit)] [\(percentage)% done] processing...", terminator: "")
                 fflush(stdout)
             }
             
@@ -823,32 +829,41 @@ public class MobilePlatformSupport {
     }
     
     /// Get dependencies for a package
+    /// Note: Relies on the `requires_dist` field in PyPI package metadata.
+    /// Some packages (e.g., kivymd) may have incomplete metadata on PyPI,
+    /// resulting in missing dependencies in the output.
     public func getDependencies(for packageName: String) async throws -> [String] {
-        let data = try await fetchPackageData(for: packageName)
-        
-        guard let requiresDist = data.info?.requires_dist else {
+        do {
+            let data = try await fetchPackageData(for: packageName)
+            
+            guard let requiresDist = data.info?.requires_dist else {
+                return []
+            }
+            
+            var dependencies: Set<String> = []
+            
+            for requirement in requiresDist {
+                // Skip optional dependencies (those with "extra ==")
+                if requirement.contains("extra ==") {
+                    continue
+                }
+                
+                let packageName = parsePackageName(from: requirement)
+                
+                // Skip empty names and known excluded packages
+                if !packageName.isEmpty && 
+                   !Self.deprecatedPackages.contains(packageName) &&
+                   !Self.nonMobilePackages.contains(packageName) {
+                    dependencies.insert(packageName)
+                }
+            }
+            
+            return Array(dependencies).sorted()
+        } catch {
+            // If we can't fetch package data, return empty dependencies
+            // This allows the tool to continue instead of crashing
             return []
         }
-        
-        var dependencies: Set<String> = []
-        
-        for requirement in requiresDist {
-            // Skip optional dependencies (those with "extra ==")
-            if requirement.contains("extra ==") {
-                continue
-            }
-            
-            let packageName = parsePackageName(from: requirement)
-            
-            // Skip empty names and known excluded packages
-            if !packageName.isEmpty && 
-               !Self.deprecatedPackages.contains(packageName) &&
-               !Self.nonMobilePackages.contains(packageName) {
-                dependencies.insert(packageName)
-            }
-        }
-        
-        return Array(dependencies).sorted()
     }
     
     /// Check if a package and all its dependencies support mobile platforms
@@ -875,16 +890,18 @@ public class MobilePlatformSupport {
         if let packageInfo = try await annotatePackage(packageName) {
             results[packageName] = packageInfo
             
-            // Get and check dependencies
-            let dependencies = try await getDependencies(for: packageName)
-            
-            for dependency in dependencies {
-                let depResults = try await checkWithDependencies(
-                    packageName: dependency,
-                    depth: depth - 1,
-                    visited: &visited
-                )
-                results.merge(depResults) { current, _ in current }
+            // Get and check dependencies only if depth > 1
+            if depth > 1 {
+                let dependencies = try await getDependencies(for: packageName)
+                
+                for dependency in dependencies {
+                    let depResults = try await checkWithDependencies(
+                        packageName: dependency,
+                        depth: depth - 1,
+                        visited: &visited
+                    )
+                    results.merge(depResults) { current, _ in current }
+                }
             }
         }
         

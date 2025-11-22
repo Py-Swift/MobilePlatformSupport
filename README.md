@@ -185,6 +185,17 @@ This Swift package mirrors the functionality of the Python `utils.py` from [beew
 - Follows the [wheel filename convention](https://packaging.python.org/en/latest/specifications/binary-distribution-format/#file-name-convention)
 - Filters out pure Python wheels (platform tag = "any")
 
+### Dependency Detection Limitations
+
+**Important**: Dependency checking relies on the `requires_dist` field in PyPI package metadata. Some packages may have incomplete metadata on PyPI, which can result in missing dependencies:
+
+- **Example**: `kivymd` lists dependencies in its README (Kivy, Pillow, MaterialColor) but has `requires_dist: null` in PyPI metadata
+- **Impact**: Tools that read PyPI metadata will show no dependencies for such packages
+- **Scope**: This is a packaging issue with individual packages, not a limitation of this tool
+- **Workaround**: Package maintainers should properly declare dependencies in `setup.py` or `pyproject.toml`
+
+When a package shows fewer dependencies than expected, verify the package's PyPI metadata at `https://pypi.org/pypi/<package>/json`.
+
 ## Related Resources
 
 - [beeware/mobile-wheels](https://github.com/beeware/mobile-wheels) - Original Python implementation
