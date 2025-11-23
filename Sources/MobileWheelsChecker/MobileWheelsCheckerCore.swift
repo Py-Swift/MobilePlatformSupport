@@ -14,25 +14,28 @@ struct MobileWheelsCheckerCore {
     }
     
     /// Downloads top packages from hugovk's top packages list
-    static func downloadTopPackages(limit: Int = 100) async throws -> ([String], [(String, String)]) {
+    /// Returns (packages with download counts, excluded packages with reasons)
+    static func downloadTopPackages(limit: Int = 100) async throws -> ([(String, Int)], [(String, String)]) {
         let url = URL(string: "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json")!
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(TopPyPIResponse.self, from: data)
         
-        let packages = limit == 0 ? response.rows.map { $0.project } : response.rows.prefix(limit).map { $0.project }
+        let rows = limit == 0 ? response.rows : Array(response.rows.prefix(limit))
         
         // Categorize excluded packages with reasons
         var excludedPackages: [(String, String)] = []
-        for package in packages {
-            if let reason = getExclusionReason(package) {
-                excludedPackages.append((package, reason))
+        var packagesWithCounts: [(String, Int)] = []
+        
+        for row in rows {
+            if let reason = getExclusionReason(row.project) {
+                excludedPackages.append((row.project, reason))
+            } else {
+                // Include package with its download count (default to 0 if missing)
+                packagesWithCounts.append((row.project, row.download_count ?? 0))
             }
         }
         
-        // Filter out GPU/CUDA and non-mobile packages
-        let filteredPackages = MobilePlatformSupport.filterMobileCompatiblePackages(Array(packages))
-        
-        return (filteredPackages, excludedPackages)
+        return (packagesWithCounts, excludedPackages)
     }
     
     /// Downloads all packages from PyPI Simple Index

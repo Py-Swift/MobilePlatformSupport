@@ -54,10 +54,25 @@ enum PackageCategoryType: Int, PersistableEnum {
     }
 }
 
+/// Dependency status as integer enum
+enum DependencyStatus: Int, PersistableEnum {
+    case noIssues = 0           // All dependencies found and supported
+    case warning = 1            // One or more dependencies not found (status unknown)
+    case error = 2              // Contains non-mobile binary, GPU lib, or other issues
+    
+    var description: String {
+        switch self {
+        case .noIssues: return "no-issues"
+        case .warning: return "warning"
+        case .error: return "error"
+        }
+    }
+}
+
 /// Realm model for storing package analysis results
 class PackageResult: Object {
     @Persisted(primaryKey: true) var name: String = ""
-    @Persisted var downloadRank: Int = 0
+    @Persisted var numberOfDownloads: Int = 0  // Actual download count from PyPI stats
     @Persisted var androidSupport: PlatformSupportCategory = .unknown
     @Persisted var iosSupport: PlatformSupportCategory = .unknown
     @Persisted var androidVersion: String? = nil
@@ -73,13 +88,13 @@ class PackageResult: Object {
     // Inverse relationship: Packages that depend on this package (many-to-one from their perspective)
     @Persisted(originProperty: "dependencies") var dependents: LinkingObjects<PackageResult>
     
-    @Persisted var allDepsSupported: Bool = true
+    @Persisted var dependencyStatus: DependencyStatus = .noIssues
     @Persisted var lastUpdated: Date = Date()
     
-    convenience init(name: String, downloadRank: Int) {
+    convenience init(name: String, numberOfDownloads: Int) {
         self.init()
         self.name = name
-        self.downloadRank = downloadRank
+        self.numberOfDownloads = numberOfDownloads
         self.lastUpdated = Date()
     }
 }
@@ -99,7 +114,7 @@ class PackageDatabase {
                 .appendingPathComponent("mobile-wheels.realm")
         }
         
-        config.schemaVersion = 4
+        config.schemaVersion = 6
         
         // Migration block for schema changes
         config.migrationBlock = { migration, oldSchemaVersion in
@@ -177,6 +192,29 @@ class PackageDatabase {
                     }
                 }
             }
+            if oldSchemaVersion < 5 {
+                // Renamed downloadRank to numberOfDownloads
+                // Keep the value as-is during migration (will be updated with actual download counts)
+                migration.enumerateObjects(ofType: PackageResult.className()) { oldObject, newObject in
+                    if let oldObj = oldObject, let newObj = newObject {
+                        if let oldRank = oldObj["downloadRank"] as? Int {
+                            newObj["numberOfDownloads"] = oldRank
+                        }
+                    }
+                }
+            }
+            if oldSchemaVersion < 6 {
+                // Changed allDepsSupported (Bool) to dependencyStatus (IntEnum)
+                migration.enumerateObjects(ofType: PackageResult.className()) { oldObject, newObject in
+                    if let oldObj = oldObject, let newObj = newObject {
+                        if let allSupported = oldObj["allDepsSupported"] as? Bool {
+                            // Convert bool to enum: true -> noIssues (0), false -> warning (1)
+                            let status: DependencyStatus = allSupported ? .noIssues : .warning
+                            newObj["dependencyStatus"] = status.rawValue
+                        }
+                    }
+                }
+            }
         }
         
         self.realm = try Realm(configuration: config)
@@ -184,27 +222,27 @@ class PackageDatabase {
     }
     
     /// Add or update a package in the database
-    func upsertPackage(name: String, downloadRank: Int) throws {
+    func upsertPackage(name: String, numberOfDownloads: Int) throws {
         try realm.write {
             if let existing = realm.object(ofType: PackageResult.self, forPrimaryKey: name) {
-                existing.downloadRank = downloadRank
+                existing.numberOfDownloads = numberOfDownloads
                 existing.lastUpdated = Date()
             } else {
-                let package = PackageResult(name: name, downloadRank: downloadRank)
+                let package = PackageResult(name: name, numberOfDownloads: numberOfDownloads)
                 realm.add(package)
             }
         }
     }
     
     /// Batch insert/update packages (much faster for large datasets)
-    func upsertPackagesBatch(packages: [(name: String, downloadRank: Int)]) throws {
+    func upsertPackagesBatch(packages: [(name: String, numberOfDownloads: Int)]) throws {
         try realm.write {
-            for (name, rank) in packages {
+            for (name, downloads) in packages {
                 if let existing = realm.object(ofType: PackageResult.self, forPrimaryKey: name) {
-                    existing.downloadRank = rank
+                    existing.numberOfDownloads = downloads
                     existing.lastUpdated = Date()
                 } else {
-                    let package = PackageResult(name: name, downloadRank: rank)
+                    let package = PackageResult(name: name, numberOfDownloads: downloads)
                     realm.add(package)
                 }
             }
@@ -265,7 +303,7 @@ class PackageDatabase {
     }
     
     /// Update package dependencies
-    func updatePackageDependencies(name: String, dependencyNames: [String], allSupported: Bool) throws {
+    func updatePackageDependencies(name: String, dependencyNames: [String], status: DependencyStatus) throws {
         try realm.write {
             guard let package = realm.object(ofType: PackageResult.self, forPrimaryKey: name) else {
                 return
@@ -280,27 +318,27 @@ class PackageDatabase {
                     package.dependencies.append(depPackage)
                 } else {
                     // Create a placeholder for missing dependencies
-                    let placeholder = PackageResult(name: depName, downloadRank: 999999)
+                    let placeholder = PackageResult(name: depName, numberOfDownloads: 0)
                     realm.add(placeholder, update: .modified)
                     package.dependencies.append(placeholder)
                 }
             }
             
-            package.allDepsSupported = allSupported
+            package.dependencyStatus = status
             package.lastUpdated = Date()
         }
     }
     
-    /// Get all packages sorted by download rank
+    /// Get all packages sorted by download count (descending)
     func getPackagesSortedByRank() -> Results<PackageResult> {
-        return realm.objects(PackageResult.self).sorted(byKeyPath: "downloadRank")
+        return realm.objects(PackageResult.self).sorted(byKeyPath: "numberOfDownloads", ascending: false)
     }
     
-    /// Get unprocessed packages sorted by download rank
+    /// Get unprocessed packages sorted by download count (descending)
     func getUnprocessedPackages(limit: Int? = nil) -> [PackageResult] {
         let results = realm.objects(PackageResult.self)
             .filter("isProcessed == false")
-            .sorted(byKeyPath: "downloadRank")
+            .sorted(byKeyPath: "numberOfDownloads", ascending: false)
         
         if let limit = limit {
             return Array(results.prefix(limit))
@@ -318,7 +356,7 @@ class PackageDatabase {
     func getPackagesByCategory(_ category: String) -> Results<PackageResult> {
         return realm.objects(PackageResult.self)
             .filter("category == %@", category)
-            .sorted(byKeyPath: "downloadRank")
+            .sorted(byKeyPath: "numberOfDownloads", ascending: false)
     }
     
     /// Get total package count
@@ -333,7 +371,7 @@ class PackageDatabase {
     
     /// Export to JSON dictionary
     func exportToJSON() -> [String: Any] {
-        let packages = realm.objects(PackageResult.self).sorted(byKeyPath: "downloadRank")
+        let packages = realm.objects(PackageResult.self).sorted(byKeyPath: "numberOfDownloads", ascending: false)
         
         var packagesDict: [String: [String: Any]] = [:]
         var packagesList: [[String: Any]] = []
@@ -352,6 +390,7 @@ class PackageDatabase {
         for package in packages {
             var pkgDict: [String: Any] = [
                 "name": package.name,
+                "downloads": package.numberOfDownloads,
                 "android": package.androidSupport.description,
                 "ios": package.iosSupport.description,
                 "source": package.source.description,
@@ -367,10 +406,16 @@ class PackageDatabase {
             if let latestVersion = package.latestVersion {
                 pkgDict["version"] = latestVersion
             }
+            
+            // Add dependency information (even if dependencies list is empty)
             if !package.dependencies.isEmpty {
                 // Convert PackageResult relationships to array of names
                 pkgDict["dependencies"] = package.dependencies.map { $0.name }
-                pkgDict["allDepsSupported"] = package.allDepsSupported
+            }
+            
+            // Always include dependency status for processed packages
+            if package.isProcessed {
+                pkgDict["dependencyStatus"] = package.dependencyStatus.description
             }
             
             packagesDict[package.name] = pkgDict

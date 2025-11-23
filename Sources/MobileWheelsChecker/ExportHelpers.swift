@@ -26,7 +26,7 @@ struct ExportHelpers {
             for package in chunk {
                 var packageDict: [String: Any] = [
                     "name": package.name,
-                    "rank": package.downloadRank,
+                    "downloads": package.numberOfDownloads,
                     "android": package.androidSupport.description,
                     "ios": package.iosSupport.description,
                     "source": package.source.description,
@@ -47,7 +47,7 @@ struct ExportHelpers {
                 let dependencyNames = package.dependencies.map { $0.name }
                 if !dependencyNames.isEmpty {
                     packageDict["dependencies"] = dependencyNames
-                    packageDict["allDepsSupported"] = package.allDepsSupported
+                    packageDict["dependencyStatus"] = package.dependencyStatus.description
                 }
                 
                 jsonChunk.append(packageDict)
