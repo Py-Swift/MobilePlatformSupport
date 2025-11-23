@@ -23,14 +23,18 @@ public struct PackageInfo: Codable {
     public var ios: PlatformSupport?
     public var source: PackageIndex?
     public var androidVersion: String?
-    public var iosVersion: String?    
-    public init(name: String, android: PlatformSupport? = nil, ios: PlatformSupport? = nil, source: PackageIndex? = nil, androidVersion: String? = nil, iosVersion: String? = nil) {
+    public var iosVersion: String?
+    public var version: String?
+    
+    public init(name: String, android: PlatformSupport? = nil, ios: PlatformSupport? = nil, source: PackageIndex? = nil, androidVersion: String? = nil, iosVersion: String? = nil, version: String? = nil) {
         self.name = name
         self.android = android
         self.ios = ios
         self.source = source
         self.androidVersion = androidVersion
-        self.iosVersion = iosVersion    }
+        self.iosVersion = iosVersion
+        self.version = version
+    }
 }
 
 /// PyPI package metadata response
@@ -647,6 +651,17 @@ public class MobilePlatformSupport {
         let source: PackageIndex = pypiHasMobileWheels ? .pypi : (pyswiftHasMobileWheels ? .pyswift : (kivyschoolHasMobileWheels ? .kivyschool : .pypi))
         
         var package = PackageInfo(name: packageName, source: source)
+        
+        // Find the latest version across all wheels (priority: PyPI > PySwift > KivySchool)
+        var latestVersion: String? = nil
+        if !pypiVersions.isEmpty {
+            latestVersion = pypiVersions.values.map { $0.version }.max(by: { !isVersionGreater($0, $1) })
+        } else if !pyswiftVersions.isEmpty {
+            latestVersion = pyswiftVersions.values.map { $0.version }.max(by: { !isVersionGreater($0, $1) })
+        } else if !kivyschoolVersions.isEmpty {
+            latestVersion = kivyschoolVersions.values.map { $0.version }.max(by: { !isVersionGreater($0, $1) })
+        }
+        package.version = latestVersion
         
         // Determine support for each platform
         for platform in MobilePlatform.allCases {

@@ -17,12 +17,29 @@ extension MobileWheelsChecker {
         
         print("💾 Using Realm database: \(dbPath)\n")
         
-        // Step 1: Insert all packages with their download ranks
+        // Step 1: Insert all packages with their download ranks in batches
         print("📝 Initializing database with \(packages.count) packages...")
-        for (index, packageName) in packages.enumerated() {
-            try db.upsertPackage(name: packageName, downloadRank: index + 1)
+        let batchSize = 1000
+        var initializedCount = 0
+        
+        for batchStart in stride(from: 0, to: packages.count, by: batchSize) {
+            let batchEnd = min(batchStart + batchSize, packages.count)
+            let batch = packages[batchStart..<batchEnd]
+            
+            // Prepare batch data
+            let batchData = batch.enumerated().map { offset, name in
+                (name: name, downloadRank: batchStart + offset + 1)
+            }
+            
+            // Insert batch
+            try db.upsertPackagesBatch(packages: batchData)
+            
+            initializedCount += batchData.count
+            let percentage = Int((Double(initializedCount) / Double(packages.count)) * 100)
+            print("\r\u{001B}[K[\(initializedCount)/\(packages.count)] [\(percentage)%] updating database...", terminator: "")
+            fflush(stdout)
         }
-        print("✅ Database initialized\n")
+        print("\n✅ Database initialized\n")
         
         // Step 2: Get unprocessed packages sorted by rank
         let unprocessedPackages = db.getUnprocessedPackages(limit: limit == 0 ? nil : limit)
@@ -64,33 +81,43 @@ extension MobileWheelsChecker {
                 return collected
             }
             
-            // Now update database sequentially on the main thread
+            // Prepare batch updates for database
+            var dbUpdates: [(name: String, androidSupport: String, iosSupport: String, 
+                           androidVersion: String?, iosVersion: String?, latestVersion: String?, 
+                           source: String, category: String)] = []
+            
             for (_, packageInfo) in batchResults {
                 processedCount += 1
-                let percentage = Int((Double(processedCount) / Double(packagesToCheck.count)) * 100)
-                print("\r\u{001B}[K[\(processedCount)/\(packagesToCheck.count)] [\(percentage)% done] processing...", terminator: "")
-                fflush(stdout)
                 
                 if let info = packageInfo {
                     results.append(info)
                     
-                    // Update database immediately (now on same thread)
+                    // Collect update data for batch write
                     let androidSupport = Self.platformSupportToString(info.android)
                     let iosSupport = Self.platformSupportToString(info.ios)
                     let category = Self.categorizePackage(info)
                     let source = Self.sourceToString(info.source)
                     
-                    try? db.updatePackageResults(
+                    dbUpdates.append((
                         name: info.name,
                         androidSupport: androidSupport,
                         iosSupport: iosSupport,
                         androidVersion: info.androidVersion,
                         iosVersion: info.iosVersion,
+                        latestVersion: info.version,
                         source: source,
                         category: category
-                    )
+                    ))
                 }
             }
+            
+            // Batch write to database (single transaction for entire batch)
+            try? db.updatePackageResultsBatch(updates: dbUpdates)
+            
+            // Update progress
+            let percentage = Int((Double(processedCount) / Double(packagesToCheck.count)) * 100)
+            print("\r\u{001B}[K[\(processedCount)/\(packagesToCheck.count)] [\(percentage)% done] processing...", terminator: "")
+            fflush(stdout)
         }
         
         print("\n✅ Completed processing\n")
@@ -240,6 +267,9 @@ extension MobileWheelsChecker {
                     }
                     if let iosVersion = package.iosVersion {
                         pkgDict["iosVersion"] = iosVersion
+                    }
+                    if let latestVersion = package.latestVersion {
+                        pkgDict["version"] = latestVersion
                     }
                     if !package.dependencies.isEmpty {
                         // Convert PackageResult relationships to array of names

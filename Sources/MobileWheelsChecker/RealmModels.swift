@@ -9,6 +9,7 @@ class PackageResult: Object {
     @Persisted var iosSupport: String = "unknown"
     @Persisted var androidVersion: String? = nil
     @Persisted var iosVersion: String? = nil
+    @Persisted var latestVersion: String? = nil
     @Persisted var source: String = "pypi" // "pypi", "pyswift", "kivyschool"
     @Persisted var category: String = "unchecked" // "official_binary", "pyswift_binary", "kivyschool_binary", "pure_python", "binary_without_mobile", "unchecked"
     @Persisted var isProcessed: Bool = false
@@ -45,7 +46,7 @@ class PackageDatabase {
                 .appendingPathComponent("mobile-wheels.realm")
         }
         
-        config.schemaVersion = 2
+        config.schemaVersion = 3
         
         // Migration block for schema changes
         config.migrationBlock = { migration, oldSchemaVersion in
@@ -58,6 +59,10 @@ class PackageDatabase {
                         newObj["dependencies"] = List<PackageResult>()
                     }
                 }
+            }
+            if oldSchemaVersion < 3 {
+                // Added latestVersion field - will be populated on next check
+                // No migration needed, field defaults to nil
             }
         }
         
@@ -78,6 +83,21 @@ class PackageDatabase {
         }
     }
     
+    /// Batch insert/update packages (much faster for large datasets)
+    func upsertPackagesBatch(packages: [(name: String, downloadRank: Int)]) throws {
+        try realm.write {
+            for (name, rank) in packages {
+                if let existing = realm.object(ofType: PackageResult.self, forPrimaryKey: name) {
+                    existing.downloadRank = rank
+                    existing.lastUpdated = Date()
+                } else {
+                    let package = PackageResult(name: name, downloadRank: rank)
+                    realm.add(package)
+                }
+            }
+        }
+    }
+    
     /// Update package with analysis results
     func updatePackageResults(
         name: String,
@@ -85,6 +105,7 @@ class PackageDatabase {
         iosSupport: String,
         androidVersion: String?,
         iosVersion: String?,
+        latestVersion: String?,
         source: String,
         category: String
     ) throws {
@@ -97,10 +118,36 @@ class PackageDatabase {
             package.iosSupport = iosSupport
             package.androidVersion = androidVersion
             package.iosVersion = iosVersion
+            package.latestVersion = latestVersion
             package.source = source
             package.category = category
             package.isProcessed = true
             package.lastUpdated = Date()
+        }
+    }
+    
+    /// Batch update package results (much faster for large datasets)
+    func updatePackageResultsBatch(
+        updates: [(name: String, androidSupport: String, iosSupport: String, 
+                   androidVersion: String?, iosVersion: String?, latestVersion: String?, 
+                   source: String, category: String)]
+    ) throws {
+        try realm.write {
+            for update in updates {
+                guard let package = realm.object(ofType: PackageResult.self, forPrimaryKey: update.name) else {
+                    continue
+                }
+                
+                package.androidSupport = update.androidSupport
+                package.iosSupport = update.iosSupport
+                package.androidVersion = update.androidVersion
+                package.iosVersion = update.iosVersion
+                package.latestVersion = update.latestVersion
+                package.source = update.source
+                package.category = update.category
+                package.isProcessed = true
+                package.lastUpdated = Date()
+            }
         }
     }
     
@@ -203,6 +250,9 @@ class PackageDatabase {
             }
             if let iosVersion = package.iosVersion {
                 pkgDict["iosVersion"] = iosVersion
+            }
+            if let latestVersion = package.latestVersion {
+                pkgDict["version"] = latestVersion
             }
             if !package.dependencies.isEmpty {
                 // Convert PackageResult relationships to array of names
