@@ -145,9 +145,10 @@ extension Database {
         print("\n✅ Completed processing\n")
         
         // Now process dependencies that were collected during main processing
-        print("🔍 Checking dependencies (concurrent: \(concurrent))...\n")
+        print("🔍 Checking dependencies (parallel + cached)...\n")
         
         var depCheckedCount = 0
+        var dependencyCache: [String: PackageInfo] = [:] // Shared cache across all packages
         
         // Process dependencies in batches with concurrency control
         for batchStart in stride(from: 0, to: results.count, by: concurrent) {
@@ -156,51 +157,19 @@ extension Database {
             
             let batchResults = await withTaskGroup(of: (String, [String], [PackageInfo], DependencyStatus)?.self) { group in
                 for (package, depNames) in batch {
-                    group.addTask {
-                        do {
-                            // Check each dependency for mobile support
-                            var dependencies: [PackageInfo] = []
-                            for depName in depNames {
-                                // Try to annotate dependency
-                                if let result = try? await checker.annotatePackage(depName) {
-                                    dependencies.append(result.info)
-                                }
-                            }
-                            
-                            // Determine dependency status
-                            var depStatus: DependencyStatus = .noIssues
-                            var hasUnsupportedDep = false
-                            var hasMissingDep = false
-                            
-                            for dep in dependencies {
-                                guard let android = dep.android, let ios = dep.ios else {
-                                    hasMissingDep = true
-                                    continue
-                                }
-                                
-                                // Check if dependency has issues (warning or no support)
-                                if android == .warning || ios == .warning {
-                                    hasUnsupportedDep = true
-                                }
-                                
-                                // Check if both platforms not supported
-                                if !(android == .success || android == .purePython) ||
-                                   !(ios == .success || ios == .purePython) {
-                                    hasUnsupportedDep = true
-                                }
-                            }
-                            
-                            if hasUnsupportedDep {
-                                depStatus = .error
-                            } else if hasMissingDep {
-                                depStatus = .warning
-                            }
-                            
-                            return (package.name, depNames, dependencies, depStatus)
-                        } catch {
-                            print("\n  Error checking \(package.name): \(error)")
-                            return nil
-                        }
+                    group.addTask { [dependencyCache] in
+                        // Fetch dependencies in parallel with database-first lookup and caching
+                        let (dependencies, _) = await DependencyHelpers.fetchDependenciesParallel(
+                            depNames: depNames,
+                            checker: checker,
+                            db: db,
+                            cache: dependencyCache
+                        )
+                        
+                        // Determine dependency status
+                        let depStatus = DependencyHelpers.determineDependencyStatus(dependencies: dependencies)
+                        
+                        return (package.name, depNames, dependencies, depStatus)
                     }
                 }
                 

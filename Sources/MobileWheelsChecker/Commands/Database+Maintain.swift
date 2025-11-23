@@ -163,9 +163,10 @@ extension Database {
         if packagesNeedingDepUpdate.isEmpty {
             print("✨ All packages have up-to-date dependencies (within \(days) days)")
         } else {
-            print("🔍 Checking dependencies for \(packagesNeedingDepUpdate.count) packages (older than \(days) days)...\n")
+            print("🔍 Checking dependencies for \(packagesNeedingDepUpdate.count) packages (older than \(days) days, parallel + cached)...\n")
             
             var depCheckedCount = 0
+            var dependencyCache: [String: PackageInfo] = [:] // Shared cache across all packages
             
             // Process dependencies in batches with concurrency control
             for batchStart in stride(from: 0, to: packagesNeedingDepUpdate.count, by: concurrent) {
@@ -174,41 +175,17 @@ extension Database {
                 
                 let batchResults = await withTaskGroup(of: (String, [String], [PackageInfo], DependencyStatus)?.self) { group in
                     for (package, depNames) in batch {
-                        group.addTask {
-                            // Check each dependency for mobile support
-                            var dependencies: [PackageInfo] = []
-                            for depName in depNames {
-                                // Try to annotate dependency
-                                if let result = try? await checker.annotatePackage(depName) {
-                                    dependencies.append(result.info)
-                                }
-                            }
+                        group.addTask { [dependencyCache] in
+                            // Fetch dependencies in parallel with database-first lookup and caching
+                            let (dependencies, _) = await DependencyHelpers.fetchDependenciesParallel(
+                                depNames: depNames,
+                                checker: checker,
+                                db: db,
+                                cache: dependencyCache
+                            )
                             
                             // Determine dependency status
-                            var depStatus: DependencyStatus = .noIssues
-                            var hasUnsupportedDep = false
-                            var hasMissingDep = false
-                            
-                            for dep in dependencies {
-                                guard let android = dep.android, let ios = dep.ios else {
-                                    hasMissingDep = true
-                                    continue
-                                }
-                                
-                                let androidCat = RealmHelpers.platformSupportToCategory(android)
-                                let iosCat = RealmHelpers.platformSupportToCategory(ios)
-                                
-                                // Warning means no binary wheels, which could be problematic
-                                if androidCat == .warning || iosCat == .warning {
-                                    hasUnsupportedDep = true
-                                }
-                            }
-                            
-                            if hasUnsupportedDep {
-                                depStatus = .error
-                            } else if hasMissingDep {
-                                depStatus = .warning
-                            }
+                            let depStatus = DependencyHelpers.determineDependencyStatus(dependencies: dependencies)
                             
                             return (package.name, depNames, dependencies, depStatus)
                         }

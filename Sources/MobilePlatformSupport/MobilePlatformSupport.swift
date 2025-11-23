@@ -525,7 +525,7 @@ public class MobilePlatformSupport {
     
     
     
-    /// Annotate a package with platform support information
+    /// Annotate a package with platform support information and get its dependencies
     /// Extract version from wheel filename
     /// Wheel filename format: {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.whl
     private func extractVersion(from filename: String) -> String? {
@@ -541,7 +541,8 @@ public class MobilePlatformSupport {
     }
 
     /// Also checks if package is available in PySwift and KivySchool indexes and reads their wheels
-    public func annotatePackage(_ packageName: String) async throws -> PackageInfo? {
+    /// Now returns both PackageInfo and dependency names in a single call
+    public func annotatePackage(_ packageName: String) async throws -> (info: PackageInfo, dependencies: [String])? {
         // Skip deprecated and non-mobile packages
         if Self.deprecatedPackages.contains(packageName) || Self.nonMobilePackages.contains(packageName) {
             return nil
@@ -554,10 +555,34 @@ public class MobilePlatformSupport {
         var pypiVersions: [String: (version: String, pyVer: Int)] = [:]  // platform -> (version, python_version)
         var pyswiftVersions: [String: (version: String, pyVer: Int)] = [:]
         var kivyschoolVersions: [String: (version: String, pyVer: Int)] = [:]
+        var dependencyNames: [String] = []
         
         // Check PyPI first (official source takes priority)
+        var pypiError: Error? = nil
         do {
             let data = try await fetchPackageData(for: packageName)
+            
+            // Extract dependencies from the same API response
+            if let requiresDist = data.info?.requires_dist {
+                var deps: Set<String> = []
+                for requirement in requiresDist {
+                    // Skip optional dependencies (those with "extra ==")
+                    if requirement.contains("extra ==") {
+                        continue
+                    }
+                    
+                    let depName = parsePackageName(from: requirement)
+                    
+                    // Skip empty names and known excluded packages
+                    if !depName.isEmpty && 
+                       !Self.deprecatedPackages.contains(depName) &&
+                       !Self.nonMobilePackages.contains(depName) {
+                        deps.insert(depName)
+                    }
+                }
+                dependencyNames = Array(deps).sorted()
+            }
+            
             for download in data.urls where download.packagetype == "bdist_wheel" {
                 let platformTag = extractPlatformTag(from: download.filename)
                 pypiPlatforms.insert(platformTag)
@@ -578,6 +603,7 @@ public class MobilePlatformSupport {
             }
         } catch {
             // PyPI error, will check PySwift and KivySchool as fallback
+            pypiError = error
         }
         
         // Check if package is in PySwift
@@ -638,7 +664,7 @@ public class MobilePlatformSupport {
             var package = PackageInfo(name: packageName, source: .pypi)
             package.android = .purePython
             package.ios = .purePython
-            return package
+            return (package, dependencyNames)
         }
         
         // Determine if this is a pure Python package (only "any" platform)
@@ -706,7 +732,7 @@ public class MobilePlatformSupport {
             }
         }
         
-        return package
+        return (package, dependencyNames)
     }
     
     /// Get all binary packages from a list of package names
@@ -742,8 +768,8 @@ public class MobilePlatformSupport {
                 // Add new task
                 group.addTask {
                     do {
-                        let package = try await self.annotatePackage(packageName)
-                        return (index, package)
+                        let result = try await self.annotatePackage(packageName)
+                        return (index, result?.info)
                     } catch {
                         return (index, nil)
                     }
@@ -788,8 +814,8 @@ public class MobilePlatformSupport {
             fflush(stdout)
             
             do {
-                if let annotated = try await annotatePackage(packageName) {
-                    results.append(annotated)
+                if let result = try await annotatePackage(packageName) {
+                    results.append(result.info)
                 }
             } catch {
                 print("\r\u{001B}[K ! Skipping \(packageName): \(error.localizedDescription)")
@@ -902,12 +928,13 @@ public class MobilePlatformSupport {
         var results: [String: PackageInfo] = [:]
         
         // Check the package itself
-        if let packageInfo = try await annotatePackage(packageName) {
-            results[packageName] = packageInfo
+        if let result = try await annotatePackage(packageName) {
+            results[packageName] = result.info
             
             // Get and check dependencies only if depth > 1
+            // (though dependencies are now already available in result.dependencies)
             if depth > 1 {
-                let dependencies = try await getDependencies(for: packageName)
+                let dependencies = result.dependencies
                 
                 for dependency in dependencies {
                     let depResults = try await checkWithDependencies(
