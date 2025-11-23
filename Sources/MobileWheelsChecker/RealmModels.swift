@@ -1,17 +1,70 @@
 import Foundation
 import RealmSwift
 
+/// Platform support status as integer enum for efficient storage
+enum PlatformSupportCategory: Int, PersistableEnum {
+    case unknown = 0
+    case success = 1           // Has binary wheels for the platform
+    case purePython = 2        // Pure Python package (works on all platforms)
+    case warning = 3           // No binary wheels available
+    
+    var description: String {
+        switch self {
+        case .unknown: return "unknown"
+        case .success: return "success"
+        case .purePython: return "pure-python"
+        case .warning: return "warning"
+        }
+    }
+}
+
+/// Package source index as integer enum
+enum PackageSourceIndex: Int, PersistableEnum {
+    case pypi = 0
+    case pyswift = 1
+    case kivyschool = 2
+    
+    var description: String {
+        switch self {
+        case .pypi: return "pypi"
+        case .pyswift: return "pyswift"
+        case .kivyschool: return "kivy-school"
+        }
+    }
+}
+
+/// Overall package category as integer enum
+enum PackageCategoryType: Int, PersistableEnum {
+    case unprocessed = 0
+    case bothPlatforms = 1
+    case androidOnly = 2
+    case iosOnly = 3
+    case purePython = 4
+    case noMobileSupport = 5
+    
+    var description: String {
+        switch self {
+        case .unprocessed: return "unprocessed"
+        case .bothPlatforms: return "both-platforms"
+        case .androidOnly: return "android-only"
+        case .iosOnly: return "ios-only"
+        case .purePython: return "pure-python"
+        case .noMobileSupport: return "no-mobile-support"
+        }
+    }
+}
+
 /// Realm model for storing package analysis results
 class PackageResult: Object {
     @Persisted(primaryKey: true) var name: String = ""
     @Persisted var downloadRank: Int = 0
-    @Persisted var androidSupport: String = "unknown" // "supported", "not_available", "pure_python", "unknown"
-    @Persisted var iosSupport: String = "unknown"
+    @Persisted var androidSupport: PlatformSupportCategory = .unknown
+    @Persisted var iosSupport: PlatformSupportCategory = .unknown
     @Persisted var androidVersion: String? = nil
     @Persisted var iosVersion: String? = nil
     @Persisted var latestVersion: String? = nil
-    @Persisted var source: String = "pypi" // "pypi", "pyswift", "kivyschool"
-    @Persisted var category: String = "unchecked" // "official_binary", "pyswift_binary", "kivyschool_binary", "pure_python", "binary_without_mobile", "unchecked"
+    @Persisted var source: PackageSourceIndex = .pypi
+    @Persisted var category: PackageCategoryType = .unprocessed
     @Persisted var isProcessed: Bool = false
     
     // One-to-many: This package depends on these packages
@@ -46,7 +99,7 @@ class PackageDatabase {
                 .appendingPathComponent("mobile-wheels.realm")
         }
         
-        config.schemaVersion = 3
+        config.schemaVersion = 4
         
         // Migration block for schema changes
         config.migrationBlock = { migration, oldSchemaVersion in
@@ -63,6 +116,66 @@ class PackageDatabase {
             if oldSchemaVersion < 3 {
                 // Added latestVersion field - will be populated on next check
                 // No migration needed, field defaults to nil
+            }
+            if oldSchemaVersion < 4 {
+                // Migrated from String to IntEnum for androidSupport, iosSupport, source, category
+                // Convert string values to enum integers
+                migration.enumerateObjects(ofType: PackageResult.className()) { oldObject, newObject in
+                    guard let oldObj = oldObject, let newObj = newObject else { return }
+                    
+                    // Migrate androidSupport
+                    if let oldAndroid = oldObj["androidSupport"] as? String {
+                        let enumValue: PlatformSupportCategory = {
+                            switch oldAndroid {
+                            case "success": return .success
+                            case "pure-python": return .purePython
+                            case "warning": return .warning
+                            default: return .unknown
+                            }
+                        }()
+                        newObj["androidSupport"] = enumValue.rawValue
+                    }
+                    
+                    // Migrate iosSupport
+                    if let oldIos = oldObj["iosSupport"] as? String {
+                        let enumValue: PlatformSupportCategory = {
+                            switch oldIos {
+                            case "success": return .success
+                            case "pure-python": return .purePython
+                            case "warning": return .warning
+                            default: return .unknown
+                            }
+                        }()
+                        newObj["iosSupport"] = enumValue.rawValue
+                    }
+                    
+                    // Migrate source
+                    if let oldSource = oldObj["source"] as? String {
+                        let enumValue: PackageSourceIndex = {
+                            switch oldSource {
+                            case "pyswift": return .pyswift
+                            case "kivy-school", "kivyschool": return .kivyschool
+                            default: return .pypi
+                            }
+                        }()
+                        newObj["source"] = enumValue.rawValue
+                    }
+                    
+                    // Migrate category
+                    if let oldCategory = oldObj["category"] as? String {
+                        let enumValue: PackageCategoryType = {
+                            switch oldCategory {
+                            case "both-platforms": return .bothPlatforms
+                            case "android-only": return .androidOnly
+                            case "ios-only": return .iosOnly
+                            case "pure-python": return .purePython
+                            case "no-mobile-support": return .noMobileSupport
+                            default: return .unprocessed
+                            }
+                        }()
+                        newObj["category"] = enumValue.rawValue
+                    }
+                }
             }
         }
         
@@ -101,13 +214,13 @@ class PackageDatabase {
     /// Update package with analysis results
     func updatePackageResults(
         name: String,
-        androidSupport: String,
-        iosSupport: String,
+        androidSupport: PlatformSupportCategory,
+        iosSupport: PlatformSupportCategory,
         androidVersion: String?,
         iosVersion: String?,
         latestVersion: String?,
-        source: String,
-        category: String
+        source: PackageSourceIndex,
+        category: PackageCategoryType
     ) throws {
         try realm.write {
             guard let package = realm.object(ofType: PackageResult.self, forPrimaryKey: name) else {
@@ -128,9 +241,9 @@ class PackageDatabase {
     
     /// Batch update package results (much faster for large datasets)
     func updatePackageResultsBatch(
-        updates: [(name: String, androidSupport: String, iosSupport: String, 
+        updates: [(name: String, androidSupport: PlatformSupportCategory, iosSupport: PlatformSupportCategory, 
                    androidVersion: String?, iosVersion: String?, latestVersion: String?, 
-                   source: String, category: String)]
+                   source: PackageSourceIndex, category: PackageCategoryType)]
     ) throws {
         try realm.write {
             for update in updates {
@@ -239,10 +352,10 @@ class PackageDatabase {
         for package in packages {
             var pkgDict: [String: Any] = [
                 "name": package.name,
-                "android": package.androidSupport,
-                "ios": package.iosSupport,
-                "source": package.source,
-                "category": package.category
+                "android": package.androidSupport.description,
+                "ios": package.iosSupport.description,
+                "source": package.source.description,
+                "category": package.category.description
             ]
             
             if let androidVersion = package.androidVersion {
@@ -263,23 +376,20 @@ class PackageDatabase {
             packagesDict[package.name] = pkgDict
             packagesList.append(pkgDict)
             
-            // Update summary
+            // Update summary based on category
             switch package.category {
-            case "official_binary": summary["officialBinaryWheels"]! += 1
-            case "pyswift_binary": summary["pyswiftBinaryWheels"]! += 1
-            case "kivyschool_binary": summary["kivyschoolBinaryWheels"]! += 1
-            case "pure_python": summary["purePython"]! += 1
-            case "binary_without_mobile": summary["binaryWithoutMobile"]! += 1
+            case .purePython: summary["purePython"]! += 1
             default: break
             }
             
-            if package.androidSupport == "supported" {
+            // Count platform support
+            if package.androidSupport == .success {
                 summary["androidSupport"]! += 1
             }
-            if package.iosSupport == "supported" {
+            if package.iosSupport == .success {
                 summary["iosSupport"]! += 1
             }
-            if package.androidSupport == "supported" && package.iosSupport == "supported" {
+            if package.androidSupport == .success && package.iosSupport == .success {
                 summary["bothPlatforms"]! += 1
             }
         }

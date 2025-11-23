@@ -27,10 +27,10 @@ struct ExportHelpers {
                 var packageDict: [String: Any] = [
                     "name": package.name,
                     "rank": package.downloadRank,
-                    "android": package.androidSupport,
-                    "ios": package.iosSupport,
-                    "source": package.source,
-                    "category": package.category
+                    "android": package.androidSupport.description,
+                    "ios": package.iosSupport.description,
+                    "source": package.source.description,
+                    "category": package.category.description
                 ]
                 
                 if let androidVersion = package.androidVersion {
@@ -68,38 +68,28 @@ struct ExportHelpers {
 
 /// Realm helper utilities
 struct RealmHelpers {
-    /// Converts platform support enum to string
-    static func platformSupportToString(_ support: PlatformSupport) -> String {
+    /// Converts MobilePlatformSupport.PlatformSupport to Realm PlatformSupportCategory
+    static func platformSupportToCategory(_ support: PlatformSupport) -> PlatformSupportCategory {
         switch support {
-        case .success: return "success"
-        case .purePython: return "pure-python"
-        case .warning: return "warning"
+        case .success: return .success
+        case .purePython: return .purePython
+        case .warning: return .warning
         }
     }
     
-    /// Converts string to platform support enum
-    static func stringToPlatformSupport(_ string: String) -> PlatformSupport {
-        switch string {
-        case "success": return .success
-        case "pure-python": return .purePython
-        case "warning": return .warning
-        default: return .warning
-        }
-    }
-    
-    /// Converts source enum to string
-    static func sourceToString(_ source: PackageIndex) -> String {
-        switch source {
-        case .pypi: return "pypi"
-        case .pyswift: return "pyswift"
-        case .kivyschool: return "kivy-school"
+    /// Converts PackageIndex to PackageSourceIndex
+    static func packageIndexToSource(_ index: PackageIndex) -> PackageSourceIndex {
+        switch index {
+        case .pypi: return .pypi
+        case .pyswift: return .pyswift
+        case .kivyschool: return .kivyschool
         }
     }
     
     /// Categorizes a package based on its platform support
-    static func categorizePackage(_ package: PackageInfo) -> String {
+    static func categorizePackage(_ package: PackageInfo) -> PackageCategoryType {
         guard let android = package.android, let ios = package.ios else {
-            return "unprocessed"
+            return .unprocessed
         }
         
         let androidSupported = android == .success || android == .purePython
@@ -107,15 +97,15 @@ struct RealmHelpers {
         let isPurePython = android == .purePython && ios == .purePython
         
         if isPurePython {
-            return "pure-python"
+            return .purePython
         } else if androidSupported && iosSupported {
-            return "both-platforms"
+            return .bothPlatforms
         } else if androidSupported {
-            return "android-only"
+            return .androidOnly
         } else if iosSupported {
-            return "ios-only"
+            return .iosOnly
         } else {
-            return "no-mobile-support"
+            return .noMobileSupport
         }
     }
 }

@@ -226,9 +226,9 @@ extension Database {
                     return collected
                 }
                 
-                var dbUpdates: [(name: String, androidSupport: String, iosSupport: String,
+                var dbUpdates: [(name: String, androidSupport: PlatformSupportCategory, iosSupport: PlatformSupportCategory,
                                androidVersion: String?, iosVersion: String?, latestVersion: String?,
-                               source: String, category: String)] = []
+                               source: PackageSourceIndex, category: PackageCategoryType)] = []
                 
                 for (_, packageInfo) in batchResults {
                     processedCount += 1
@@ -236,10 +236,10 @@ extension Database {
                     if let info = packageInfo {
                         results.append(info)
                         
-                        let androidSupport = info.android.map { RealmHelpers.platformSupportToString($0) } ?? "unknown"
-                        let iosSupport = info.ios.map { RealmHelpers.platformSupportToString($0) } ?? "unknown"
+                        let androidSupport = info.android.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                        let iosSupport = info.ios.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
                         let category = RealmHelpers.categorizePackage(info)
-                        let source = info.source.map { RealmHelpers.sourceToString($0) } ?? "pypi"
+                        let source = info.source.map { RealmHelpers.packageIndexToSource($0) } ?? .pypi
                         
                         dbUpdates.append((
                             name: info.name,
