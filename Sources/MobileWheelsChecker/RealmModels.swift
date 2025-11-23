@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import MobilePlatformSupport
 
 /// Platform support status as integer enum for efficient storage
 enum PlatformSupportCategory: Int, PersistableEnum {
@@ -90,6 +91,7 @@ class PackageResult: Object {
     
     @Persisted var dependencyStatus: DependencyStatus = .noIssues
     @Persisted var lastUpdated: Date = Date()
+    @Persisted var dependenciesUpdated: Date = Date()
     
     convenience init(name: String, numberOfDownloads: Int) {
         self.init()
@@ -114,7 +116,7 @@ class PackageDatabase {
                 .appendingPathComponent("mobile-wheels.realm")
         }
         
-        config.schemaVersion = 6
+        config.schemaVersion = 7
         
         // Migration block for schema changes
         config.migrationBlock = { migration, oldSchemaVersion in
@@ -212,6 +214,14 @@ class PackageDatabase {
                             let status: DependencyStatus = allSupported ? .noIssues : .warning
                             newObj["dependencyStatus"] = status.rawValue
                         }
+                    }
+                }
+            }
+            if oldSchemaVersion < 7 {
+                // Added dependenciesUpdated field - set to current date for existing records
+                migration.enumerateObjects(ofType: PackageResult.className()) { oldObject, newObject in
+                    if let newObj = newObject {
+                        newObj["dependenciesUpdated"] = Date()
                     }
                 }
             }
@@ -325,6 +335,56 @@ class PackageDatabase {
             }
             
             package.dependencyStatus = status
+            package.lastUpdated = Date()
+        }
+    }
+    
+    /// Update package dependencies with full PackageInfo data
+    func updatePackageDependenciesWithInfo(name: String, dependencyInfo: [PackageInfo], status: DependencyStatus) throws {
+        try realm.write {
+            guard let package = realm.object(ofType: PackageResult.self, forPrimaryKey: name) else {
+                return
+            }
+            
+            // Clear existing dependencies
+            package.dependencies.removeAll()
+            
+            // Store each dependency with its platform support info
+            for depInfo in dependencyInfo {
+                // Check if dependency already exists in database
+                if let existingDep = realm.object(ofType: PackageResult.self, forPrimaryKey: depInfo.name) {
+                    // Update existing with new data if needed
+                    if !existingDep.isProcessed {
+                        existingDep.androidSupport = depInfo.android.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                        existingDep.iosSupport = depInfo.ios.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                        existingDep.androidVersion = depInfo.androidVersion
+                        existingDep.iosVersion = depInfo.iosVersion
+                        existingDep.latestVersion = depInfo.version
+                        existingDep.source = depInfo.source.map { RealmHelpers.packageIndexToSource($0) } ?? .pypi
+                        existingDep.category = RealmHelpers.categorizePackage(depInfo)
+                        existingDep.isProcessed = true
+                        existingDep.lastUpdated = Date()
+                    }
+                    package.dependencies.append(existingDep)
+                } else {
+                    // Create new dependency package with full info
+                    let newDep = PackageResult(name: depInfo.name, numberOfDownloads: 0)
+                    newDep.androidSupport = depInfo.android.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                    newDep.iosSupport = depInfo.ios.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                    newDep.androidVersion = depInfo.androidVersion
+                    newDep.iosVersion = depInfo.iosVersion
+                    newDep.latestVersion = depInfo.version
+                    newDep.source = depInfo.source.map { RealmHelpers.packageIndexToSource($0) } ?? .pypi
+                    newDep.category = RealmHelpers.categorizePackage(depInfo)
+                    newDep.isProcessed = true
+                    newDep.lastUpdated = Date()
+                    realm.add(newDep, update: .modified)
+                    package.dependencies.append(newDep)
+                }
+            }
+            
+            package.dependencyStatus = status
+            package.dependenciesUpdated = Date()
             package.lastUpdated = Date()
         }
     }
