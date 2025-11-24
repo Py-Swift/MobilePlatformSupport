@@ -389,6 +389,70 @@ class PackageDatabase {
         }
     }
     
+    /// Optimized batch update: packages + dependencies in single transaction
+    /// This is much faster than separate writes for packages and dependencies
+    func updatePackagesWithDependenciesBatch(
+        updates: [(packageInfo: PackageInfo, dependencies: [PackageInfo], depStatus: DependencyStatus)]
+    ) throws {
+        try realm.write {
+            for update in updates {
+                // Update main package
+                guard let package = realm.object(ofType: PackageResult.self, forPrimaryKey: update.packageInfo.name) else {
+                    continue
+                }
+                
+                let info = update.packageInfo
+                package.androidSupport = info.android.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                package.iosSupport = info.ios.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                package.androidVersion = info.androidVersion
+                package.iosVersion = info.iosVersion
+                package.latestVersion = info.version
+                package.source = info.source.map { RealmHelpers.packageIndexToSource($0) } ?? .pypi
+                package.category = RealmHelpers.categorizePackage(info)
+                package.isProcessed = true
+                package.lastUpdated = Date()
+                
+                // Clear and update dependencies in same transaction
+                package.dependencies.removeAll()
+                
+                for depInfo in update.dependencies {
+                    if let existingDep = realm.object(ofType: PackageResult.self, forPrimaryKey: depInfo.name) {
+                        // Update existing dependency if not processed
+                        if !existingDep.isProcessed {
+                            existingDep.androidSupport = depInfo.android.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                            existingDep.iosSupport = depInfo.ios.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                            existingDep.androidVersion = depInfo.androidVersion
+                            existingDep.iosVersion = depInfo.iosVersion
+                            existingDep.latestVersion = depInfo.version
+                            existingDep.source = depInfo.source.map { RealmHelpers.packageIndexToSource($0) } ?? .pypi
+                            existingDep.category = RealmHelpers.categorizePackage(depInfo)
+                            existingDep.isProcessed = true
+                            existingDep.lastUpdated = Date()
+                        }
+                        package.dependencies.append(existingDep)
+                    } else {
+                        // Create new dependency
+                        let newDep = PackageResult(name: depInfo.name, numberOfDownloads: 0)
+                        newDep.androidSupport = depInfo.android.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                        newDep.iosSupport = depInfo.ios.map { RealmHelpers.platformSupportToCategory($0) } ?? .unknown
+                        newDep.androidVersion = depInfo.androidVersion
+                        newDep.iosVersion = depInfo.iosVersion
+                        newDep.latestVersion = depInfo.version
+                        newDep.source = depInfo.source.map { RealmHelpers.packageIndexToSource($0) } ?? .pypi
+                        newDep.category = RealmHelpers.categorizePackage(depInfo)
+                        newDep.isProcessed = true
+                        newDep.lastUpdated = Date()
+                        realm.add(newDep, update: .modified)
+                        package.dependencies.append(newDep)
+                    }
+                }
+                
+                package.dependencyStatus = update.depStatus
+                package.dependenciesUpdated = Date()
+            }
+        }
+    }
+    
     /// Get all packages sorted by download count (descending)
     func getPackagesSortedByRank() -> Results<PackageResult> {
         return realm.objects(PackageResult.self).sorted(byKeyPath: "numberOfDownloads", ascending: false)
