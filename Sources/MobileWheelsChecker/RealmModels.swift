@@ -37,18 +37,14 @@ enum PackageSourceIndex: Int, PersistableEnum {
 /// Overall package category as integer enum
 enum PackageCategoryType: Int, PersistableEnum {
     case unprocessed = 0
-    case bothPlatforms = 1
-    case androidOnly = 2
-    case iosOnly = 3
+    case supported = 1          // Has binary wheels for mobile platforms
     case purePython = 4
     case noMobileSupport = 5
     
     var description: String {
         switch self {
         case .unprocessed: return "unprocessed"
-        case .bothPlatforms: return "both-platforms"
-        case .androidOnly: return "android-only"
-        case .iosOnly: return "ios-only"
+        case .supported: return "supported"
         case .purePython: return "pure-python"
         case .noMobileSupport: return "no-mobile-support"
         }
@@ -116,7 +112,7 @@ class PackageDatabase {
                 .appendingPathComponent("mobile-wheels.realm")
         }
         
-        config.schemaVersion = 7
+        config.schemaVersion = 8
         
         // Migration block for schema changes
         config.migrationBlock = { migration, oldSchemaVersion in
@@ -182,9 +178,7 @@ class PackageDatabase {
                     if let oldCategory = oldObj["category"] as? String {
                         let enumValue: PackageCategoryType = {
                             switch oldCategory {
-                            case "both-platforms": return .bothPlatforms
-                            case "android-only": return .androidOnly
-                            case "ios-only": return .iosOnly
+                            case "both-platforms", "android-only", "ios-only", "supported": return .supported
                             case "pure-python": return .purePython
                             case "no-mobile-support": return .noMobileSupport
                             default: return .unprocessed
@@ -222,6 +216,23 @@ class PackageDatabase {
                 migration.enumerateObjects(ofType: PackageResult.className()) { oldObject, newObject in
                     if let newObj = newObject {
                         newObj["dependenciesUpdated"] = Date()
+                    }
+                }
+            }
+            if oldSchemaVersion < 8 {
+                // Simplified category enum: merged bothPlatforms/androidOnly/iosOnly into "supported"
+                migration.enumerateObjects(ofType: PackageResult.className()) { oldObject, newObject in
+                    if let oldObj = oldObject, let newObj = newObject {
+                        if let oldCategory = oldObj["category"] as? Int {
+                            // Map old enum values to new ones
+                            // 0=unprocessed, 1=bothPlatforms, 2=androidOnly, 3=iosOnly, 4=purePython, 5=noMobileSupport
+                            // New: 0=unprocessed, 1=supported, 4=purePython, 5=noMobileSupport
+                            if oldCategory == 1 || oldCategory == 2 || oldCategory == 3 {
+                                // bothPlatforms, androidOnly, iosOnly all become "supported" (1)
+                                newObj["category"] = 1
+                            }
+                            // Others keep their values (unprocessed=0, purePython=4, noMobileSupport=5)
+                        }
                     }
                 }
             }
@@ -505,10 +516,10 @@ class PackageDatabase {
             "pyswiftBinaryWheels": 0,
             "kivyschoolBinaryWheels": 0,
             "purePython": 0,
+            "supported": 0,
             "binaryWithoutMobile": 0,
             "androidSupport": 0,
-            "iosSupport": 0,
-            "bothPlatforms": 0
+            "iosSupport": 0
         ]
         
         for package in packages {
@@ -548,6 +559,7 @@ class PackageDatabase {
             // Update summary based on category
             switch package.category {
             case .purePython: summary["purePython"]! += 1
+            case .supported: summary["supported"]! += 1
             default: break
             }
             
@@ -557,9 +569,6 @@ class PackageDatabase {
             }
             if package.iosSupport == .success {
                 summary["iosSupport"]! += 1
-            }
-            if package.androidSupport == .success && package.iosSupport == .success {
-                summary["bothPlatforms"]! += 1
             }
         }
         

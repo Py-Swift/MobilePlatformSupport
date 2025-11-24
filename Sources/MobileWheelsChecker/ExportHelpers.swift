@@ -132,12 +132,8 @@ struct RealmHelpers {
         
         if isPurePython {
             return .purePython
-        } else if androidSupported && iosSupported {
-            return .bothPlatforms
-        } else if androidSupported {
-            return .androidOnly
-        } else if iosSupported {
-            return .iosOnly
+        } else if androidSupported || iosSupported {
+            return .supported
         } else {
             return .noMobileSupport
         }
