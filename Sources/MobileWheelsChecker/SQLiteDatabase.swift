@@ -2,6 +2,12 @@ import Foundation
 import SQLite3
 
 /// SQLite database wrapper for exporting package data
+///
+/// Integer Enum Values (for space efficiency):
+/// - android_support / ios_support: 0=unknown, 1=success, 2=pure-python, 3=warning
+/// - source: 0=pypi, 1=pyswift, 2=kivyschool
+/// - category: 0=unprocessed, 1=supported, 4=pure-python, 5=no-mobile-support
+/// - dependency_status: 0=no-issues, 1=warning, 2=error
 class SQLiteDatabase {
     private var db: OpaquePointer?
     private let path: String
@@ -33,14 +39,14 @@ class SQLiteDatabase {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL UNIQUE,
             downloads INTEGER NOT NULL,
-            android_support TEXT NOT NULL,
-            ios_support TEXT NOT NULL,
-            source TEXT NOT NULL,
-            category TEXT NOT NULL,
+            android_support INTEGER NOT NULL,
+            ios_support INTEGER NOT NULL,
+            source INTEGER NOT NULL,
+            category INTEGER NOT NULL,
             android_version TEXT,
             ios_version TEXT,
             latest_version TEXT,
-            dependency_status TEXT
+            dependency_status INTEGER NOT NULL
         );
         """
         
@@ -98,10 +104,10 @@ class SQLiteDatabase {
         // Bind values
         sqlite3_bind_text(statement, 1, (package.name as NSString).utf8String, -1, nil)
         sqlite3_bind_int64(statement, 2, Int64(package.numberOfDownloads))
-        sqlite3_bind_text(statement, 3, (package.androidSupport.description as NSString).utf8String, -1, nil)
-        sqlite3_bind_text(statement, 4, (package.iosSupport.description as NSString).utf8String, -1, nil)
-        sqlite3_bind_text(statement, 5, (package.source.description as NSString).utf8String, -1, nil)
-        sqlite3_bind_text(statement, 6, (package.category.description as NSString).utf8String, -1, nil)
+        sqlite3_bind_int(statement, 3, Int32(package.androidSupport.rawValue))
+        sqlite3_bind_int(statement, 4, Int32(package.iosSupport.rawValue))
+        sqlite3_bind_int(statement, 5, Int32(package.source.rawValue))
+        sqlite3_bind_int(statement, 6, Int32(package.category.rawValue))
         
         if let androidVersion = package.androidVersion {
             sqlite3_bind_text(statement, 7, (androidVersion as NSString).utf8String, -1, nil)
@@ -121,7 +127,7 @@ class SQLiteDatabase {
             sqlite3_bind_null(statement, 9)
         }
         
-        sqlite3_bind_text(statement, 10, (package.dependencyStatus.description as NSString).utf8String, -1, nil)
+        sqlite3_bind_int(statement, 10, Int32(package.dependencyStatus.rawValue))
         
         guard sqlite3_step(statement) == SQLITE_DONE else {
             throw SQLiteError.step(message: String(cString: sqlite3_errmsg(db)))
