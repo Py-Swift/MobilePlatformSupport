@@ -40,9 +40,7 @@ class SQLiteDatabase {
             android_version TEXT,
             ios_version TEXT,
             latest_version TEXT,
-            dependency_status TEXT,
-            dependencies_updated DATETIME,
-            is_processed INTEGER NOT NULL DEFAULT 0
+            dependency_status TEXT
         );
         """
         
@@ -83,9 +81,8 @@ class SQLiteDatabase {
         let insertSQL = """
         INSERT OR REPLACE INTO packages (
             name, downloads, android_support, ios_support, source, category,
-            android_version, ios_version, latest_version, dependency_status,
-            dependencies_updated, is_processed
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+            android_version, ios_version, latest_version, dependency_status
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         """
         
         var statement: OpaquePointer?
@@ -125,13 +122,6 @@ class SQLiteDatabase {
         }
         
         sqlite3_bind_text(statement, 10, (package.dependencyStatus.description as NSString).utf8String, -1, nil)
-        
-        // Format date as ISO8601 string
-        let dateFormatter = ISO8601DateFormatter()
-        let dateString = dateFormatter.string(from: package.dependenciesUpdated)
-        sqlite3_bind_text(statement, 11, (dateString as NSString).utf8String, -1, nil)
-        
-        sqlite3_bind_int(statement, 12, package.isProcessed ? 1 : 0)
         
         guard sqlite3_step(statement) == SQLITE_DONE else {
             throw SQLiteError.step(message: String(cString: sqlite3_errmsg(db)))
