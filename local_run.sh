@@ -1,0 +1,1 @@
+.build/Build/Products/Release/mobile-wheels-checker $@

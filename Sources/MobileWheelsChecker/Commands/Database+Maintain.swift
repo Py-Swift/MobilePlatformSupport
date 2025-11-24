@@ -173,14 +173,40 @@ extension Database {
                 let batchEnd = min(batchStart + concurrent, packagesNeedingDepUpdate.count)
                 let batch = Array(packagesNeedingDepUpdate[batchStart..<batchEnd])
                 
+                // Pre-fetch database lookups for all dependencies in batch (thread-safe)
+                var allDepNames = Set<String>()
+                for (_, depNames) in batch {
+                    allDepNames.formUnion(depNames)
+                }
+                
+                var dbLookup: [String: PackageInfo] = [:]
+                for depName in allDepNames {
+                    if let dbPackage = db.getPackage(name: depName),
+                       dbPackage.isProcessed,
+                       let latestVersion = dbPackage.latestVersion {
+                        
+                        // Reconstruct PackageInfo from database (value type, thread-safe)
+                        let info = PackageInfo(
+                            name: dbPackage.name,
+                            android: dbPackage.androidSupport.toPlatformSupport(),
+                            ios: dbPackage.iosSupport.toPlatformSupport(),
+                            source: dbPackage.source.toPackageIndex(),
+                            androidVersion: dbPackage.androidVersion,
+                            iosVersion: dbPackage.iosVersion,
+                            version: latestVersion
+                        )
+                        dbLookup[depName] = info
+                    }
+                }
+                
                 let batchResults = await withTaskGroup(of: (String, [String], [PackageInfo], DependencyStatus)?.self) { group in
                     for (package, depNames) in batch {
-                        group.addTask { [dependencyCache] in
+                        group.addTask { [dependencyCache, dbLookup] in
                             // Fetch dependencies in parallel with database-first lookup and caching
                             let (dependencies, _) = await DependencyHelpers.fetchDependenciesParallel(
                                 depNames: depNames,
                                 checker: checker,
-                                db: db,
+                                dbLookup: dbLookup,
                                 cache: dependencyCache
                             )
                             

@@ -109,16 +109,42 @@ extension Database {
                 return collected
             }
             
+            // Pre-fetch database lookups for all dependencies (thread-safe)
+            var allDepNames = Set<String>()
+            for (_, _, depNames) in packageResults {
+                allDepNames.formUnion(depNames)
+            }
+            
+            var dbLookup: [String: PackageInfo] = [:]
+            for depName in allDepNames {
+                if let dbPackage = db.getPackage(name: depName),
+                   dbPackage.isProcessed,
+                   let latestVersion = dbPackage.latestVersion {
+                    
+                    // Reconstruct PackageInfo from database (value type, thread-safe)
+                    let info = PackageInfo(
+                        name: dbPackage.name,
+                        android: dbPackage.androidSupport.toPlatformSupport(),
+                        ios: dbPackage.iosSupport.toPlatformSupport(),
+                        source: dbPackage.source.toPackageIndex(),
+                        androidVersion: dbPackage.androidVersion,
+                        iosVersion: dbPackage.iosVersion,
+                        version: latestVersion
+                    )
+                    dbLookup[depName] = info
+                }
+            }
+            
             // Phase 2: Fetch dependencies for all packages in batch concurrently
             let fullResults = await withTaskGroup(of: (PackageInfo, [PackageInfo], DependencyStatus)?.self, returning: [(PackageInfo, [PackageInfo], DependencyStatus)].self) { group in
                 for (_, packageInfo, depNames) in packageResults {
                     if let info = packageInfo {
-                        group.addTask { [dependencyCache] in
+                        group.addTask { [dependencyCache, dbLookup] in
                             // Fetch dependencies in parallel with caching
                             let (dependencies, _) = await DependencyHelpers.fetchDependenciesParallel(
                                 depNames: depNames,
                                 checker: checker,
-                                db: db,
+                                dbLookup: dbLookup,
                                 cache: dependencyCache
                             )
                             

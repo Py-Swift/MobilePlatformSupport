@@ -8,13 +8,13 @@ struct DependencyHelpers {
     /// - Parameters:
     ///   - depNames: Array of dependency package names to fetch
     ///   - checker: MobilePlatformSupport instance for API calls
-    ///   - db: PackageDatabase for database lookups
+    ///   - dbLookup: Pre-fetched dictionary of database packages (thread-safe value types)
     ///   - cache: In-memory cache of already-fetched dependencies (will be checked and updated)
     /// - Returns: Tuple of (fetched dependencies array, updated cache)
     static func fetchDependenciesParallel(
         depNames: [String],
         checker: MobilePlatformSupport,
-        db: PackageDatabase,
+        dbLookup: [String: PackageInfo],
         cache: [String: PackageInfo]
     ) async -> ([PackageInfo], [String: PackageInfo]) {
         guard !depNames.isEmpty else { return ([], cache) }
@@ -24,27 +24,14 @@ struct DependencyHelpers {
         // Use task group for parallel fetching
         let dependencies = await withTaskGroup(of: (String, PackageInfo?).self, returning: [PackageInfo].self) { group in
             for depName in depNames {
-                group.addTask { [cache] in
+                group.addTask { [cache, dbLookup] in
                     // 1. Check in-memory cache first (fastest)
                     if let cached = cache[depName] {
                         return (depName, cached)
                     }
                     
-                    // 2. Check database (fast, avoids API call)
-                    if let dbPackage = db.getPackage(name: depName),
-                       dbPackage.isProcessed,
-                       let latestVersion = dbPackage.latestVersion {
-                        
-                        // Reconstruct PackageInfo from database
-                        let info = PackageInfo(
-                            name: dbPackage.name,
-                            android: dbPackage.androidSupport.toPlatformSupport(),
-                            ios: dbPackage.iosSupport.toPlatformSupport(),
-                            source: dbPackage.source.toPackageIndex(),
-                            androidVersion: dbPackage.androidVersion,
-                            iosVersion: dbPackage.iosVersion,
-                            version: latestVersion
-                        )
+                    // 2. Check pre-fetched database lookup (fast, avoids API call)
+                    if let info = dbLookup[depName] {
                         return (depName, info)
                     }
                     
