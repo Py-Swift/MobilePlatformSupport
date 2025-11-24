@@ -64,6 +64,40 @@ struct ExportHelpers {
         
         print()
     }
+    
+    /// Exports database to SQLite format
+    static func exportToSQLite(packagesArray: [PackageResult], outputPath: String, db: PackageDatabase) throws {
+        // Remove existing file if present
+        try? FileManager.default.removeItem(atPath: outputPath)
+        
+        // Create SQLite database
+        let sqliteDB = try SQLiteDatabase(path: outputPath)
+        
+        print("Creating SQLite tables...")
+        try sqliteDB.createTables()
+        
+        print("Inserting \(packagesArray.count) packages...")
+        
+        var insertedCount = 0
+        for package in packagesArray {
+            try sqliteDB.insertPackage(package)
+            insertedCount += 1
+            
+            if insertedCount % 1000 == 0 {
+                let percentage = Int((Double(insertedCount) / Double(packagesArray.count)) * 100)
+                print("\r\u{001B}[K[\(insertedCount)/\(packagesArray.count)] [\(percentage)%] exporting to SQLite...", terminator: "")
+                fflush(stdout)
+            }
+        }
+        
+        print("\r\u{001B}[K[\(insertedCount)/\(packagesArray.count)] [100%] exporting to SQLite...")
+        
+        // Create indexes for better query performance
+        print("Creating indexes...")
+        try sqliteDB.createIndexes()
+        
+        sqliteDB.close()
+    }
 }
 
 /// Realm helper utilities

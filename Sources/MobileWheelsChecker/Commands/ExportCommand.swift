@@ -8,7 +8,7 @@ struct Export: AsyncParsableCommand {
         commandName: "export",
         abstract: "Export database to various formats",
         discussion: """
-        Exports analyzed package data to JSON, Markdown, or SQL formats.
+        Exports analyzed package data to JSON, Markdown, or SQLite formats.
         Requires existing database with processed packages.
         
         Example:
@@ -29,7 +29,7 @@ struct Export: AsyncParsableCommand {
     @Flag(name: .shortAndLong, help: "Export to Markdown format")
     var markdown: Bool = false
     
-    @Flag(name: .shortAndLong, help: "Export to SQL format (to be implemented)")
+    @Flag(name: .shortAndLong, help: "Export to SQLite format")
     var sql: Bool = false
     
     mutating func validate() throws {
@@ -99,22 +99,24 @@ struct Export: AsyncParsableCommand {
             print("✅ Markdown exported: \(markdownFilename)")
         }
         
-        // Export SQL
+        // Export SQLite
         if sql {
-            print("📤 Exporting to SQL...")
+            print("📤 Exporting to SQLite...")
             
-            // TODO: Implement SQL export
-            let sqlFilename = (outputDir as NSString).appendingPathComponent("mobile-wheels-results.sql")
-            let placeholder = """
-            -- Mobile Wheels Support Database Export
-            -- Generated from: \(dbPath)
-            -- Total packages: \(db.getTotalPackages())
-            -- Processed: \(db.getProcessedCount())
+            let sqliteFilename = (outputDir as NSString).appendingPathComponent("mobile-wheels-results.sqlite")
+            let packages = db.getPackagesSortedByRank()
+            let processed = Array(packages.filter { $0.isProcessed })
             
-            -- SQL export to be implemented
-            """
-            try placeholder.write(toFile: sqlFilename, atomically: true, encoding: .utf8)
-            print("✅ SQL exported: \(sqlFilename)")
+            try ExportHelpers.exportToSQLite(
+                packagesArray: processed,
+                outputPath: sqliteFilename,
+                db: db
+            )
+            
+            print("✅ SQLite database exported: \(sqliteFilename)")
+            print("   - Packages: \(processed.count)")
+            print("   - Tables: packages, dependencies")
+            print("   - Indexes: created for optimal query performance")
         }
     }
 }
